@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cms.domain.User;
-import com.cms.security.utils.JwtTokenUtil;
 import com.cms.service.UserService;
 
 @Service
@@ -19,18 +18,15 @@ public class AuthServiceImpl implements AuthService<User> {
 
   private AuthenticationManager authenticationManager;
   private UserDetailsService userDetailsService;
-  private JwtTokenUtil jwtTokenUtil;
   private UserService userService;
   
   @Autowired
   public AuthServiceImpl(
           AuthenticationManager authenticationManager,
           UserDetailsService userDetailsService,
-          JwtTokenUtil jwtTokenUtil, 
           UserService userService) {
       this.authenticationManager = authenticationManager;
       this.userDetailsService = userDetailsService;
-      this.jwtTokenUtil = jwtTokenUtil;
       this.userService = userService;
   }
   
@@ -65,7 +61,7 @@ public class AuthServiceImpl implements AuthService<User> {
     
     final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
     // 获取token
-    String token  = jwtTokenUtil.generateToken(userDetails);
+    String token  = null;
     
     return token;
   }
@@ -73,7 +69,7 @@ public class AuthServiceImpl implements AuthService<User> {
   @Override
   public String refresh(String oldToken) {
     
-    return jwtTokenUtil.refreshToken(oldToken);
+    return null;
   }
   
   @Override

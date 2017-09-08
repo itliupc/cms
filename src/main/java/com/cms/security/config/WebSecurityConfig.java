@@ -27,11 +27,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
       return new BCryptPasswordEncoder();
   }
 
-  @Bean
-  public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-      return new JwtAuthenticationTokenFilter();
-  }
-
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
       httpSecurity
@@ -57,7 +52,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
               .antMatchers("**/socket/**").permitAll()
               // 对于获取token的rest api要允许匿名访问
               .antMatchers("/login").permitAll()
-              .antMatchers("/index1").permitAll()
               .antMatchers("/api/v1/login").permitAll()
               .antMatchers("/api/v1/dataexport/**").permitAll()
               .antMatchers("/api/v1/dss/**").permitAll()
@@ -69,13 +63,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
               
               .and()  
                 .formLogin()  
-                .loginPage("/signin")//指定登录页是”/login”
-                .loginProcessingUrl("/login")
-                .successForwardUrl("/index1")
+                .loginPage("/login")//指定登录页是”/login”
+                .defaultSuccessUrl("/", true)
+                .loginProcessingUrl("/dologin")
                 .permitAll()
                .and()  
                 .logout()  
-                .logoutSuccessUrl("/signin") //退出登录后的默认网址是”/home”  
+                .logoutSuccessUrl("/login") //退出登录后的默认网址是”/home”  
                 .permitAll();  
   }
   

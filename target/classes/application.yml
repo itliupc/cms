@@ -19,14 +19,6 @@ spring :
     hibernate :
       naming-strategy : org.hibernate.cfg.ImprovedNamingStrategy
       dialect : org.hibernate.dialect.MySQL5Dialect
-
-token :
-  timeout : 3600 # token lose time (s)
-  header : Authorization
-  head : Bearer
-  expiration : 604800 
-  secret : cms@wafer.com
- 
 logging : 
   level : 
     com : 

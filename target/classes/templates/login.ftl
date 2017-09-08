@@ -34,7 +34,7 @@
 	    <div class="message">登录</div>
 	    <div id="darkbannerwrap"></div>
 	    
-	    <form action="login" method="post">
+	    <form action="dologin" method="post">
 			<input name="username" placeholder="用户名" type="text" />
 			<hr class="hr15" />
 			<input name="password" placeholder="密码" type="password" />
