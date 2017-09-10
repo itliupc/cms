@@ -28,11 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
       httpSecurity
-            .csrf().disable()
-      
+             .csrf().disable()
               .authorizeRequests()
-              //.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
               // 允许对于网站静态资源的无授权访问
               .antMatchers(
                       HttpMethod.GET,
@@ -42,23 +39,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                       "/**/static/**",
                       "/*.html",
                       "/favicon.ico",
-                      "/**/*.html",
+                      "/**/*.ftl",
                       "/**/*.css",
                       "/**/*.js"
               ).permitAll()
-              // websocket 链接
-              .antMatchers("**/socket/**").permitAll()
               // 对于获取token的rest api要允许匿名访问
               .antMatchers("/login").permitAll()
-              .antMatchers("/api/v1/login").permitAll()
-              .antMatchers("/api/v1/dataexport/**").permitAll()
-              .antMatchers("/api/v1/dss/**").permitAll()
-              // .access("hasRole('ADMIN') and hasRole('DBA')")
-              .antMatchers(HttpMethod.POST, "/api/v1/user").permitAll() // 注册用户
-              .antMatchers("/api/v1/logout").permitAll()
               // 除上面外的所有请求全部需要鉴权认证
               .anyRequest().authenticated()
-              
               .and()  
                 .formLogin()  
                 .loginPage("/login")//指定登录页是”/login”

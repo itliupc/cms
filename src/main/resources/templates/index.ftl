@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="copyright" content="All Rights Reserved, Copyright (C) 2017" />
-<title>Web Admin</title>
+<title>车辆信息管理</title>
 <link rel="stylesheet" type="text/css" href="static/easyui/1.5.2/themes/insdep/easyui.css" />
 <link rel="stylesheet" type="text/css" href="static/css/weui.css" />
 <link rel="stylesheet" type="text/css" href="static/css/icon.css" />
@@ -15,7 +15,7 @@
 	<!-- begin of header -->
 	<div class="cui-header" data-options="region:'north',border:false,split:true">
     	<div class="cui-header-left">
-        	<h1>Web Admin</h1>
+        	<h1>车辆信息管理</h1>
         </div>
         <div class="cui-header-right">
         	<p><strong>admin</strong>，欢迎您！</p>
@@ -27,8 +27,8 @@
 	<div class="cui-sidebar" data-options="region:'west',split:true,border:true,title:'导航菜单'"> 
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
         	<ul class="easyui-tree cui-side-tree">
-             	<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="pages/layout-2.html" iframe="0">菜单导航</a></li>
-                 <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="pages/layout-3.html" iframe="0">用户管理</a></li>
+             	 <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="users/index" iframe="0">用户管理</a></li>
+                 <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="pages/layout-3.html" iframe="0">用户管理</a></li>
                  <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="pages/layout-3.html" iframe="0">角色管理</a></li>
                  <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="pages/layout-3.html" iframe="0">数据字典</a></li>
                  <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="pages/layout-3.html" iframe="0">系统参数</a></li>
@@ -45,7 +45,7 @@
     </div>
     <!-- end of main --> 
     <!-- begin of footer -->
-	<div class="cui-footer" data-options="region:'south',border:true,split:true,maxHeight:30">
+	<div class="cui-footer" data-options="region:'south',border:false,split:true,maxHeight:30">
     	&copy; 2017 All Rights Reserved
     </div>
     <!-- end of footer -->  

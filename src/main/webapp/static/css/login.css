@@ -24,7 +24,7 @@ a{
 }
 .login{
     margin: 160px auto 0 auto;
-    min-height: 420px;
+    /* min-height: 420px; */
     max-width: 420px;
     padding: 40px;
     background-color: #ffffff;
@@ -43,11 +43,11 @@ a.logo{
 }
 .message {
     margin: 10px 0 0 -58px;
-    padding: 18px 10px 18px 60px;
+    padding: 10px 10px 10px 20px;
     background: #27A9E3;
     position: relative;
     color: #fff;
-    font-size: 16px;
+    font-size: 22px;
 }
 .error-msg {
 	margin-left: 5px;
@@ -64,19 +64,17 @@ a.logo{
     position: relative;
 }
 
-input[type=text],
-input[type=file],
-input[type=password],
-input[type=email], select {
+.login-input {
     border: 1px solid #DCDEE0;
     vertical-align: middle;
     border-radius: 3px;
-    height: 50px;
     padding: 0px 16px;
     font-size: 14px;
     color: #555555;
     outline:none;
-    width:100%;
+    height:40px;
+    width :80%;
+    
 }
 input[type=text]:focus,
 input[type=file]:focus,
@@ -128,4 +126,9 @@ hr.hr20 {
     position:absolute;
     bottom:15px;
     right:15px;
+}
+.login-label{
+	width: 56px;
+    display: inline-block;
+    font-size: 16px;
 }

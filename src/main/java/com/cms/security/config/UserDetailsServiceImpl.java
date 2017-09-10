@@ -53,7 +53,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
       }
     }
-//    return authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     return grants;
   }
 }
