@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.cms.domain.User;
 import com.cms.repository.UserRepository;
-import com.cms.vo.UserVo;
 
 @Service
 public class UserService {
@@ -37,10 +36,6 @@ public class UserService {
 
   public void updateUserStatusByUserId(long userId) {
     userRepository.updateUserStatusByUserId(userId);
-  }
-
-  public List<UserVo> getUserVoList() {
-    return  userRepository.getUserVoList();
   }
 
   public User getUserbyEmail(String email) {

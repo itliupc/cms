@@ -15,12 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cms.config.Constant;
-import com.cms.domain.Dept;
-import com.cms.domain.DeptUser;
 import com.cms.domain.User;
 import com.cms.security.auth.AuthService;
-import com.cms.service.DeptService;
-import com.cms.service.DeptUserService;
 import com.cms.service.UserService;
 import com.cms.vo.AccountVo;
 import com.cms.vo.LoginUserVo;
@@ -34,12 +30,6 @@ public class UserController {
 
   @Autowired
   UserService userService;
-  
-  @Autowired
-  DeptUserService deptUserService;
-  
-  @Autowired
-  DeptService deptService;
   
   @Autowired
   AuthService<User> authService;
@@ -65,12 +55,10 @@ public class UserController {
     user.setLatestLoginTime(new Date());
     userService.updateUserbyUserId(user);
     
-    Dept dept = deptService.getDeptByUserId(user.getUserId());
     
     LoginUserVo loginUser = new LoginUserVo();
     loginUser.setToken(token);
     loginUser.setUser(user);
-    loginUser.setDept(dept);
     
     return ResponseResult.success(loginUser);
   }  
@@ -95,8 +83,7 @@ public class UserController {
   @RequestMapping(value = Constant.USERS, method = RequestMethod.GET)
   @Transactional(readOnly = true)
   public ResponseResult userList(){
-    List<UserVo> userList = userService.getUserVoList();
-    return ResponseResult.success(userList);
+    return ResponseResult.success(false);
   }
   
   /**
@@ -122,14 +109,8 @@ public class UserController {
       user.setUserAuthority(1);
       userService.userSave(user);
 
-      DeptUser deptUser = new DeptUser();
-      deptUser.setDeptId(userInfo.getDeptId());
-      deptUser.setUserId(user.getUserId());
-      deptUser.setCreateTime(new Date());
-      deptUserService.deptUserSave(deptUser);
 
-      List<UserVo> userList = userService.getUserVoList();
-      return ResponseResult.success(userList);
+      return ResponseResult.success(false);
     }
   }
   
@@ -143,10 +124,7 @@ public class UserController {
     
     userService.updateUserStatusByUserId(userId);
     
-    deptUserService.removeDeptUserByUserId(userId);
-    
-    List<UserVo> userList = userService.getUserVoList();
-    return ResponseResult.success(userList);
+    return ResponseResult.success(false);
   }
   
   /**
@@ -175,20 +153,8 @@ public class UserController {
       userInfo.setUpdateTime(new Date());
       userService.userSave(userInfo);
 
-      DeptUser deptUser = deptUserService.getDeptUserByUserId(user.getUserId());
-      if (null == deptUser) {
-        deptUser = new DeptUser();
-        deptUser.setDeptId(user.getDeptId());
-        deptUser.setUserId(user.getUserId());
-        deptUser.setCreateTime(new Date());
-        deptUserService.deptUserSave(deptUser);
-      } else if (deptUser.getDeptId() != user.getDeptId()) {
-        deptUser.setDeptId(user.getDeptId());
-        deptUserService.deptUserSave(deptUser);
-      }
 
-      List<UserVo> userList = userService.getUserVoList();
-      return ResponseResult.success(userList);
+      return ResponseResult.success(false);
     }
   }
 }

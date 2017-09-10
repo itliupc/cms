@@ -18,10 +18,6 @@ public interface UserRepository extends BaseRepository<User, Long> {
   @Query(value = "Update User u set u.status = 1 where u.userId = :userId")
   void updateUserStatusByUserId(@Param("userId") long userId);
 
-  @Query(
-      value = "Select new com.cms.vo.UserVo (u.userId, u.userName, u.email, u.latestLoginTime, d.deptId, d.deptName) from User u, Dept d, DeptUser du where u.userId = du.userId and du.deptId = d.deptId and u.status = 0 and u.email != 'admin'")
-  List<UserVo> getUserVoList();
-
   @Query(value = "from User u where u.email = :email")
   User getUserbyEmail(@Param("email") String email);
 

@@ -16,7 +16,7 @@ import com.cms.domain.User;
 import com.cms.service.UserService;
 
 @Service
-public class JwtUserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
   @Autowired
   private UserService userService;

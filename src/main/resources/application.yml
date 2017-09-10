@@ -5,8 +5,8 @@ server :
 spring : 
   datasource : 
     url : jdbc:mysql://localhost:3306/interfacetestdemo
-    username : wafer
-    password : wafer
+    username : root
+    password : mysql
     driver-class-name : com.mysql.jdbc.Driver
     max-active : 20
     max-idle : 0
@@ -22,10 +22,9 @@ spring :
 logging : 
   level : 
     com : 
-      wafer : DEBUG 
+      wafer : INFO 
     org :
-      hibernate : ERROR
+      hibernate : INFO
       springframework : 
-       web : ERROR
-    root : WARN 
-  file : ../logs/interfacetest.log 
+       web : INFO
+    root : INFO 

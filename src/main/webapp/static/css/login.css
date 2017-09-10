@@ -23,7 +23,7 @@ a{
     cursor:pointer;
 }
 .login{
-    margin: 200px auto 0 auto;
+    margin: 160px auto 0 auto;
     min-height: 420px;
     max-width: 420px;
     padding: 40px;
@@ -48,6 +48,13 @@ a.logo{
     position: relative;
     color: #fff;
     font-size: 16px;
+}
+.error-msg {
+	margin-left: 5px;
+	margin-top: -5px;
+	margin-bottom: 10px;
+	height:15px;
+	color:red;
 }
 #darkbannerwrap {
     background: url(../images/aiwrap.png);
