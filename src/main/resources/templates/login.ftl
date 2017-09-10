@@ -7,6 +7,7 @@
 	<meta http-equiv="Expires" content="0" />
 	<title>车辆信息管理</title> 
 	<link href="static/css/login.css" type="text/css" rel="stylesheet" /> 
+	<link href="static/css/bootstrap.min.css" type="text/css" rel="stylesheet" /> 
 	<script type="text/javascript" src="static/easyui/1.5.2/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -28,20 +29,27 @@
 	</script>
 </head> 
 <body> 
-	<div class="login">
-	    <div class="message">车辆信息管理</div>
-	    <div id="darkbannerwrap"></div>
-	    <form id="login-form" action="dologin" method="post">
-			<span class="login-label">用户名:</span>
-			<input class="login-input" name="username" placeholder="用户名" type="text" />
-			<hr class="hr15" />
-			<span class="login-label">密&nbsp;&nbsp;&nbsp;码:</span>
-			<input class="login-input" name="password" placeholder="密码" type="password" />
-			<hr class="hr15" />
-			 <div id="err_msg" class="error-msg"></div>
-			<input value="登录" style="width:100%;" type="button" onclick="checkForm()"/>
-			<hr class="hr20" />
-		</form>
-	</div>
+	<div class="box">
+	     <div class="cnt">
+	        <p id="huanying"><span id="cnt_one">用户登录</span></p>
+	        <hr>
+	        <div>
+	           <form action="dologin" method="post" id="login-form" class="bs-example bs-example-form" role="form">
+			      <div class="input-group">
+				      <span class="input-group-addon"><img src="./static/images/account.png"></span>
+				      <input type="text" name="username" class="form-control" placeholder="请输入账号">
+			      </div><br>
+			      <div class="input-group">
+				      <span class="input-group-addon"><img src="./static/images/suo.png"></span>
+				      <input type="password" name="password" class="form-control" placeholder="请输入密码" onkeydown="if(event.keyCode==13){checkForm();}">
+			      </div><br>
+			      <div id="err_msg" class="error-msg"></div>
+		       </form>
+	        </div>
+	        <div style="margin-top:30px;">
+	           <input class="form-control btn btn-info" style="height:40px;" type="button" value="登录" onclick="checkForm()">
+	        </div>
+	     </div> 
+	  </div>
 </body>
 </html>
