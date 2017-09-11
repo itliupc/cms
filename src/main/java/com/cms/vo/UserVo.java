@@ -5,18 +5,14 @@ import java.util.Date;
 public class UserVo {
 
   private long userId;
+  
+  private String name;
 
   private String userName;
   
   private String password;
 
-  private String email;
-
   private Date latestLoginTime;
-
-  private long deptId;
-
-  private String deptName;
 
   public long getUserId() {
     return userId;
@@ -42,12 +38,12 @@ public class UserVo {
     this.password = password;
   }
 
-  public String getEmail() {
-    return email;
+  public String getName() {
+    return name;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public Date getLatestLoginTime() {
@@ -58,46 +54,24 @@ public class UserVo {
     this.latestLoginTime = latestLoginTime;
   }
 
-  public long getDeptId() {
-    return deptId;
-  }
-
-  public void setDeptId(long deptId) {
-    this.deptId = deptId;
-  }
-
-  public String getDeptName() {
-    return deptName;
-  }
-
-  public void setDeptName(String deptName) {
-    this.deptName = deptName;
-  }
-
   public UserVo() {
     super();
   }
 
-  public UserVo(long userId, String userName, String email, Date latestLoginTime, long deptId,
-      String deptName) {
+  public UserVo(long userId,  String name, String userName, Date latestLoginTime) {
     super();
     this.userId = userId;
     this.userName = userName;
-    this.email = email;
+    this.name = name;
     this.latestLoginTime = latestLoginTime;
-    this.deptId = deptId;
-    this.deptName = deptName;
   }
 
-  public UserVo(long userId, String userName, String password, String email, Date latestLoginTime,
-      long deptId, String deptName) {
+  public UserVo(long userId, String name, String userName, String password, Date latestLoginTime) {
     super();
     this.userId = userId;
     this.userName = userName;
     this.password = password;
-    this.email = email;
+    this.name = name;
     this.latestLoginTime = latestLoginTime;
-    this.deptId = deptId;
-    this.deptName = deptName;
   }
 }

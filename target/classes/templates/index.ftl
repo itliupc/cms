@@ -26,12 +26,12 @@
 	<div class="cui-sidebar" data-options="region:'west',split:true,border:true,title:'导航菜单'"> 
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
         	<ul class="easyui-tree cui-side-tree">
-             	 <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="users/index" iframe="0">用户管理</a></li>
-                 <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="pages/layout-3.html" iframe="0">用户管理</a></li>
+             	 <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="user-manage/view/index" iframe="0">用户管理</a></li>
+                 <!-- <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="pages/layout-3.html" iframe="0">用户管理</a></li>
                  <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="pages/layout-3.html" iframe="0">角色管理</a></li>
                  <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="pages/layout-3.html" iframe="0">数据字典</a></li>
                  <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="pages/layout-3.html" iframe="0">系统参数</a></li>
-                 <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="pages/layout-3.html" iframe="0">操作日志</a></li>
+                 <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="pages/layout-3.html" iframe="0">操作日志</a></li>-->
              </ul>
         </div>
     </div>	

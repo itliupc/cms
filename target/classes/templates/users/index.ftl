@@ -4,16 +4,16 @@
 			<table width='500px' style="margin:15px auto">
 				<tr>
 					<td width='100px' align="right">
-						<label for="name" >名称:</label>
+						<label for="name" >姓名:</label>
 					</td>
 					<td width='200px' align="left">
 						<input class="easyui-textbox" type="text" name="name" data-options=""></input>
 					</td>
 					<td  style="text-align:center"  width='100px'>
-						<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:UserManage.add()">查询</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:UserManage.query()">查询</a>
 					</td>
 					<td  style="text-align:center" width='100px'>
-						<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:UserManage.add()">重置</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:UserManage.reset()">重置</a>
 					</td>
 				</tr>
 			</table>
@@ -28,12 +28,9 @@
 				<tr>
 					<th data-options="field:'ck',checkbox:true"></th>
 					<th field="userId" hidden="true"></th>
-					<th field="name" width="100">Item ID</th>
-					<th field="userName" width="100">Product ID</th>
-					<th field="listprice" width="100">List Price</th>
-					<th field="unitcost" width="100">Unit Cost</th>
-					<th field="attr1" width="100">Attribute</th>
-					<th field="status" width="100">Stauts</th>
+					<th field="name" width="100">姓名</th>
+					<th field="userName" width="100">账号</th>
+					<th field="status" width="100">状态</th>
 					<th data-options="field:'fck', width:60, formatter:UserManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>

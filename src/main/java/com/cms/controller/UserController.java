@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,25 +62,15 @@ public class UserController {
   @RequestMapping(value = "addUser", method = RequestMethod.POST)
   @ResponseBody
   public ResponseResult userCreate(UserVo userInfo) {
-//    User userForCompareName = userService.findByUserName(userInfo.getUserName());
-//    User userForCompareEmail = userService.getUserbyEmail(userInfo.getEmail());
-//    if (null != userForCompareName) {
-//      return ResponseResult.failure("");
-//    } else if (null != userForCompareEmail) {
-//      return ResponseResult.failure("");
-//    } else {
-//      User user = new User();
-//      user.setUserName(userInfo.getUserName());
-//      user.setCreateTime(new Date());
-//      user.setPassword(new BCryptPasswordEncoder().encode(userInfo.getPassword()));
-//      // 暂定设置所有的角色为user
-//      user.setUserAuthority(1);
-//      userService.userSave(user);
-//
-//
-//      return ResponseResult.success(false);
-//    }
-    return ResponseResult.success(false);
+	  User user = new User();
+	  user.setName(userInfo.getName());
+	  user.setUserName(userInfo.getUserName());
+	  user.setCreateTime(new Date());
+	  user.setPassword(new BCryptPasswordEncoder().encode(userInfo.getPassword()));
+	  // 暂定设置所有的角色为user
+	  user.setUserAuthority(1);
+	  userService.userSave(user);
+    return ResponseResult.success(user);
   }
   
   /**
@@ -104,7 +95,7 @@ public class UserController {
   public ResponseResult userModify(@RequestBody UserVo user) {
     User userForCompareName =
         userService.getOtherUserbyUserName(user.getUserName(), user.getUserId());
-    User userForCompareEmail = userService.getOtherUserbyEmail(user.getEmail(), user.getUserId());
+    User userForCompareEmail = userService.getOtherUserbyEmail(user.getName(), user.getUserId());
     if (null != userForCompareName) {
       return ResponseResult.failure("");
     } else if (null != userForCompareEmail) {

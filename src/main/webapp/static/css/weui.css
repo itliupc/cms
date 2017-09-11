@@ -60,6 +60,9 @@ input[type="checkbox"] { cursor: pointer;}
 	width:100%;
 /* 	table-layout: fixed; */
 }
+.formLayout tr{
+	height:50px;
+}
 .formLayout td{
 	padding:3px 5px;
 	border-bottom:1px solid #d5eaf7;
@@ -68,8 +71,8 @@ input[type="checkbox"] { cursor: pointer;}
 	background:#e6f1f9;
 	text-align:right;
 	border-right:1px solid #d5eaf7;
-	width:80px;
-	max-width:80px;
+	width:120px;
+	max-width:120px;
 	
 }
 .formTit{

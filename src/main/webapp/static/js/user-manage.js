@@ -6,36 +6,50 @@ var UserManage = {
 					+ "<span class=\"l-btn-left\"><span class=\"l-btn-text icon-edit l-btn-icon-left\">编辑</span></span></a>";
 			return button;
 	},
+	query: function(){
+		var name=$("#user-search").find("input[name='name']").val();
+		$("#user-datagrid").datagrid('load',{'name':name});
+	},
+	reset: function(){
+		$("#user-search").form('load',{'name':''});
+		$("#user-datagrid").datagrid('load',{'name':''});
+	},
 	add :function(){
 		$("#add_dialog").dialog({
 			title : '新增',
-			width : 600,
-			height : 500,
+			width : 400,
+			height : 290,
 			closed : false,
 			cache : false,
 			resizable : false,
-			href : "user-manage/view/edit",
+			href : "user-manage/view/add",
 			modal : true,
 			onLoad : function() {
 				
 			},
 			buttons : [ {
-				id : 'add_save_ds_btn',
 				iconCls: "icon-save",
 				text : '保存',
 				handler : function(){
-					debugger
+					var name=$("#user-add").find("input[name='name']").val();
+					var userName=$("#user-add").find("input[name='userName']").val();
+					var password=$("#user-add").find("input[name='password']").val();
 					$.ajax({
 						method : 'post',
 						url : 'user-manage/addUser',
 						data : {
-							'userId' : "1",
-							'userName' : "code2"
+							'name' : name,
+							'userName' : userName,
+							'password' : password
 						},
 						async : false,
 						success : function(data) {
-							if (data == 'false') {
-								flag = true;
+							if(data.result){
+								$("#add_dialog").dialog('close');
+								$("#user-datagrid").datagrid('reload');
+								$.messager.alert('提示','保存成功！');
+							}else{
+								
 							}
 						}
 					});
