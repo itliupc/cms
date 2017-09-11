@@ -61,7 +61,6 @@ public class UserController {
       return ResponseResult.failure("");
     } else {
       User user = new User();
-      user.setEmail(userInfo.getEmail());
       user.setUserName(userInfo.getUserName());
       user.setCreateTime(new Date());
       user.setPassword(new BCryptPasswordEncoder().encode(userInfo.getPassword()));
@@ -104,9 +103,6 @@ public class UserController {
     } else {
       User userInfo = userService.getUserbyUserId(user.getUserId());
 
-      if (null != user.getEmail()) {
-        userInfo.setEmail(user.getEmail());
-      }
       if (null != user.getUserName()) {
         userInfo.setUserName(user.getUserName());
       }

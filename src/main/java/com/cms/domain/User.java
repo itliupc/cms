@@ -26,14 +26,14 @@ public class User {
   @Column(name = "user_id", unique = true, nullable = false)
   private long userId;
 
+  @Column(name = "name")
+  private String name;
+  
   @Column(name = "user_name")
   private String userName;
 
   @Column(name = "password")
   private String password;
-
-  @Column(name = "email")
-  private String email;
 
   @Column(name = "status")
   private int status;  
@@ -59,6 +59,14 @@ public class User {
     this.userId = userId;
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public void setName (String name) {
+    this.name = name;
+  }
+  
   public String getUserName() {
     return userName;
   }
@@ -73,14 +81,6 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
   }
 
   public int getStatus() {
@@ -127,13 +127,13 @@ public class User {
     super();
   }
 
-  public User(long userId, String userName, String password, String email, int status, int userAuthority,
+  public User(long userId, String name, String userName, String password, int status, int userAuthority,
 		Date latestLoginTime, Date createTime, Date updateTime) {
 	super();
 	this.userId = userId;
+	this.name = name;
 	this.userName = userName;
 	this.password = password;
-	this.email = email;
 	this.status = status;
 	this.userAuthority = userAuthority;
 	this.latestLoginTime = latestLoginTime;
