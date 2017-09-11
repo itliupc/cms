@@ -20,13 +20,14 @@
 		</form>
 	</div>
 	<div id="content" region="center" title="列表区">
-		<table id="tt" class="easyui-datagrid" style="height:100%"
+		<table id="user-datagrid" class="easyui-datagrid" style="height:100%"
 				url="user-manage/list" toolbar="#toolbar"
 				idField="userId" fitColumns="true" fit="true"
 				rownumbers="true" pagination="true" border="false">
 			<thead>
 				<tr>
 					<th data-options="field:'ck',checkbox:true"></th>
+					<th field="userId" hidden="true"></th>
 					<th field="name" width="100">Item ID</th>
 					<th field="userName" width="100">Product ID</th>
 					<th field="listprice" width="100">List Price</th>
@@ -39,7 +40,7 @@
 		</table>
 		<div id="toolbar">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:UserManage.add()">新增</a>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:UserManage.remove()">删除</a>
 		</div>
 	</div>
 </div>

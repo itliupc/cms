@@ -7,7 +7,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,9 +48,9 @@ public class UserController {
   @RequestMapping(value = "list", method = RequestMethod.POST)
   @Transactional(readOnly = true)
   @ResponseBody
-  public GridView<User> userList(@RequestParam Map param){
-    List<User> list = userService.getUserList();
-    return new GridView<User>(list, 100);
+  public GridView<User> userList(@RequestParam Map<String, String> param){
+    Page<User> page = userService.getUserList(param);
+    return new GridView<User>(page.getContent(),page.getTotalElements());
   }
   
   /**
@@ -58,26 +58,28 @@ public class UserController {
    * @param user基本信息
    * @return 封装的user信息
    */
-  @RequestMapping(value = "", method = RequestMethod.POST)
-  public ResponseResult userCreate(@RequestBody UserVo userInfo) {
-    User userForCompareName = userService.findByUserName(userInfo.getUserName());
-    User userForCompareEmail = userService.getUserbyEmail(userInfo.getEmail());
-    if (null != userForCompareName) {
-      return ResponseResult.failure("");
-    } else if (null != userForCompareEmail) {
-      return ResponseResult.failure("");
-    } else {
-      User user = new User();
-      user.setUserName(userInfo.getUserName());
-      user.setCreateTime(new Date());
-      user.setPassword(new BCryptPasswordEncoder().encode(userInfo.getPassword()));
-      // 暂定设置所有的角色为user
-      user.setUserAuthority(1);
-      userService.userSave(user);
-
-
-      return ResponseResult.success(false);
-    }
+  @RequestMapping(value = "addUser", method = RequestMethod.POST)
+  @ResponseBody
+  public ResponseResult userCreate(UserVo userInfo) {
+//    User userForCompareName = userService.findByUserName(userInfo.getUserName());
+//    User userForCompareEmail = userService.getUserbyEmail(userInfo.getEmail());
+//    if (null != userForCompareName) {
+//      return ResponseResult.failure("");
+//    } else if (null != userForCompareEmail) {
+//      return ResponseResult.failure("");
+//    } else {
+//      User user = new User();
+//      user.setUserName(userInfo.getUserName());
+//      user.setCreateTime(new Date());
+//      user.setPassword(new BCryptPasswordEncoder().encode(userInfo.getPassword()));
+//      // 暂定设置所有的角色为user
+//      user.setUserAuthority(1);
+//      userService.userSave(user);
+//
+//
+//      return ResponseResult.success(false);
+//    }
+    return ResponseResult.success(false);
   }
   
   /**
@@ -85,10 +87,10 @@ public class UserController {
    * @param userId
    * @return 封装的user信息
    */
-  @RequestMapping(value = "", method = RequestMethod.DELETE)
-  public ResponseResult userDelete(@PathVariable long userId){
+  @RequestMapping(value = "delete", method = RequestMethod.POST)
+  @ResponseBody
+  public ResponseResult userDelete(@RequestBody List<String> ids){
     
-    userService.updateUserStatusByUserId(userId);
     
     return ResponseResult.success(false);
   }
