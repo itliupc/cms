@@ -1,9 +1,9 @@
 <form id="ff" class="easyui-form">
-	<table cellpadding="5">
+	<table cellpadding="5" class="formLayout">
 		<tr>
-			<td>Name:</td>
+			<td class="formLayoutTit">Name:</td>
 			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
-			<td>Email:</td>
+			<td class="formLayoutTit">Email:</td>
 			<td><input class="easyui-textbox" type="text" name="email" data-options="required:true,validType:'email'"></input></td>
 		</tr>
 		<tr>

@@ -2,8 +2,8 @@ var UserManage = {
 	add :function(){
 		$("#add_dialog").dialog({
 			title : '新增',
-			width : 400,
-			height : 300,
+			width : 600,
+			height : 500,
 			closed : false,
 			cache : false,
 			resizable : false,
@@ -29,10 +29,10 @@ var UserManage = {
 		});
 	},
 	editBtn : function(value, row, index) {
-		var button = "<a href=\"#\" data-roles=\"mui-linkbutton\" title=\"信息\" data-options=\"iconCls:'icon-search',plain:true\" class=\"l-btn l-btn-plain\" onclick=\"infoDS('"
+		var button = "<a href=\"#\" data-roles=\"mui-linkbutton\" title=\"编辑\" data-options=\"iconCls:'icon-edit',plain:true\" class=\"l-btn l-btn-plain\" onclick=\"infoDS('"
 				+ index + "');\">";
 		button = button
-				+ "<span class=\"l-btn-left\"><span class=\"l-btn-text icon-search l-btn-icon-left\">信息</span></span></a>";
+				+ "<span class=\"l-btn-left\"><span class=\"l-btn-text icon-edit l-btn-icon-left\">编辑</span></span></a>";
 		return button;
 	}
 }

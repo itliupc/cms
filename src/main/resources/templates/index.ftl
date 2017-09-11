@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="copyright" content="All Rights Reserved, Copyright (C) 2017" />
 <title>车辆信息管理</title>
 <link rel="stylesheet" type="text/css" href="static/easyui/1.5.2/themes/insdep/easyui.css" />
 <link rel="stylesheet" type="text/css" href="static/css/weui.css" />
@@ -45,7 +44,7 @@
     </div>
     <!-- end of main --> 
     <!-- begin of footer -->
-	<div class="cui-footer" data-options="region:'south',border:false,split:true,maxHeight:30">
+	<div class="cui-footer" data-options="region:'south',border:false,split:true,maxHeight:30",minHeight:30">
     	&copy; 2017 All Rights Reserved
     </div>
     <!-- end of footer -->  
