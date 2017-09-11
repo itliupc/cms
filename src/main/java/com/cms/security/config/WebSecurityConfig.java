@@ -52,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .loginPage("/login")//指定登录页是”/login”
                 .defaultSuccessUrl("/", true)
                 .loginProcessingUrl("/dologin")
+                .failureUrl("/login?error=true")
                 .permitAll()
                .and()  
                 .logout()  

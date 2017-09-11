@@ -12,7 +12,9 @@
 	<script type="text/javascript">
 		$(function(){
 			if(location.search.indexOf('error')>0){
-				$("#err_msg").html("账号或密码错误");
+				$("#err_msg").show();
+			}else{
+				$("#err_msg").hide();
 			}
 		 });
 		 function checkForm(){
@@ -44,7 +46,15 @@
 				      <span class="input-group-addon"><img src="./static/images/suo.png"></span>
 				      <input type="password" name="password" class="form-control" placeholder="请输入密码" onkeydown="if(event.keyCode==13){checkForm();}">
 			      </div><br>
-			      <div id="err_msg" class="error-msg"></div>
+			      <div id="err_msg" class="error-msg">
+			      	<#if Session.SPRING_SECURITY_LAST_EXCEPTION?exists>  
+			      		<#if Session.SPRING_SECURITY_LAST_EXCEPTION.message = 'Bad credentials'>  
+			      			账号或密码错误
+			      		<#else>  
+		 			 		${Session.SPRING_SECURITY_LAST_EXCEPTION.message} 
+		 			 	</#if>  
+					 </#if>
+			      </div>
 		       </form>
 	        </div>
 	        <div style="margin-top:30px;">

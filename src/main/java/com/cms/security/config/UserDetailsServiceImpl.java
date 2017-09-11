@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,8 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     User user = userService.findByUserName(username);
 
     if (user == null) {
-      throw new UsernameNotFoundException(
-          String.format("No user found with username '%s'.", username));
+    	throw new BadCredentialsException("用户名不存在");
     } else {
       return new org.springframework.security.core.userdetails.User(username, user.getPassword(),
           true, true, true, true, mapToGrantedAuthorities(Arrays.asList(user.getUserAuthority())));
