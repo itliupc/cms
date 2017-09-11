@@ -1,6 +1,8 @@
 package com.cms.controller;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,14 +14,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cms.domain.User;
 import com.cms.service.UserService;
+import com.cms.utils.GridView;
 import com.cms.vo.ResponseResult;
 import com.cms.vo.UserVo;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/user-manage")
 @Transactional
 public class UserController {
 
@@ -29,9 +34,9 @@ public class UserController {
   Logger logger = LoggerFactory.getLogger(UserController.class);
 
   
-  @RequestMapping(value = "/index")
-  public String loginView() {
-    return "users/index";
+  @RequestMapping(value = "/view/{page}")
+  public String loginView(@PathVariable String page) {
+    return "users/" + page;
   }
   
   
@@ -40,10 +45,12 @@ public class UserController {
    * 查询user信息
    * @return 封装的user list信息
    */
-  @RequestMapping(value = "", method = RequestMethod.GET)
+  @RequestMapping(value = "list", method = RequestMethod.POST)
   @Transactional(readOnly = true)
-  public ResponseResult userList(){
-    return ResponseResult.success(false);
+  @ResponseBody
+  public GridView<User> userList(@RequestParam Map param){
+    List<User> list = userService.getUserList();
+    return new GridView<User>(list, 100);
   }
   
   /**
