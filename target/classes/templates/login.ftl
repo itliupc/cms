@@ -12,7 +12,7 @@
 	<script type="text/javascript">
 		$(function(){
 			if(location.search.indexOf('error')>0){
-				$("#err_msg").html("用户名或密码错误");
+				$("#err_msg").html("账号或密码错误");
 			}
 		 });
 		 function checkForm(){
@@ -23,12 +23,13 @@
 		 			$("#err_msg").html("请输入密码");
 		 		}
 		 	}else{
-		 		$("#err_msg").html("请输入用户名");
+		 		$("#err_msg").html("请输入账号");
 		 	}
 		 }
 	</script>
 </head> 
-<body> 
+<body>
+  <div class="loginbg"> 
 	<div class="box">
 	     <div class="cnt">
 	        <p id="huanying"><span id="cnt_one">用户登录</span></p>
@@ -51,5 +52,6 @@
 	        </div>
 	     </div> 
 	  </div>
+   </div>
 </body>
 </html>

@@ -13,25 +13,20 @@
 	width:380px;
 	height:360px;
 	background:#fff;
-	
-	margin-right:180px;
+	margin-right:330px;
 	padding:40px 40px 40px 40px;
  }
  
  #cnt_one{
-	 
 	color:#000;
 	font-size:20px; 
 	font-weight:600;
 	padding-right:120px;
-	
 }
 
  #cnt_two{
 	color:blue;
 	font-size:18px;
-	//padding-left:50px;
-	
  }
  
  #huanying{
@@ -45,4 +40,9 @@
  	 color:red;
  	 height: 10px;
  	 font-size: 12px;
+ }
+ .loginbg{
+ 	margin-top: 130px;
+	background:url(../images/login_bg.png) repeat-x;
+	padding:0;
  }
