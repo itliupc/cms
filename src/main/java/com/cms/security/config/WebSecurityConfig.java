@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                       "/**/webjars/**",
                       "/**/static/**",
                       "/*.html",
+                      "/*.ftl",
                       "/favicon.ico",
                       "/**/*.ftl",
                       "/**/*.css",
@@ -52,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .loginPage("/login")//指定登录页是”/login”
                 .defaultSuccessUrl("/", true)
                 .loginProcessingUrl("/dologin")
-                .failureUrl("/login?error=true")
+                .failureUrl("/login?error")
                 .permitAll()
                .and()  
                 .logout()  

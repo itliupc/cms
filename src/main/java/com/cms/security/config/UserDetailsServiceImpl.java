@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.cms.domain.User;
+import com.cms.security.domain.SysUser;
 import com.cms.service.UserService;
 
 @Service
@@ -29,9 +30,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     User user = userService.findByUserName(username);
 
     if (user == null) {
-    	throw new BadCredentialsException("用户名不存在");
+    	throw new BadCredentialsException("账号不存在");
+    } else if (1 == user.getStatus()){
+        throw new BadCredentialsException("账号已被锁定");
     } else {
-      return new org.springframework.security.core.userdetails.User(username, user.getPassword(),
+      return new SysUser(user.getName(), username, user.getPassword(),
           true, true, true, true, mapToGrantedAuthorities(Arrays.asList(user.getUserAuthority())));
     }
   }

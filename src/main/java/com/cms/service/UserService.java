@@ -36,6 +36,7 @@ public class UserService {
     int pageNum = Integer.parseInt(String.valueOf(param.get("page")));
     int pageSize = Integer.parseInt(String.valueOf(param.get("rows")));
     final String name = param.containsKey("name")?param.get("name"):null;
+    final String userName = param.containsKey("userName")?param.get("userName"):null;
     Pageable pageable = new PageRequest(pageNum - 1, pageSize, sort);
     return userRepository.findAll(new Specification<User>() {
       @Override
@@ -44,6 +45,9 @@ public class UserService {
         predicates.add(cb.equal(root.get("userAuthority"), 1));
         if(null != name && !name.isEmpty()){
           predicates.add(cb.like((Path)root.get("name"), "%"+name+"%"));
+        }
+        if(null != userName && !userName.isEmpty()){
+          predicates.add(cb.like((Path)root.get("userName"), "%"+userName+"%"));
         }
         return cb.and(predicates.toArray(new Predicate[predicates.size()]));
       }
@@ -76,5 +80,9 @@ public class UserService {
 
   public User getOtherUserbyUserName(String userName, long userId) {
     return userRepository.getOtherUserbyUserName(userName, userId);
+  }
+
+  public void deleteUserByIds(List<Long> ids) {
+    userRepository.deleteUserByIds(ids);
   }
 }

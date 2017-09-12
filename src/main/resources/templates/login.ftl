@@ -49,7 +49,7 @@
 			      <div id="err_msg" class="error-msg">
 			      	<#if Session.SPRING_SECURITY_LAST_EXCEPTION?exists>  
 			      		<#if Session.SPRING_SECURITY_LAST_EXCEPTION.message = 'Bad credentials'>  
-			      			账号或密码错误
+			      			密码输入错误
 			      		<#else>  
 		 			 		${Session.SPRING_SECURITY_LAST_EXCEPTION.message} 
 		 			 	</#if>  

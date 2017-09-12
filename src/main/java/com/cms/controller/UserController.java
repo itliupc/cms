@@ -63,6 +63,7 @@ public class UserController {
   @ResponseBody
   public ResponseResult userCreate(UserVo userInfo) {
 	  User user = new User();
+	  user.setStatus(0);
 	  user.setName(userInfo.getName());
 	  user.setUserName(userInfo.getUserName());
 	  user.setCreateTime(new Date());
@@ -74,24 +75,12 @@ public class UserController {
   }
   
   /**
-   * 根据userId删除user信息，实际是将user进行伪删除，更新status字段状态即可
-   * @param userId
-   * @return 封装的user信息
-   */
-  @RequestMapping(value = "delete", method = RequestMethod.POST)
-  @ResponseBody
-  public ResponseResult userDelete(@RequestBody List<String> ids){
-    
-    
-    return ResponseResult.success(false);
-  }
-  
-  /**
    * 更新user
    * @param user基本信息
    * @return 封装的user信息
    */
-  @RequestMapping(value = "", method = RequestMethod.PUT)
+  @RequestMapping(value = "editUser", method = RequestMethod.POST)
+  @ResponseBody
   public ResponseResult userModify(@RequestBody UserVo user) {
     User userForCompareName =
         userService.getOtherUserbyUserName(user.getUserName(), user.getUserId());
@@ -112,6 +101,18 @@ public class UserController {
 
       return ResponseResult.success(false);
     }
+  }
+  
+  /**
+   * 根据userId删除user信息，实际是将user进行伪删除，更新status字段状态即可
+   * @param userId
+   * @return 封装的user信息
+   */
+  @RequestMapping(value = "deleteUser", method = RequestMethod.POST)
+  @ResponseBody
+  public ResponseResult userDelete(@RequestBody List<Long> ids){
+    userService.deleteUserByIds(ids);
+    return ResponseResult.success(true);
   }
 }
 

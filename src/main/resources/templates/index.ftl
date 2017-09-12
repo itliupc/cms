@@ -17,7 +17,7 @@
         	<h1>车辆信息管理</h1>
         </div>
         <div class="cui-header-right">
-        	<p><strong>admin</strong>，欢迎您！</p>
+        	<p><strong>${userName}</strong>，欢迎您！</p>
             <p><a href="#">修改密码</a>|<a href="logout">安全退出</a></p>
         </div>
     </div>
