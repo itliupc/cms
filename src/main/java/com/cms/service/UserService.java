@@ -27,8 +27,8 @@ public class UserService {
   @Autowired
   private UserRepository userRepository;
 
-  public User findByUserName(String account) {
-    return userRepository.findByUserName(account);
+  public User findByUserName(String userName) {
+    return userRepository.findByUserName(userName);
   }
 
   public Page<User> getUserList(Map<String, String> param) {
