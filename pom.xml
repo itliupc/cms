@@ -80,7 +80,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>interfacetestdemo</finalName>
+		<finalName>cms</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
