@@ -32,7 +32,7 @@ public class UserService {
   }
 
   public Page<User> getUserList(Map<String, String> param) {
-    Sort sort = new Sort(Sort.Direction.ASC, "userId");
+    Sort sort = new Sort(Sort.Direction.DESC, "userId");
     int pageNum = Integer.parseInt(String.valueOf(param.get("page")));
     int pageSize = Integer.parseInt(String.valueOf(param.get("rows")));
     final String name = param.containsKey("name")?param.get("name"):null;
@@ -66,16 +66,8 @@ public class UserService {
     userRepository.save(user);
   }
 
-  public void updateUserStatusByUserId(long userId) {
-    userRepository.updateUserStatusByUserId(userId);
-  }
-
-  public User getUserbyEmail(String email) {
-    return userRepository.getUserbyEmail(email);
-  }
-
-  public User getOtherUserbyEmail(String email, long userId) {
-    return userRepository.getOtherUserbyEmail(email, userId);
+  public void updateUserStatusByUserId(long userId, int status) {
+    userRepository.updateUserStatusByUserId(userId, status);
   }
 
   public User getOtherUserbyUserName(String userName, long userId) {
@@ -84,5 +76,9 @@ public class UserService {
 
   public void deleteUserByIds(List<Long> ids) {
     userRepository.deleteUserByIds(ids);
+  }
+
+  public void updatePasswordByUserId(List<Long> ids, String password) {
+	userRepository.updatePasswordByUserId(ids, password);
   }
 }

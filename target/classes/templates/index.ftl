@@ -18,7 +18,7 @@
         </div>
         <div class="cui-header-right">
         	<p><strong>${userName}</strong>，欢迎您！</p>
-            <p><a href="#">修改密码</a>|<a href="logout">安全退出</a></p>
+            <p><a href="javascript:void(0)" onclick="changePassword()">修改密码</a>|<a href="logout">安全退出</a></p>
         </div>
     </div>
     <!-- end of header -->
@@ -26,9 +26,9 @@
 	<div class="cui-sidebar" data-options="region:'west',split:true,border:true,title:'导航菜单'"> 
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
         	<ul class="easyui-tree cui-side-tree">
-        		 <!-- <#if userRole == '0'> -->
+        		 <#-- <#if userRole == '0'> -->
              	 	<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="user-manage/view/index" iframe="0">用户管理</a></li>
-             	 <!-- </#if> -->
+             	 <#-- </#if> -->
                  <!-- <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="pages/layout-3.html" iframe="0">用户管理</a></li>
                  <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="pages/layout-3.html" iframe="0">角色管理</a></li>
                  <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="pages/layout-3.html" iframe="0">数据字典</a></li>
@@ -49,6 +49,7 @@
 	<div class="cui-footer" data-options="region:'south',border:false,split:true,maxHeight:30",minHeight:30">
     	&copy; 2017 All Rights Reserved
     </div>
+    <div id="cui-cpwd"></div>
     <!-- end of footer -->  
     <script type="text/javascript">
 		$(function(){
@@ -131,6 +132,61 @@
 				tabPanel.tabs('close', index);
 			}
 		}
+		
+		function changePassword(){
+			$("#cui-cpwd").dialog({
+				title : '修改密码',
+				width : 400,
+				height : 240,
+				closed : false,
+				cache : false,
+				resizable : false,
+				href : "user-manage/view/password",
+				modal : true,
+				onLoad : function() {
+					
+				},
+				buttons : [ {
+					iconCls: "icon-save",
+					text : '保存',
+					handler : function(){
+						if($("#user-pwd").form("validate")){
+							var oldPassword=$("#user-pwd").find("input[name='oldPassword']").val();
+							var newPassword=$("#user-pwd").find("input[name='newPassword']").val();
+							var confirmPassword=$("#user-pwd").find("input[name='confirmPassword']").val();
+							if(newPassword != confirmPassword){
+								$.messager.alert("提示","确认密码与新密码输入不一致!");
+							} else {
+								$.ajax({
+									method : 'post',
+									url : 'changepwd',
+									data : {
+										'newPassword' : newPassword,
+										'oldPassword' : oldPassword
+									},
+									async : false,
+									success : function(data) {
+										if(data.result){
+											$("#cui-cpwd").dialog('close');
+											$.messager.alert('提示','密码修改成功,请重新登陆!','',function(){window.location.href="logout";});
+										}else{
+											$.messager.alert('提示',data.message);
+										}
+									}
+								});
+							}
+						}
+					}
+				}, {
+					iconCls: "icon-cancel",
+					text : '关闭',
+					handler : function() {
+						$("#add_dialog").dialog('close');
+					}
+				} ]
+			});
+		}
+		
 	</script>
 </body>
 </html>

@@ -10,6 +10,8 @@ public class UserVo {
 
   private String userName;
   
+  private int status;
+  
   private String password;
 
   private Date latestLoginTime;
@@ -46,6 +48,14 @@ public class UserVo {
     this.name = name;
   }
 
+  public int getStatus() {
+	return status;
+}
+
+  public void setStatus(int status) {
+	this.status = status;
+  }
+
   public Date getLatestLoginTime() {
     return latestLoginTime;
   }
@@ -58,20 +68,22 @@ public class UserVo {
     super();
   }
 
-  public UserVo(long userId,  String name, String userName, Date latestLoginTime) {
+  public UserVo(long userId,  String name, String userName, int status, Date latestLoginTime) {
     super();
     this.userId = userId;
     this.userName = userName;
     this.name = name;
+    this.status = status;
     this.latestLoginTime = latestLoginTime;
   }
 
-  public UserVo(long userId, String name, String userName, String password, Date latestLoginTime) {
+  public UserVo(long userId, String name, String userName, int status, String password, Date latestLoginTime) {
     super();
     this.userId = userId;
     this.userName = userName;
     this.password = password;
     this.name = name;
+    this.status = status;
     this.latestLoginTime = latestLoginTime;
   }
 }

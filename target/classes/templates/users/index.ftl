@@ -7,13 +7,13 @@
 						<label for="name" >姓名:</label>
 					</td>
 					<td width='200px' align="left">
-						<input class="easyui-textbox" type="text" name="name" data-options=""></input>
+						<input class="easyui-textbox" type="text" name="name"></input>
 					</td>
 					<td width='100px' align="right">
 						<label for="userName" >账号:</label>
 					</td>
 					<td width='200px' align="left">
-						<input class="easyui-textbox" type="text" name="userName" data-options=""></input>
+						<input class="easyui-textbox" type="text" name="userName"></input>
 					</td>
 					<td  style="text-align:center"  width='100px'>
 						<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:UserManage.query()">查询</a>
@@ -36,7 +36,7 @@
 					<th field="userId" hidden="true"></th>
 					<th field="name" width="100">姓名</th>
 					<th field="userName" width="100">账号</th>
-					<th field="status" width="100">状态</th>
+					<th field="status" width="100" data-options="formatter:UserManage.formatStatus">状态</th>
 					<th data-options="field:'fck', width:60, formatter:UserManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>
@@ -44,8 +44,10 @@
 		<div id="toolbar">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:UserManage.add()">新增</a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:UserManage.remove()">删除</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="javascript:UserManage.resetPassword()">重置密码</a>
 		</div>
 	</div>
 </div>
 <div id="add_dialog"></div>
+<div id="edit_dialog"></div>
 <script type="text/javascript" src="static/js/user-manage.js"></script>

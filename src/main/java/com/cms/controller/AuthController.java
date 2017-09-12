@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,7 +54,7 @@ public class AuthController {
   
   @RequestMapping(value = "/changepwd", method = RequestMethod.POST)
   @ResponseBody
-  public ResponseResult passwordModify(@RequestBody PasswordVo passwordVo) {
+  public ResponseResult passwordModify(PasswordVo passwordVo) {
     Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     String userName = "";
     if (principal instanceof SysUser) {
