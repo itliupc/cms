@@ -1,8 +1,10 @@
 package com.cms.controller;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -24,16 +26,25 @@ public class AuthController {
   @Autowired
   UserService userService;
 
+  @SuppressWarnings({"unchecked"})
   @RequestMapping(value = "/")
   public ModelAndView indexView() {
-    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    SysUser principal = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     String userName = "";
+    String userRole = "1";
     if (principal instanceof SysUser) {
-      userName = ((SysUser) principal).getName();
+      userName = principal.getUsername();
+      Collection<GrantedAuthority> grants = (Collection<GrantedAuthority>) principal.getAuthorities();
+      for (GrantedAuthority grante : grants) {
+        if("ADMIN".equals(grante.getAuthority())){
+          userRole = "0";
+        }
+      }
     }
     ModelAndView view = new ModelAndView();
     view.setViewName("index");
     view.addObject("userName", userName);
+    view.addObject("userRole", userRole);
     return view;
   }
 
