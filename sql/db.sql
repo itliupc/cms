@@ -15,4 +15,4 @@ CREATE TABLE `ps_user` (
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 -- admin/admin
-INSERT INTO `ps_user` (`user_id`, `name`, `user_name`, `password`, `status`, `user_authority`, `latest_login_time`, `create_time`, `update_time`) VALUES('1','系统管理员','admin','$2a$10$P7pwwuhkAHPH/omhVd46GuYATgaX7CExUrf0HRrRaf42CU.F22WGq','0','0','2017-08-23 09:04:00','2017-08-18 09:32:24','2017-08-22 16:55:08');
+INSERT INTO `ps_user` (`user_id`, `name`, `user_name`, `password`, `status`, `user_authority`, `latest_login_time`, `create_time`, `update_time`) VALUES('1','系统管理员','admin','$2a$10$tG/aBbjRLB2lM1U4vXthRe8SO0/NWDirluHpq96B.pNrxMasOyOs6','0','0','2017-08-23 09:04:00','2017-08-18 09:32:24','2017-08-22 16:55:08');
