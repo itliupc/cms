@@ -40,30 +40,32 @@ var InsureManage = {
 				iconCls: "icon-save",
 				text : '保存',
 				handler : function(){
-					var carNum=$.trim($("#insure-edit").find("input[name='carNum']").val());
-					var operateNum=$.trim($("#insure-edit").find("input[name='operateNum']").val());
-					var forceInsure = $.now();
-					var busInsure = $.now();
-					$.ajax({
-						method : 'post',
-						url : 'insure-manage/addInsure',
-						data : {
-							'carNum' : carNum,
-							'operateNum' : operateNum,
-							'forceInsure' : forceInsure,
-							'busInsure' : busInsure
-						},
-						async : false,
-						success : function(data) {
-							if(data.result){
-								$("#add_insure_dialog").dialog('close');
-								$("#insure-datagrid").datagrid('reload');
-								$.messager.alert('提示','保存成功,初始化密码为:123456！');
-							}else{
-								$.messager.alert('提示',data.message);
+					if($("#insure-edit").form('validate')){
+						var carNum=$.trim($("#insure-edit").find("input[name='carNum']").val());
+						var operateNum=$.trim($("#insure-edit").find("input[name='operateNum']").val());
+						var forceInsure = $.now();
+						var busInsure = $.now();
+						$.ajax({
+							method : 'post',
+							url : 'insure-manage/addInsure',
+							data : {
+								'carNum' : carNum,
+								'operateNum' : operateNum,
+								'forceInsure' : forceInsure,
+								'busInsure' : busInsure
+							},
+							async : false,
+							success : function(data) {
+								if(data.result){
+									$("#add_insure_dialog").dialog('close');
+									$("#insure-datagrid").datagrid('reload');
+									$.messager.alert('提示','保存成功,初始化密码为:123456！');
+								}else{
+									$.messager.alert('提示',data.message);
+								}
 							}
-						}
-					});
+						});
+					}
 				}
 			}, {
 				iconCls: "icon-cancel",
@@ -95,32 +97,34 @@ var InsureManage = {
 				iconCls: "icon-save",
 				text : '保存',
 				handler : function(){
-					var id=$.trim($("#insure-edit").find("input[name='id']").val());
-					var carNum=$.trim($("#insure-edit").find("input[name='carNum']").val());
-					var operateNum=$.trim($("#insure-edit").find("input[name='operateNum']").val());
-					var forceInsure = $.now();
-					var busInsure = $.now();
-					$.ajax({
-						method : 'post',
-						url : 'insure-manage/editInsure',
-						data : {
-							'id' : id,
-							'carNum' : carNum,
-							'operateNum' : operateNum,
-							'forceInsure' : forceInsure,
-							'busInsure' : busInsure
-						},
-						async : false,
-						success : function(data) {
-							if(data.result){
-								$("#edit_insure_dialog").dialog('close');
-								$("#insure-datagrid").datagrid('reload');
-								$.messager.alert('提示','保存成功！');
-							}else{
-								$.messager.alert('提示',data.message);
+					if($("#insure-edit").form('validate')){
+						var id=$.trim($("#insure-edit").find("input[name='id']").val());
+						var carNum=$.trim($("#insure-edit").find("input[name='carNum']").val());
+						var operateNum=$.trim($("#insure-edit").find("input[name='operateNum']").val());
+						var forceInsure = $.now();
+						var busInsure = $.now();
+						$.ajax({
+							method : 'post',
+							url : 'insure-manage/editInsure',
+							data : {
+								'id' : id,
+								'carNum' : carNum,
+								'operateNum' : operateNum,
+								'forceInsure' : forceInsure,
+								'busInsure' : busInsure
+							},
+							async : false,
+							success : function(data) {
+								if(data.result){
+									$("#edit_insure_dialog").dialog('close');
+									$("#insure-datagrid").datagrid('reload');
+									$.messager.alert('提示','保存成功！');
+								}else{
+									$.messager.alert('提示',data.message);
+								}
 							}
-						}
-					});
+						});
+					}
 				}
 			}, {
 				iconCls: "icon-cancel",
