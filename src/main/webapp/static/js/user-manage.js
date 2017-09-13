@@ -63,28 +63,30 @@ var UserManage = {
 				iconCls: "icon-save",
 				text : '保存',
 				handler : function(){
-					var name=$("#user-add").find("input[name='name']").val();
-					var userName=$("#user-add").find("input[name='userName']").val();
-					var status=$("#user-status").combobox('getValue');
-					$.ajax({
-						method : 'post',
-						url : 'user-manage/addUser',
-						data : {
-							'name' : name,
-							'userName' : userName,
-							'status' : status
-						},
-						async : false,
-						success : function(data) {
-							if(data.result){
-								$("#add_user_dialog").dialog('close');
-								$("#user-datagrid").datagrid('reload');
-								$.messager.alert('提示','保存成功,初始化密码为:123456！');
-							}else{
-								$.messager.alert('提示',data.message);
+					if($("#user-add").form('validate')){
+						var name=$("#user-add").find("input[name='name']").val();
+						var userName=$("#user-add").find("input[name='userName']").val();
+						var status=$("#user-status").combobox('getValue');
+						$.ajax({
+							method : 'post',
+							url : 'user-manage/addUser',
+							data : {
+								'name' : name,
+								'userName' : userName,
+								'status' : status
+							},
+							async : false,
+							success : function(data) {
+								if(data.result){
+									$("#add_user_dialog").dialog('close');
+									$("#user-datagrid").datagrid('reload');
+									$.messager.alert('提示','保存成功,初始化密码为:123456！');
+								}else{
+									$.messager.alert('提示',data.message);
+								}
 							}
-						}
-					});
+						});
+					}
 				}
 			}, {
 				iconCls: "icon-cancel",
@@ -116,31 +118,33 @@ var UserManage = {
 				iconCls: "icon-save",
 				text : '保存',
 				handler : function(){
-					var userId=$("#user-edit").find("input[name='userId']").val();
-					var name=$("#user-edit").find("input[name='name']").val();
-					var userName=$("#user-edit").find("input[name='userName']").val();
-					var status=$("#user-status").combobox('getValue');
-					
-					$.ajax({
-						method : 'post',
-						url : 'user-manage/editUser',
-						data : {
-							'userId':userId,
-							'name' : name,
-							'userName' : userName,
-							'status' : status
-						},
-						async : false,
-						success : function(data) {
-							if(data.result){
-								$("#edit_user_dialog").dialog('close');
-								$("#user-datagrid").datagrid('reload');
-								$.messager.alert('提示','保存成功！');
-							}else{
-								$.messager.alert('提示',data.message);
+					if($("#user-edit").form('validate')){
+						var userId=$("#user-edit").find("input[name='userId']").val();
+						var name=$("#user-edit").find("input[name='name']").val();
+						var userName=$("#user-edit").find("input[name='userName']").val();
+						var status=$("#user-status").combobox('getValue');
+						
+						$.ajax({
+							method : 'post',
+							url : 'user-manage/editUser',
+							data : {
+								'userId':userId,
+								'name' : name,
+								'userName' : userName,
+								'status' : status
+							},
+							async : false,
+							success : function(data) {
+								if(data.result){
+									$("#edit_user_dialog").dialog('close');
+									$("#user-datagrid").datagrid('reload');
+									$.messager.alert('提示','保存成功！');
+								}else{
+									$.messager.alert('提示',data.message);
+								}
 							}
-						}
-					});
+						});
+					}
 				}
 			}, {
 				iconCls: "icon-cancel",
