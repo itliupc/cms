@@ -52,6 +52,11 @@ public class AuthController {
     return "login";
   }
   
+  @RequestMapping(value = "/home")
+  public String homeView() {
+    return "home";
+  }
+  
   @RequestMapping(value = "/changepwd", method = RequestMethod.POST)
   @ResponseBody
   public ResponseResult passwordModify(PasswordVo passwordVo) {

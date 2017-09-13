@@ -41,7 +41,7 @@
     <!-- begin of main -->
     <div class="cui-main" data-options="region:'center'">
         <div id="cui-tabs" class="easyui-tabs" data-options="border:false,fit:true">  
-            <div title="首页" data-options="href:'user-manage/view/index',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
+            <div title="首页" data-options="href:'home',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
         </div>
     </div>
     <!-- end of main --> 
