@@ -4,10 +4,10 @@
 			<table width='800px' style="margin:15px auto">
 				<tr>
 					<td width='100px' align="right">
-						<label for="carNumber" >carNumber:</label>
+						<label for="carNum" >carNum:</label>
 					</td>
 					<td width='200px' align="left">
-						<input class="easyui-textbox" type="text" name="carNumber"></input>
+						<input class="easyui-textbox" type="text" name="carNum"></input>
 					</td>
 					<td width='100px' align="right">
 						<label for="operateNum" >operateNum:</label>
@@ -36,6 +36,9 @@
 					<th field="id" hidden="true"></th>
 					<th field="carNum" width="100">carNum</th>
 					<th field="operateNum" width="100">operateNum</th>
+					<th field="forceInsure" width="100">forceInsure</th>
+					<th field="busInsure" width="100">busInsure</th>
+					<th field="updateUser" width="100">updateUser</th>
 					<th data-options="field:'fck', width:60, formatter:InsureManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>

@@ -10,16 +10,16 @@ var InsureManage = {
 	 * 查询按钮事件
 	 */
 	query: function(){
-		var name=$("#insure-search").find("input[name='name']").val();
-		var userName=$("#insure-search").find("input[name='userName']").val();
-		$("#insure-datagrid").datagrid('load',{'name':name,'userName':userName});
+		var carNum=$("#insure-search").find("input[name='carNum']").val();
+		var operateNum=$("#insure-search").find("input[name='operateNum']").val();
+		$("#insure-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum});
 	},
 	/**
 	 * 重置按钮事件
 	 */
 	reset: function(){
-		$("#insure-search").form('load',{'name':'','userName':''});
-		$("#insure-datagrid").datagrid('load',{'name':'','userName':''});
+		$("#insure-search").form('load',{'carNum':'','operateNum':''});
+		$("#insure-datagrid").datagrid('load',{'carNum':'','operateNum':''});
 	},
 	/**
 	 * 新增按钮事件
@@ -28,7 +28,7 @@ var InsureManage = {
 		$("#add_insure_dialog").dialog({
 			title : '新增',
 			width : 400,
-			height : 240,
+			height : 280,
 			closed : false,
 			cache : false,
 			resizable : false,
@@ -40,16 +40,18 @@ var InsureManage = {
 				iconCls: "icon-save",
 				text : '保存',
 				handler : function(){
-					var name=$("#insure-add").find("input[name='name']").val();
-					var userName=$("#insure-add").find("input[name='userName']").val();
-					var status=$("#insure-status").combobox('getValue');
+					var carNum=$.trim($("#insure-edit").find("input[name='carNum']").val());
+					var operateNum=$.trim($("#insure-edit").find("input[name='operateNum']").val());
+					var forceInsure = $.now();
+					var busInsure = $.now();
 					$.ajax({
 						method : 'post',
 						url : 'insure-manage/addInsure',
 						data : {
-							'name' : name,
-							'userName' : userName,
-							'status' : status
+							'carNum' : carNum,
+							'operateNum' : operateNum,
+							'forceInsure' : forceInsure,
+							'busInsure' : busInsure
 						},
 						async : false,
 						success : function(data) {
@@ -80,7 +82,7 @@ var InsureManage = {
 		$("#edit_insure_dialog").dialog({
 			title : '编辑',
 			width : 400,
-			height : 240,
+			height : 280,
 			closed : false,
 			cache : false,
 			resizable : false,
@@ -93,19 +95,20 @@ var InsureManage = {
 				iconCls: "icon-save",
 				text : '保存',
 				handler : function(){
-					var userId=$("#insure-edit").find("input[name='userId']").val();
-					var name=$("#insure-edit").find("input[name='name']").val();
-					var userName=$("#insure-edit").find("input[name='userName']").val();
-					var status=$("#insure-status").combobox('getValue');
-					
+					var id=$.trim($("#insure-edit").find("input[name='id']").val());
+					var carNum=$.trim($("#insure-edit").find("input[name='carNum']").val());
+					var operateNum=$.trim($("#insure-edit").find("input[name='operateNum']").val());
+					var forceInsure = $.now();
+					var busInsure = $.now();
 					$.ajax({
 						method : 'post',
 						url : 'insure-manage/editInsure',
 						data : {
-							'userId':userId,
-							'name' : name,
-							'userName' : userName,
-							'status' : status
+							'id' : id,
+							'carNum' : carNum,
+							'operateNum' : operateNum,
+							'forceInsure' : forceInsure,
+							'busInsure' : busInsure
 						},
 						async : false,
 						success : function(data) {
@@ -139,7 +142,7 @@ var InsureManage = {
 		}
 		var ids = [];
 		for(var i = 0;i < selections.length; i++){
-			ids.push(selections[i].userId);
+			ids.push(selections[i].id);
 		}
 		$.messager.confirm('提示', '确认要删除吗?', function(flag) {
 			if (flag) {
