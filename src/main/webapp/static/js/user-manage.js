@@ -64,8 +64,8 @@ var UserManage = {
 				text : '保存',
 				handler : function(){
 					if($("#user-add").form('validate')){
-						var name=$("#user-add").find("input[name='name']").val();
-						var userName=$("#user-add").find("input[name='userName']").val();
+						var name=$.trim($("#user-add").find("input[name='name']").val());
+						var userName=$.trim($("#user-add").find("input[name='userName']").val());
 						var status=$("#user-status").combobox('getValue');
 						$.ajax({
 							method : 'post',
@@ -119,9 +119,9 @@ var UserManage = {
 				text : '保存',
 				handler : function(){
 					if($("#user-edit").form('validate')){
-						var userId=$("#user-edit").find("input[name='userId']").val();
-						var name=$("#user-edit").find("input[name='name']").val();
-						var userName=$("#user-edit").find("input[name='userName']").val();
+						var userId=$.trim($("#user-edit").find("input[name='userId']").val());
+						var name=$.trim($("#user-edit").find("input[name='name']").val());
+						var userName=$.trim($("#user-edit").find("input[name='userName']").val());
 						var status=$("#user-status").combobox('getValue');
 						
 						$.ajax({

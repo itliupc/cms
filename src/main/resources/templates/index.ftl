@@ -152,9 +152,9 @@
 					text : '保存',
 					handler : function(){
 						if($("#user-pwd").form("validate")){
-							var oldPassword=$("#user-pwd").find("input[name='oldPassword']").val();
-							var newPassword=$("#user-pwd").find("input[name='newPassword']").val();
-							var confirmPassword=$("#user-pwd").find("input[name='confirmPassword']").val();
+							var oldPassword=$.trim($("#user-pwd").find("input[name='oldPassword']").val());
+							var newPassword=$.trim($("#user-pwd").find("input[name='newPassword']").val());
+							var confirmPassword=$.trim($("#user-pwd").find("input[name='confirmPassword']").val());
 							if(newPassword != confirmPassword){
 								$.messager.alert("提示","确认密码与新密码输入不一致!");
 							} else {
