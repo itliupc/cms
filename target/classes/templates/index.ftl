@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>车辆信息管理</title>
+<title>车辆信息管理系统</title>
 <link rel="stylesheet" type="text/css" href="static/easyui/1.5.2/themes/insdep/easyui.css" />
 <link rel="stylesheet" type="text/css" href="static/css/weui.css" />
 <link rel="stylesheet" type="text/css" href="static/css/icon.css" />
@@ -15,7 +15,7 @@
 	<!-- begin of header -->
 	<div class="cui-header" data-options="region:'north',border:false,split:true">
     	<div class="cui-header-left">
-        	<h1>车辆信息管理</h1>
+        	<h1>车辆信息管理系统</h1>
         </div>
         <div class="cui-header-right">
         	<p><strong>${userName}</strong>，欢迎您！</p>

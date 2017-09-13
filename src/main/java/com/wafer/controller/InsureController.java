@@ -62,13 +62,13 @@ public class InsureController {
   public ResponseResult insureCreate(Insure insure) {
     Insure userForCompareNum = insureService.findByOperateNum(insure.getOperateNum());
     if (null != userForCompareNum) {
-      return ResponseResult.failure("保存失败,营运号已存在!");
+      return ResponseResult.failure("保存失败,该建运号已存在!");
     } else {
       SysUser principal =
           (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       String userName = "";
       if (principal instanceof SysUser) {
-        userName = principal.getUsername();
+        userName = principal.getName();
       }
       insure.setUpdateUser(userName);
       insureService.insureSave(insure);
@@ -88,7 +88,7 @@ public class InsureController {
     Insure userForCompareNum =
         insureService.getOtherInsureByOperateNum(insure.getOperateNum(), insure.getId());
     if (null != userForCompareNum) {
-      return ResponseResult.failure("保存失败,营运号已存在!");
+      return ResponseResult.failure("保存失败,该建运号已存在!");
     } else {
       Insure insureInfo = insureService.getInsureById(insure.getId());
       if (null != insure.getCarNum()) {
@@ -107,7 +107,7 @@ public class InsureController {
           (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       String userName = "";
       if (principal instanceof SysUser) {
-        userName = principal.getUsername();
+        userName = principal.getName();
       }
       insureInfo.setUpdateUser(userName);
       insureService.insureSave(insureInfo);

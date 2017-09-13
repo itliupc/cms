@@ -4,13 +4,13 @@
 			<table width='800px' style="margin:15px auto">
 				<tr>
 					<td width='100px' align="right">
-						<label for="carNum" >carNum:</label>
+						<label for="carNum" >车号:</label>
 					</td>
 					<td width='200px' align="left">
 						<input class="easyui-textbox" type="text" name="carNum"></input>
 					</td>
 					<td width='100px' align="right">
-						<label for="operateNum" >operateNum:</label>
+						<label for="operateNum" >建运号:</label>
 					</td>
 					<td width='200px' align="left">
 						<input class="easyui-textbox" type="text" name="operateNum"></input>
@@ -34,11 +34,11 @@
 				<tr>
 					<th data-options="field:'ck',checkbox:true"></th>
 					<th field="id" hidden="true"></th>
-					<th field="carNum" width="100">carNum</th>
-					<th field="operateNum" width="100">operateNum</th>
-					<th field="forceInsure" width="100">forceInsure</th>
-					<th field="busInsure" width="100">busInsure</th>
-					<th field="updateUser" width="100">updateUser</th>
+					<th field="carNum" width="100">车号</th>
+					<th field="operateNum" width="100">建运号</th>
+					<th field="forceInsure" width="100" data-options="formatter: DateUtil.formatDatebox">交强止期</th>
+					<th field="busInsure" width="100" data-options="formatter: DateUtil.formatDatebox">商业止期</th>
+					<th field="updateUser" width="100">操作员</th>
 					<th data-options="field:'fck', width:60, formatter:InsureManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>

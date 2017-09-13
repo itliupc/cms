@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -33,9 +34,11 @@ public class Insure {
   private String operateNum;
 
   @Column(name = "force_insure")
+  @DateTimeFormat(pattern="yyyy-MM-dd")
   private Date forceInsure;
   
   @Column(name = "bus_insure")
+  @DateTimeFormat(pattern="yyyy-MM-dd")
   private Date busInsure;
 
   @Column(name = "update_user")

@@ -1,4 +1,4 @@
-<form id="insure-edit" class="easyui-form">
+<form id="insure-add" class="easyui-form">
 	<table cellpadding="5" class="formLayout">
 		<tr>
 			<td class="formLayoutTit">车号:</td>

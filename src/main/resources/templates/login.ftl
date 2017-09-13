@@ -5,7 +5,7 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Cache-Control" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
-	<title>车辆信息管理</title> 
+	<title>车辆信息管理系统</title> 
 	<link href="static/css/login.css" type="text/css" rel="stylesheet" /> 
 	<link href="static/css/bootstrap.min.css" type="text/css" rel="stylesheet" /> 
 	<script type="text/javascript" src="static/easyui/1.5.2/jquery.min.js"></script>

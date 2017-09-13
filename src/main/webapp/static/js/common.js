@@ -52,3 +52,39 @@ $.extend($.fn.validatebox.defaults.rules, {
         message: 'Please input number.'  
     }
 });
+
+
+ 
+
+var DateUtil = {
+	formatDatebox : function(value) {  
+	    if (value == null || value == '') {  
+	        return '';  
+	    }  
+	    var dt;  
+	    if (value instanceof Date) {  
+	        dt = value;  
+	    } else {  
+	        dt = new Date(value);  
+	    }  
+	    var y = dt.getFullYear();
+		var m = dt.getMonth()+1;
+		var d = dt.getDate();
+		return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+	},
+	parseDatebox : function(s){
+		if (!s) return new Date();
+		var str = DateUtil.formatDatebox(s);
+		if(!str) return new Date();
+		var ss = (str.split('-'));
+		var y = parseInt(ss[0],10);
+		var m = parseInt(ss[1],10);
+		var d = parseInt(ss[2],10);
+		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+			return new Date(y,m-1,d);
+		} else {
+			return new Date();
+		}
+	}
+};
+

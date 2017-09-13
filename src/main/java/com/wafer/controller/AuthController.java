@@ -32,7 +32,7 @@ public class AuthController {
     String userName = "";
     String userRole = "1";
     if (principal instanceof SysUser) {
-      userName = principal.getUsername();
+      userName = principal.getName();
       Collection<GrantedAuthority> grants = (Collection<GrantedAuthority>) principal.getAuthorities();
       for (GrantedAuthority grante : grants) {
         if("ADMIN".equals(grante.getAuthority())){

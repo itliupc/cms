@@ -28,11 +28,11 @@ var InsureManage = {
 		$("#add_insure_dialog").dialog({
 			title : '新增',
 			width : 400,
-			height : 280,
+			height : 290,
 			closed : false,
 			cache : false,
 			resizable : false,
-			href : "insure-manage/view/edit",
+			href : "insure-manage/view/add",
 			modal : true,
 			onLoad : function() {
 			},
@@ -40,11 +40,11 @@ var InsureManage = {
 				iconCls: "icon-save",
 				text : '保存',
 				handler : function(){
-					if($("#insure-edit").form('validate')){
-						var carNum=$.trim($("#insure-edit").find("input[name='carNum']").val());
-						var operateNum=$.trim($("#insure-edit").find("input[name='operateNum']").val());
-						var forceInsure = $.now();
-						var busInsure = $.now();
+					if($("#insure-add").form('validate')){
+						var carNum=$.trim($("#insure-add").find("input[name='carNum']").val());
+						var operateNum=$.trim($("#insure-add").find("input[name='operateNum']").val());
+						var forceInsure = $("#insure-add").find("input[name='forceInsure']").val();
+						var busInsure = $("#insure-add").find("input[name='busInsure']").val();
 						$.ajax({
 							method : 'post',
 							url : 'insure-manage/addInsure',
@@ -59,7 +59,7 @@ var InsureManage = {
 								if(data.result){
 									$("#add_insure_dialog").dialog('close');
 									$("#insure-datagrid").datagrid('reload');
-									$.messager.alert('提示','保存成功,初始化密码为:123456！');
+									$.messager.alert('提示','保存成功！');
 								}else{
 									$.messager.alert('提示',data.message);
 								}
@@ -84,7 +84,7 @@ var InsureManage = {
 		$("#edit_insure_dialog").dialog({
 			title : '编辑',
 			width : 400,
-			height : 280,
+			height : 290,
 			closed : false,
 			cache : false,
 			resizable : false,
@@ -101,8 +101,8 @@ var InsureManage = {
 						var id=$.trim($("#insure-edit").find("input[name='id']").val());
 						var carNum=$.trim($("#insure-edit").find("input[name='carNum']").val());
 						var operateNum=$.trim($("#insure-edit").find("input[name='operateNum']").val());
-						var forceInsure = $.now();
-						var busInsure = $.now();
+						var forceInsure = $("#insure-edit").find("input[name='forceInsure']").val();
+						var busInsure = $("#insure-edit").find("input[name='busInsure']").val();
 						$.ajax({
 							method : 'post',
 							url : 'insure-manage/editInsure',
