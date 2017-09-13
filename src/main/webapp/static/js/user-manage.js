@@ -48,7 +48,7 @@ var UserManage = {
 	 * 新增按钮事件
 	 */
 	add :function(){
-		$("#add_dialog").dialog({
+		$("#add_user_dialog").dialog({
 			title : '新增',
 			width : 400,
 			height : 240,
@@ -77,7 +77,7 @@ var UserManage = {
 						async : false,
 						success : function(data) {
 							if(data.result){
-								$("#add_dialog").dialog('close');
+								$("#add_user_dialog").dialog('close');
 								$("#user-datagrid").datagrid('reload');
 								$.messager.alert('提示','保存成功,初始化密码为:123456！');
 							}else{
@@ -90,7 +90,7 @@ var UserManage = {
 				iconCls: "icon-cancel",
 				text : '关闭',
 				handler : function() {
-					$("#add_dialog").dialog('close');
+					$("#add_user_dialog").dialog('close');
 				}
 			} ]
 		});
@@ -100,7 +100,7 @@ var UserManage = {
 	 */
 	edit :function(index){
 		var record = $("#user-datagrid").datagrid('getRows')[index];
-		$("#edit_dialog").dialog({
+		$("#edit_user_dialog").dialog({
 			title : '编辑',
 			width : 400,
 			height : 240,
@@ -133,7 +133,7 @@ var UserManage = {
 						async : false,
 						success : function(data) {
 							if(data.result){
-								$("#edit_dialog").dialog('close');
+								$("#edit_user_dialog").dialog('close');
 								$("#user-datagrid").datagrid('reload');
 								$.messager.alert('提示','保存成功！');
 							}else{
@@ -146,7 +146,7 @@ var UserManage = {
 				iconCls: "icon-cancel",
 				text : '关闭',
 				handler : function() {
-					$("#edit_dialog").dialog('close');
+					$("#edit_user_dialog").dialog('close');
 				}
 			} ]
 		});

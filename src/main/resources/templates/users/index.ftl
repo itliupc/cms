@@ -25,9 +25,9 @@
 			</table>
 		</form>
 	</div>
-	<div id="content" region="center" title="列表区">
+	<div id="user-content" region="center" title="列表区">
 		<table id="user-datagrid" class="easyui-datagrid" style="height:100%"
-				url="user-manage/list" toolbar="#toolbar"
+				url="user-manage/list" toolbar="#user-toolbar"
 				idField="userId" fitColumns="true" fit="true"
 				rownumbers="true" pagination="true" border="false">
 			<thead>
@@ -41,13 +41,13 @@
 				</tr>
 			</thead>
 		</table>
-		<div id="toolbar">
+		<div id="user-toolbar">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:UserManage.add()">新增</a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:UserManage.remove()">删除</a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="javascript:UserManage.resetPassword()">重置密码</a>
 		</div>
 	</div>
 </div>
-<div id="add_dialog"></div>
-<div id="edit_dialog"></div>
+<div id="add_user_dialog"></div>
+<div id="edit_user_dialog"></div>
 <script type="text/javascript" src="static/js/user-manage.js"></script>
