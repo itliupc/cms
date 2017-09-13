@@ -13,7 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 /**
- * Created by codea on 2017/4/10.
+ * Created by liupc
  */
 
 @Entity

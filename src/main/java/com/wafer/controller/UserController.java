@@ -112,7 +112,7 @@ public class UserController {
 	}
 
 	/**
-	 * 根据userId删除user信息，实际是将user进行伪删除，更新status字段状态即可
+	 * 根据userId删除user信息
 	 * 
 	 * @param userId
 	 * @return 封装的user信息
