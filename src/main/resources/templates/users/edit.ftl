@@ -4,12 +4,12 @@
 			<td class="formLayoutTit">姓名:</td>
 			<td>
 				<input type="hidden" name="userId"></input>
-				<input class="easyui-textbox" type="text" name="name" data-options="required:true"></input>
+				<input class="easyui-textbox" type="text" name="name" data-options="required:true,validType:'length[1,20]'"></input>
 			</td>
 		</tr>
 		<tr>
 			<td class="formLayoutTit">账号:</td>
-			<td><input class="easyui-textbox" type="text" name="userName" data-options="required:true"></input></td>
+			<td><input class="easyui-textbox" type="text" name="userName" data-options="required:true,validType:['char','length[1,20]']"></input></td>
 		</tr>
 		<tr>
 			<td class="formLayoutTit">状态:</td>
