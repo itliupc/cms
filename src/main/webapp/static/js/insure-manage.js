@@ -44,7 +44,7 @@ var InsureManage = (function () {
 			} else if(0 == row.hasReceive){//未取：蓝色
 				return 'background-color:#0D8CEF;color:#fff;font-weight:bold;';
 			} else if(0 == row.hasPay){//未缴费：
-				return 'background-color:#CC8CEF;color:#fff;font-weight:bold;';
+				return 'background-color:grey;color:#fff;font-weight:bold;';
 			} else if(currentTimes > row.forceInsure || currentTimes > row.busInsure){//已过期:红色
 				return 'background-color:red;color:#fff;font-weight:bold;';
 			} else if(afterTimes > row.forceInsure || afterTimes > row.busInsure){//即将过期:黄色
@@ -75,7 +75,7 @@ var InsureManage = (function () {
 			$("#add_insure_dialog").dialog({
 				title : '新增',
 				width : 600,
-				height : 440,
+				height : 360,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -137,7 +137,7 @@ var InsureManage = (function () {
 			$("#edit_insure_dialog").dialog({
 				title : '编辑',
 				width : 600,
-				height : 440,
+				height : 360,
 				closed : false,
 				cache : false,
 				resizable : false,

@@ -1,5 +1,5 @@
 <form id="insure-add" class="easyui-form">
-	<table cellpadding="5" class="formLayout">
+	<table cellpadding="5" style="margin-top:30px;" class="formLayout">
 		<tr>
 			<td class="formLayoutTit"><input type="hidden" name="id"></input>
 				车号:
