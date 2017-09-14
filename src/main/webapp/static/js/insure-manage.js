@@ -14,6 +14,20 @@ var InsureManage = (function () {
 				return '是';
 			}
 		},
+		formatHasReceive : function(value, row, index) {
+			if(0==value){
+				return '未领取';
+			}else{
+				return '已领取';
+			}
+		},
+		formatHasPay : function(value, row, index) {
+			if(0==value){
+				return '未缴费';
+			}else{
+				return '已缴费';
+			}
+		},
 		formatRow : function(index,row){
 			var currentDate = new Date();
 			currentDate.setHours(0);
@@ -25,9 +39,11 @@ var InsureManage = (function () {
 			var afterTimes = currentDate.getTime();
 			if(1 == row.outBuy){//外面购买：绿色
 				return 'background-color:green;color:#fff;font-weight:bold;';
-			} else if(!row.forceInsure || !row.busInsure){//未取：蓝色
+			} else if(0 == row.hasReceive){//未取：蓝色
 				return 'background-color:#0D8CEF;color:#fff;font-weight:bold;';
-			} else if(currentTimes > row.forceInsure || currentTimes > row.busInsure){//已过期:红色
+			} else if(0 == row.hasPay){//未缴费：
+				return 'background-color:#CC8CEF;color:#fff;font-weight:bold;';
+			} else if(!row.forceInsure || !row.busInsure || currentTimes > row.forceInsure || currentTimes > row.busInsure){//已过期:红色
 				return 'background-color:red;color:#fff;font-weight:bold;';
 			} else if(afterTimes > row.forceInsure || afterTimes > row.busInsure){//即将过期:黄色
 				return 'background-color:yellow;color:#fff;font-weight:bold;';
@@ -56,8 +72,8 @@ var InsureManage = (function () {
 		add :function(){
 			$("#add_insure_dialog").dialog({
 				title : '新增',
-				width : 500,
-				height : 340,
+				width : 600,
+				height : 440,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -75,6 +91,8 @@ var InsureManage = (function () {
 							var forceInsure = $("#insure-add").find("input[name='forceInsure']").val();
 							var busInsure = $("#insure-add").find("input[name='busInsure']").val();
 							var outBuy=$("#insure-out-buy").combobox('getValue');
+							var hasReceive=$("#insure-has-receive").combobox('getValue');
+							var hasPay=$("#insure-has-pay").combobox('getValue');
 							$.ajax({
 								method : 'post',
 								url : 'insure-manage/addInsure',
@@ -83,7 +101,9 @@ var InsureManage = (function () {
 									'operateNum' : operateNum,
 									'forceInsure' : forceInsure,
 									'busInsure' : busInsure,
-									'outBuy' : outBuy
+									'outBuy' : outBuy,
+									'hasReceive' : hasReceive,
+									'hasPay' : hasPay
 								},
 								async : false,
 								success : function(data) {
@@ -114,8 +134,8 @@ var InsureManage = (function () {
 			var record = $("#insure-datagrid").datagrid('getRows')[index];
 			$("#edit_insure_dialog").dialog({
 				title : '编辑',
-				width : 500,
-				height : 340,
+				width : 600,
+				height : 440,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -135,6 +155,8 @@ var InsureManage = (function () {
 							var forceInsure = $("#insure-edit").find("input[name='forceInsure']").val();
 							var busInsure = $("#insure-edit").find("input[name='busInsure']").val();
 							var outBuy=$("#insure-out-buy").combobox('getValue');
+							var hasReceive=$("#insure-has-receive").combobox('getValue');
+							var hasPay=$("#insure-has-pay").combobox('getValue');
 							$.ajax({
 								method : 'post',
 								url : 'insure-manage/editInsure',
@@ -144,7 +166,9 @@ var InsureManage = (function () {
 									'operateNum' : operateNum,
 									'forceInsure' : forceInsure,
 									'busInsure' : busInsure,
-									'outBuy' : outBuy
+									'outBuy' : outBuy,
+									'hasReceive' : hasReceive,
+									'hasPay' : hasPay
 								},
 								async : false,
 								success : function(data) {

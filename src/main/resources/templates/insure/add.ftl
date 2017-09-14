@@ -31,5 +31,23 @@
 				</select>
 			</td>
 		</tr>
+		<tr>
+			<td class="formLayoutTit">领取情况:</td>
+			<td>
+				<select id="insure-has-receive" class="easyui-combobox" name="hasReceive" data-options="editable:false" style="width:135px;">
+				    <option value="1">已领取</option>
+				    <option value="0">未领取</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="formLayoutTit">缴费情况:</td>
+			<td>
+				<select id="insure-has-pay" class="easyui-combobox" name="hasPay" data-options="editable:false" style="width:135px;">
+				    <option value="1">已缴费</option>
+				    <option value="0">未缴费</option>
+				</select>
+			</td>
+		</tr>
 	</table>
 </form>

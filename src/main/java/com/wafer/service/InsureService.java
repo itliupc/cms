@@ -56,17 +56,20 @@ public class InsureService {
         }
         if (null != deadline && !deadline.isEmpty()) {
           if ("1".equals(deadline)) {// 未领取
-            predicates
-                .add(cb.or(cb.isNull(root.get("busInsure")), cb.isNull(root.get("forceInsure"))));
-          } else if ("2".equals(deadline)) {// 即将过期
+            predicates.add(cb.equal(root.get("hasReceive"), "0"));
+          } else if ("2".equals(deadline)) {// 未缴费
+            predicates.add(cb.equal(root.get("hasPay"), "0"));
+          } else if ("3".equals(deadline)) {// 即将过期
             Date afterDate = DateUtils.formatSqlDate(3);
             Date nowDate = DateUtils.formatSqlDate(0);
             predicates.add(cb.or(cb.between(root.<Date>get("busInsure"), nowDate, afterDate),
                 cb.between(root.<Date>get("forceInsure"), nowDate, afterDate)));
-          } else if ("3".equals(deadline)) {// 已经过期
+          } else if ("4".equals(deadline)) {// 已经过期
             Date nowDate = DateUtils.formatSqlDate(0);
-            predicates.add(cb.or(cb.lessThan(root.<Date>get("busInsure"), nowDate),
-                cb.lessThan(root.<Date>get("forceInsure"), nowDate)));
+            predicates
+                .add(cb.or(cb.isNull(root.get("busInsure")), cb.isNull(root.get("forceInsure")),
+                    cb.lessThan(root.<Date>get("busInsure"), nowDate),
+                    cb.lessThan(root.<Date>get("forceInsure"), nowDate)));
           }
         }
         return cb.and(predicates.toArray(new Predicate[predicates.size()]));

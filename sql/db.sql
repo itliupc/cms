@@ -23,6 +23,8 @@ CREATE TABLE `ps_insure`(
   `force_insure` DATE COMMENT '交强险日期',
   `bus_insure` DATE COMMENT '商业保险日期',
   `out_buy` INT(1) DEFAULT 0  NOT NULL  COMMENT '是否外购',
+  `has_receive` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否领取',
+  `has_pay` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否缴费',
   `update_user` VARCHAR(255) NOT NULL COMMENT '操作人',
   `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
@@ -35,3 +37,5 @@ INSERT INTO `ps_user` (`user_id`, `name`, `user_name`, `password`, `email`, `pho
 ALTER TABLE `ps_user` ADD COLUMN `phone` VARCHAR(64) NULL  COMMENT '手机号码' AFTER `password`; 
 ALTER TABLE `ps_user` ADD COLUMN `email` VARCHAR(64) NULL  COMMENT 'email' AFTER `password`;
 ALTER TABLE `ps_insure` ADD COLUMN `out_buy` INT(1) DEFAULT 0  NOT NULL  COMMENT '是否外购' AFTER `bus_insure`;
+ALTER TABLE `ps_insure` ADD COLUMN `has_receive` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否领取' AFTER `out_buy`;
+ALTER TABLE `ps_insure` ADD COLUMN `has_pay` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否缴费' AFTER `out_buy`;
