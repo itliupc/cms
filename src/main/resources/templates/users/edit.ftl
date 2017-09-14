@@ -1,6 +1,10 @@
 <form id="user-edit" class="easyui-form">
 	<table cellpadding="5" class="formLayout">
 		<tr>
+			<td class="formLayoutTit">账号:</td>
+			<td><input class="easyui-textbox" type="text" name="userName" data-options="required:true,validType:['char','length[1,20]']"></input></td>
+		</tr>
+		<tr>
 			<td class="formLayoutTit">姓名:</td>
 			<td>
 				<input type="hidden" name="userId"></input>
@@ -8,8 +12,12 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="formLayoutTit">账号:</td>
-			<td><input class="easyui-textbox" type="text" name="userName" data-options="required:true,validType:['char','length[1,20]']"></input></td>
+			<td class="formLayoutTit">邮箱地址:</td>
+			<td><input class="easyui-textbox" type="text" name="email" data-options="validType:'Email'"></input></td>
+		</tr>
+		<tr>
+			<td class="formLayoutTit">手机号码:</td>
+			<td><input class="easyui-textbox" type="text" name="phone" data-options="validType:'Mobile'"></input></td>
 		</tr>
 		<tr>
 			<td class="formLayoutTit">状态:</td>

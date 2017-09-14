@@ -41,6 +41,9 @@ public class Insure {
   @DateTimeFormat(pattern="yyyy-MM-dd")
   private Date busInsure;
 
+  @Column(name = "out_buy")
+  private int outBuy;
+  
   @Column(name = "update_user")
   private String updateUser;
   
@@ -91,6 +94,14 @@ public class Insure {
     return updateUser;
   }
 
+  public int getOutBuy() {
+    return outBuy;
+  }
+
+  public void setOutBuy(int outBuy) {
+    this.outBuy = outBuy;
+  }
+
   public void setUpdateUser(String updateUser) {
     this.updateUser = updateUser;
   }
@@ -108,13 +119,14 @@ public class Insure {
   }
 
   public Insure(long id, String carNum, String operateNum, Date forceInsure, Date busInsure,
-      String updateUser, Date updateTime) {
+      int outBuy, String updateUser, Date updateTime) {
     super();
     this.id = id;
     this.carNum = carNum;
     this.operateNum = operateNum;
     this.forceInsure = forceInsure;
     this.busInsure = busInsure;
+    this.outBuy = outBuy;
     this.updateUser = updateUser;
     this.updateTime = updateTime;
   }

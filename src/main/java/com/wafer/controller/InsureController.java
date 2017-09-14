@@ -103,6 +103,7 @@ public class InsureController {
       if (null != insure.getBusInsure()) {
         insureInfo.setBusInsure(insure.getBusInsure());
       }
+      insureInfo.setOutBuy(insure.getOutBuy());
       SysUser principal =
           (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       String userName = "";

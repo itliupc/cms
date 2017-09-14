@@ -70,6 +70,8 @@ public class UserController {
 			User user = new User();
 			user.setName(userInfo.getName());
 			user.setUserName(userInfo.getUserName());
+			user.setEmail(userInfo.getEmail());
+			user.setPhone(userInfo.getPhone());
 			user.setStatus(0);
 			user.setCreateTime(new Date());
 			user.setPassword(new BCryptPasswordEncoder()
@@ -103,6 +105,12 @@ public class UserController {
 			if (null != user.getName()) {
 				userInfo.setName(user.getName());
 			}
+			if (null != user.getEmail()) {
+			  userInfo.setEmail(user.getEmail());
+			}
+			if (null != user.getPhone()) {
+			  userInfo.setPhone(user.getPhone());
+            }
 			userInfo.setStatus(user.getStatus());
 			userInfo.setUpdateTime(new Date());
 			userService.userSave(userInfo);

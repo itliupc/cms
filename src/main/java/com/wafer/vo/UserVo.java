@@ -10,6 +10,10 @@ public class UserVo {
 
   private String userName;
   
+  private String email;
+  
+  private String phone;
+  
   private int status;
   
   private String password;
@@ -40,6 +44,22 @@ public class UserVo {
     this.password = password;
   }
 
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
   public String getName() {
     return name;
   }
@@ -68,19 +88,25 @@ public class UserVo {
     super();
   }
 
-  public UserVo(long userId,  String name, String userName, int status, Date latestLoginTime) {
+  public UserVo(long userId,  String name, String userName, String email, String phone, 
+      int status, Date latestLoginTime) {
     super();
     this.userId = userId;
     this.userName = userName;
+    this.email = email;
+    this.phone = phone;
     this.name = name;
     this.status = status;
     this.latestLoginTime = latestLoginTime;
   }
 
-  public UserVo(long userId, String name, String userName, int status, String password, Date latestLoginTime) {
+  public UserVo(long userId, String name, String userName, String email, String phone,
+      int status, String password, Date latestLoginTime) {
     super();
     this.userId = userId;
     this.userName = userName;
+    this.email = email;
+    this.phone = phone;
     this.password = password;
     this.name = name;
     this.status = status;

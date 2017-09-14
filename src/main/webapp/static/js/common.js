@@ -30,11 +30,19 @@ $.extend($.fn.validatebox.defaults.rules, {
     //移动手机号码验证  
     Mobile: {//value值为文本框中的值  
         validator: function (value) {  
-            var reg = /^1[3|4|5|8|9]\d{9}$/;  
+            var reg = /^1[3|4|5|6|7|8|9]\d{9}$/;  
             return reg.test(value);  
         },  
-        message: 'Please enter your mobile phone number correct.'  
-    },  
+        message: '请输入正确的手机号码.'  
+    }, 
+    //邮箱验证  
+    Email: {//value值为文本框中的值  
+        validator: function (value) {  
+            var reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;  
+            return reg.test(value);  
+        },  
+        message: '请输入正确的邮箱地址.'  
+    }, 
     //国内邮编验证  
     ZipCode: {  
         validator: function (value) {  
@@ -56,35 +64,37 @@ $.extend($.fn.validatebox.defaults.rules, {
 
  
 
-var DateUtil = {
-	formatDatebox : function(value) {  
-	    if (value == null || value == '') {  
-	        return '';  
-	    }  
-	    var dt;  
-	    if (value instanceof Date) {  
-	        dt = value;  
-	    } else {  
-	        dt = new Date(value);  
-	    }  
-	    var y = dt.getFullYear();
-		var m = dt.getMonth()+1;
-		var d = dt.getDate();
-		return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
-	},
-	parseDatebox : function(s){
-		if (!s) return new Date();
-		var str = DateUtil.formatDatebox(s);
-		if(!str) return new Date();
-		var ss = (str.split('-'));
-		var y = parseInt(ss[0],10);
-		var m = parseInt(ss[1],10);
-		var d = parseInt(ss[2],10);
-		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
-			return new Date(y,m-1,d);
-		} else {
-			return new Date();
+var DateUtil = (function () {
+	return {
+		formatDatebox : function(value) {  
+		    if (value == null || value == '') {  
+		        return '';  
+		    }  
+		    var dt;  
+		    if (value instanceof Date) {  
+		        dt = value;  
+		    } else {  
+		        dt = new Date(value);  
+		    }  
+		    var y = dt.getFullYear();
+			var m = dt.getMonth()+1;
+			var d = dt.getDate();
+			return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+		},
+		parseDatebox : function(s){
+			if (!s) return new Date();
+			var str = DateUtil.formatDatebox(s);
+			if(!str) return new Date();
+			var ss = (str.split('-'));
+			var y = parseInt(ss[0],10);
+			var m = parseInt(ss[1],10);
+			var d = parseInt(ss[2],10);
+			if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+				return new Date(y,m-1,d);
+			} else {
+				return new Date();
+			}
 		}
-	}
-};
+	};
+})();
 

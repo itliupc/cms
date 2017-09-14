@@ -37,6 +37,7 @@ public class InsureService {
     int pageSize = Integer.parseInt(String.valueOf(param.get("rows")));
     final String operateNum = param.containsKey("operateNum") ? param.get("operateNum") : null;
     final String carNum = param.containsKey("carNum") ? param.get("carNum") : null;
+    final String outBuy = param.containsKey("outBuy") ? param.get("outBuy") : null;
     Pageable pageable = new PageRequest(pageNum - 1, pageSize, sort);
     return insureRepository.findAll(new Specification<Insure>() {
       @Override
@@ -47,6 +48,9 @@ public class InsureService {
         }
         if (null != carNum && !carNum.isEmpty()) {
           predicates.add(cb.like((Path) root.get("carNum"), "%" + carNum + "%"));
+        }
+        if (null != outBuy && !outBuy.isEmpty()) {
+          predicates.add(cb.equal(root.get("outBuy"), outBuy));
         }
         return cb.and(predicates.toArray(new Predicate[predicates.size()]));
       }

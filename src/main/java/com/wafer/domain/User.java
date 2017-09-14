@@ -34,6 +34,12 @@ public class User {
 
   @Column(name = "password")
   private String password;
+  
+  @Column(name = "email")
+  private String email;
+  
+  @Column(name = "phone")
+  private String phone;
 
   @Column(name = "status")
   private int status;  
@@ -83,6 +89,22 @@ public class User {
     this.password = password;
   }
 
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
   public int getStatus() {
     return status;
   }
@@ -127,13 +149,15 @@ public class User {
     super();
   }
 
-  public User(long userId, String name, String userName, String password, int status, int userAuthority,
-		Date latestLoginTime, Date createTime, Date updateTime) {
+  public User(long userId, String name, String userName, String password, String email, String phone,
+      int status, int userAuthority, Date latestLoginTime, Date createTime, Date updateTime) {
 	super();
 	this.userId = userId;
 	this.name = name;
 	this.userName = userName;
 	this.password = password;
+	this.email = email;
+	this.phone = phone;
 	this.status = status;
 	this.userAuthority = userAuthority;
 	this.latestLoginTime = latestLoginTime;

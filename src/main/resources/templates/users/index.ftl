@@ -27,16 +27,18 @@
 	</div>
 	<div id="user-content" region="center" title="列表区">
 		<table id="user-datagrid" class="easyui-datagrid" style="height:100%"
-				url="user-manage/list" toolbar="#user-toolbar"
-				idField="userId" fitColumns="true" fit="true"
-				rownumbers="true" pagination="true" border="false">
+			data-options="url:'user-manage/list',toolbar:'#user-toolbar',
+				idField:'userId',fitColumns:'true',fit:'true',
+				rownumbers:'true',pagination:'true',border:'false'">
 			<thead>
 				<tr>
 					<th data-options="field:'ck',checkbox:true"></th>
 					<th field="userId" hidden="true"></th>
-					<th field="name" width="100">姓名</th>
 					<th field="userName" width="100">账号</th>
-					<th field="status" width="100" data-options="formatter:UserManage.formatStatus">状态</th>
+					<th field="name" width="100">姓名</th>
+					<th field="email" width="100">邮箱地址</th>
+					<th field="phone" width="100">手机号码</th>
+					<th field="status" width="60" data-options="formatter:UserManage.formatStatus">状态</th>
 					<th data-options="field:'fck', width:60, formatter:UserManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>

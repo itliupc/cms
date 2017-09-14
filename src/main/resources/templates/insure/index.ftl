@@ -1,25 +1,47 @@
 <div class="easyui-layout" style="height:100%;">
-	<div region="north" split="true" title="查询区" style="height:120px;" >
+	<div region="north" split="true" title="查询区" style="height:170px;" >
 		<form id="insure-search" class="easyui-form">
-			<table width='800px' style="margin:15px auto">
-				<tr>
+			<table width='80%' style="margin:15px auto;">
+				<tr style="height:45px;">
 					<td width='100px' align="right">
 						<label for="carNum" >车号:</label>
 					</td>
-					<td width='200px' align="left">
+					<td width='200px' align="left" class="uppercase">
 						<input class="easyui-textbox" type="text" name="carNum"></input>
 					</td>
 					<td width='100px' align="right">
 						<label for="operateNum" >建运号:</label>
 					</td>
-					<td width='200px' align="left">
+					<td width='200px' align="left" class="uppercase">
 						<input class="easyui-textbox" type="text" name="operateNum"></input>
 					</td>
-					<td  style="text-align:center"  width='100px'>
-						<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:InsureManage.query()">查询</a>
+					<td width='100px' align="right">
+						<label for="outBuy" >是否外购:</label>
 					</td>
-					<td  style="text-align:center" width='100px'>
-						<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:InsureManage.reset()">重置</a>
+					<td width='200px' align="left">
+						<select id="search-out-buy" class="easyui-combobox" name="outBuy" data-options="editable:false" style="width:135px;">
+						    <option value="">全部</option>
+						    <option value="1">是</option>
+						    <option value="0">否</option>
+						</select>
+					</td>
+					<td width='100px' align="right">
+						<label for="deadline" >车险期限:</label>
+					</td>
+					<td width='200px' align="left">
+						<select id="search-deadline" class="easyui-combobox" name="deadline" data-options="editable:false" style="width:135px;">
+						    <option value="">全部</option>
+						    <option value="1">1</option>
+						    <option value="2">2</option>
+						</select>
+					</td>
+				</tr>
+				<tr style="height:45px;">
+					<td  style="text-align:right"  width='100px' colspan="4">
+						<a href="#" style="margin-right:50px;" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:InsureManage.query()">查询</a>
+					</td>
+					<td  style="text-align:left" width='100px' colspan="4">
+						<a href="#" style="margin-left:50px;" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:InsureManage.reset()">重置</a>
 					</td>
 				</tr>
 			</table>
@@ -27,9 +49,10 @@
 	</div>
 	<div id="insure-content" region="center" title="列表区">
 		<table id="insure-datagrid" class="easyui-datagrid" style="height:100%"
-				url="insure-manage/list" toolbar="#insure-toolbar"
-				idField="id" fitColumns="true" fit="true"
-				rownumbers="true" pagination="true" border="false">
+			data-options="url:'insure-manage/list',toolbar:'#insure-toolbar',
+				idField:'id',fitColumns:'true',fit:'true',
+				rownumbers:'true',pagination:'true',border:'false',
+				rowStyler: InsureManage.formatRow">
 			<thead>
 				<tr>
 					<th data-options="field:'ck',checkbox:true"></th>
@@ -38,6 +61,7 @@
 					<th field="operateNum" width="100">建运号</th>
 					<th field="forceInsure" width="100" data-options="formatter: DateUtil.formatDatebox">交强止期</th>
 					<th field="busInsure" width="100" data-options="formatter: DateUtil.formatDatebox">商业止期</th>
+					<th field="outBuy" width="100" data-options="formatter: InsureManage.formatOutBuy">是否外购</th>
 					<th field="updateUser" width="100">操作员</th>
 					<th data-options="field:'fck', width:60, formatter:InsureManage.editBtn" align="left">操作</th>
 				</tr>
