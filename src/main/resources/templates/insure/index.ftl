@@ -1,4 +1,4 @@
-<div class="easyui-layout" style="height:100%;">
+﻿<div class="easyui-layout" style="height:100%;">
 	<div region="north" split="true" title="查询区" style="height:170px;" >
 		<form id="insure-search" class="easyui-form">
 			<table width='80%' style="margin:15px auto;">
@@ -67,7 +67,7 @@
 					<th field="hasReceive" width="60" data-options="formatter: InsureManage.formatHasReceive">领取情况</th>
 					<th field="outBuy" width="60" data-options="formatter: InsureManage.formatOutBuy">是否外购</th>
 					<th field="updateUser" width="60">操作员</th>
-					<th data-options="field:'fck', width:60, formatter:InsureManage.editBtn" align="left">操作</th>
+					<th data-options="field:'fck', width:100, formatter:InsureManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>
 		</table>

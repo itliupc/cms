@@ -1,4 +1,4 @@
-<div class="easyui-layout" style="height:100%;">
+﻿<div class="easyui-layout" style="height:100%;">
 	<div region="north" split="true" title="查询区" style="height:120px;" >
 		<form id="user-search" class="easyui-form">
 			<table width='800px' style="margin:15px auto">
@@ -39,7 +39,7 @@
 					<th field="email" width="100">邮箱地址</th>
 					<th field="phone" width="100">手机号码</th>
 					<th field="status" width="60" data-options="formatter:UserManage.formatStatus">状态</th>
-					<th data-options="field:'fck', width:60, formatter:UserManage.editBtn" align="left">操作</th>
+					<th data-options="field:'fck', width:100, formatter:UserManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>
 		</table>
