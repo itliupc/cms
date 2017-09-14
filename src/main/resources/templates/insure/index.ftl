@@ -26,7 +26,7 @@
 						</select>
 					</td>
 					<td width='100px' align="right">
-						<label for="deadline" >车险筛选:</label>
+						<label for="deadline" >条件筛选:</label>
 					</td>
 					<td width='200px' align="left">
 						<select id="search-deadline" class="easyui-combobox" name="deadline" data-options="editable:false" style="width:135px;">
