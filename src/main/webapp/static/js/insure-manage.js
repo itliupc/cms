@@ -41,10 +41,10 @@ var InsureManage = (function () {
 				return 'background-color:red;color:#fff;font-weight:bold;';
 			} else if(1 == row.outBuy){//外面购买：绿色
 				return 'background-color:green;color:#fff;font-weight:bold;';
-			} else if(0 == row.hasReceive){//未取：蓝色
-				return 'background-color:#0D8CEF;color:#fff;font-weight:bold;';
 			} else if(0 == row.hasPay){//未缴费：
 				return 'background-color:grey;color:#fff;font-weight:bold;';
+			} else if(0 == row.hasReceive){//未取：蓝色
+				return 'background-color:#0D8CEF;color:#fff;font-weight:bold;';
 			} else if(currentTimes > row.forceInsure || currentTimes > row.busInsure){//已过期:红色
 				return 'background-color:red;color:#fff;font-weight:bold;';
 			} else if(afterTimes > row.forceInsure || afterTimes > row.busInsure){//即将过期:黄色
