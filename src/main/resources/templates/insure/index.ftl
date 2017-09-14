@@ -63,10 +63,10 @@
 					<th field="operateNum" width="100">建运号</th>
 					<th field="forceInsure" width="100" data-options="formatter: DateUtil.formatDatebox">交强止期</th>
 					<th field="busInsure" width="100" data-options="formatter: DateUtil.formatDatebox">商业止期</th>
-					<th field="outBuy" width="100" data-options="formatter: InsureManage.formatOutBuy">是否外购</th>
-					<th field="hasReceive" width="100" data-options="formatter: InsureManage.formatHasReceive">领取情况</th>
-					<th field="hasPay" width="100" data-options="formatter: InsureManage.formatHasPay">缴费情况</th>
-					<th field="updateUser" width="100">操作员</th>
+					<th field="hasPay" width="60" data-options="formatter: InsureManage.formatHasPay">缴费情况</th>
+					<th field="hasReceive" width="60" data-options="formatter: InsureManage.formatHasReceive">领取情况</th>
+					<th field="outBuy" width="60" data-options="formatter: InsureManage.formatOutBuy">是否外购</th>
+					<th field="updateUser" width="60">操作员</th>
 					<th data-options="field:'fck', width:60, formatter:InsureManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>
