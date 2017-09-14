@@ -1,9 +1,6 @@
 package com.wafer.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import com.wafer.domain.Insure;
 import com.wafer.repository.InsureRepository;
+import com.wafer.utils.DateUtils;
 
 @Service
 public class InsureService {
@@ -61,41 +59,12 @@ public class InsureService {
             predicates
                 .add(cb.or(cb.isNull(root.get("busInsure")), cb.isNull(root.get("forceInsure"))));
           } else if ("2".equals(deadline)) {// 即将过期
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date afterDate = new Date();
-            Date nowDate = new Date();
-            Calendar calendar1 = Calendar.getInstance();
-            calendar1.set(Calendar.MONTH, calendar1.get(Calendar.MONTH) + 3);
-            calendar1.set(Calendar.HOUR_OF_DAY, 0);
-            calendar1.set(Calendar.MINUTE, 0);
-            calendar1.set(Calendar.SECOND, 0);
-            calendar1.set(Calendar.MILLISECOND, 0);
-            Calendar calendar2 = Calendar.getInstance();
-            calendar2.set(Calendar.HOUR_OF_DAY, 0);
-            calendar2.set(Calendar.MINUTE, 0);
-            calendar2.set(Calendar.SECOND, 0);
-            calendar2.set(Calendar.MILLISECOND, 0);
-            try {
-              afterDate = sdf.parse(sdf.format(calendar1.getTime()));
-              nowDate = sdf.parse(sdf.format(calendar2.getTime()));
-            } catch (ParseException e) {
-              e.printStackTrace();
-            }
+            Date afterDate = DateUtils.formatSqlDate(3);
+            Date nowDate = DateUtils.formatSqlDate(0);
             predicates.add(cb.or(cb.between(root.<Date>get("busInsure"), nowDate, afterDate),
                 cb.between(root.<Date>get("forceInsure"), nowDate, afterDate)));
           } else if ("3".equals(deadline)) {// 已经过期
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date nowDate = new Date();
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, 0);
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
-            calendar.set(Calendar.MILLISECOND, 0);
-            try {
-              nowDate = sdf.parse(sdf.format(calendar.getTime()));
-            } catch (ParseException e) {
-              e.printStackTrace();
-            }
+            Date nowDate = DateUtils.formatSqlDate(0);
             predicates.add(cb.or(cb.lessThan(root.<Date>get("busInsure"), nowDate),
                 cb.lessThan(root.<Date>get("forceInsure"), nowDate)));
           }
