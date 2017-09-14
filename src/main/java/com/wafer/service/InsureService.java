@@ -62,19 +62,42 @@ public class InsureService {
                 .add(cb.or(cb.isNull(root.get("busInsure")), cb.isNull(root.get("forceInsure"))));
           } else if ("2".equals(deadline)) {// 即将过期
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) + 3);
-            Date date = new Date();
+            Date afterDate = new Date();
+            Date nowDate = new Date();
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.set(Calendar.MONTH, calendar1.get(Calendar.MONTH) + 3);
+            calendar1.set(Calendar.HOUR_OF_DAY, 0);
+            calendar1.set(Calendar.MINUTE, 0);
+            calendar1.set(Calendar.SECOND, 0);
+            calendar1.set(Calendar.MILLISECOND, 0);
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.set(Calendar.HOUR_OF_DAY, 0);
+            calendar2.set(Calendar.MINUTE, 0);
+            calendar2.set(Calendar.SECOND, 0);
+            calendar2.set(Calendar.MILLISECOND, 0);
             try {
-              date = sdf.parse(sdf.format(calendar.getTime()));
+              afterDate = sdf.parse(sdf.format(calendar1.getTime()));
+              nowDate = sdf.parse(sdf.format(calendar2.getTime()));
             } catch (ParseException e) {
               e.printStackTrace();
             }
-            predicates.add(cb.or(cb.between(root.<Date>get("busInsure"), new Date(), date),
-                cb.between(root.<Date>get("forceInsure"), new Date(), date)));
+            predicates.add(cb.or(cb.between(root.<Date>get("busInsure"), nowDate, afterDate),
+                cb.between(root.<Date>get("forceInsure"), nowDate, afterDate)));
           } else if ("3".equals(deadline)) {// 已经过期
-            predicates.add(cb.or(cb.lessThan(root.<Date>get("busInsure"), new Date()),
-                cb.lessThan(root.<Date>get("forceInsure"), new Date())));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date nowDate = new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+            try {
+              nowDate = sdf.parse(sdf.format(calendar.getTime()));
+            } catch (ParseException e) {
+              e.printStackTrace();
+            }
+            predicates.add(cb.or(cb.lessThan(root.<Date>get("busInsure"), nowDate),
+                cb.lessThan(root.<Date>get("forceInsure"), nowDate)));
           }
         }
         return cb.and(predicates.toArray(new Predicate[predicates.size()]));

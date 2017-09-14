@@ -16,6 +16,10 @@ var InsureManage = (function () {
 		},
 		formatRow : function(index,row){
 			var currentDate = new Date();
+			currentDate.setHours(0);
+			currentDate.setMinutes(0);
+			currentDate.setSeconds(0);
+			currentDate.setMilliseconds(0);
 			var currentTimes = currentDate.getTime();
 			currentDate.setMonth(currentDate.getMonth()+3);
 			var afterTimes = currentDate.getTime();
@@ -192,6 +196,12 @@ var InsureManage = (function () {
 					});
 				}
 			});
+		},
+		/**
+		 * 数据导入
+		 */
+		importData : function(){
+			$.messager.alert('提示','待开发... ...');
 		}
 	};
 })();

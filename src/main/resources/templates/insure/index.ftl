@@ -71,6 +71,7 @@
 		<div id="insure-toolbar">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:InsureManage.add()">新增</a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:InsureManage.remove()">删除</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:InsureManage.importData()">数据导入</a>
 		</div>
 	</div>
 </div>
