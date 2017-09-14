@@ -31,8 +31,9 @@
 					<td width='200px' align="left">
 						<select id="search-deadline" class="easyui-combobox" name="deadline" data-options="editable:false" style="width:135px;">
 						    <option value="">全部</option>
-						    <option value="1">1</option>
-						    <option value="2">2</option>
+						    <option value="1">未领取</option>
+						    <option value="2">即将过期</option>
+						    <option value="3">已经过期</option>
 						</select>
 					</td>
 				</tr>

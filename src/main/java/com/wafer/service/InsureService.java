@@ -1,12 +1,15 @@
 package com.wafer.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -38,19 +41,41 @@ public class InsureService {
     final String operateNum = param.containsKey("operateNum") ? param.get("operateNum") : null;
     final String carNum = param.containsKey("carNum") ? param.get("carNum") : null;
     final String outBuy = param.containsKey("outBuy") ? param.get("outBuy") : null;
+    final String deadline = param.containsKey("deadline") ? param.get("deadline") : null;
     Pageable pageable = new PageRequest(pageNum - 1, pageSize, sort);
     return insureRepository.findAll(new Specification<Insure>() {
       @Override
       public Predicate toPredicate(Root<Insure> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
         List<Predicate> predicates = new ArrayList<>();
         if (null != operateNum && !operateNum.isEmpty()) {
-          predicates.add(cb.like((Path) root.get("operateNum"), "%" + operateNum + "%"));
+          predicates.add(cb.like(root.<String>get("operateNum"), "%" + operateNum + "%"));
         }
         if (null != carNum && !carNum.isEmpty()) {
-          predicates.add(cb.like((Path) root.get("carNum"), "%" + carNum + "%"));
+          predicates.add(cb.like(root.<String>get("carNum"), "%" + carNum + "%"));
         }
         if (null != outBuy && !outBuy.isEmpty()) {
           predicates.add(cb.equal(root.get("outBuy"), outBuy));
+        }
+        if (null != deadline && !deadline.isEmpty()) {
+          if ("1".equals(deadline)) {// 未领取
+            predicates
+                .add(cb.or(cb.isNull(root.get("busInsure")), cb.isNull(root.get("forceInsure"))));
+          } else if ("2".equals(deadline)) {// 即将过期
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) + 3);
+            Date date = new Date();
+            try {
+              date = sdf.parse(sdf.format(calendar.getTime()));
+            } catch (ParseException e) {
+              e.printStackTrace();
+            }
+            predicates.add(cb.or(cb.between(root.<Date>get("busInsure"), new Date(), date),
+                cb.between(root.<Date>get("forceInsure"), new Date(), date)));
+          } else if ("3".equals(deadline)) {// 已经过期
+            predicates.add(cb.or(cb.lessThan(root.<Date>get("busInsure"), new Date()),
+                cb.lessThan(root.<Date>get("forceInsure"), new Date())));
+          }
         }
         return cb.and(predicates.toArray(new Predicate[predicates.size()]));
       }

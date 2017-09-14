@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -44,10 +43,10 @@ public class UserService {
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(cb.equal(root.get("userAuthority"), 1));
         if(null != name && !name.isEmpty()){
-          predicates.add(cb.like((Path)root.get("name"), "%"+name+"%"));
+          predicates.add(cb.like(root.<String>get("name"), "%"+name+"%"));
         }
         if(null != userName && !userName.isEmpty()){
-          predicates.add(cb.like((Path)root.get("userName"), "%"+userName+"%"));
+          predicates.add(cb.like(root.<String>get("userName"), "%"+userName+"%"));
         }
         return cb.and(predicates.toArray(new Predicate[predicates.size()]));
       }
