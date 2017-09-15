@@ -85,9 +85,9 @@ var UserManage = (function () {
 									if(data.result){
 										$("#add_user_dialog").dialog('close');
 										$("#user-datagrid").datagrid('reload');
-										$.messager.alert('提示','保存成功,初始化密码为:123456！');
+										$.messager.alert('提示','保存成功,初始化密码为:123456！',"info");
 									}else{
-										$.messager.alert('提示',data.message);
+										$.messager.alert('提示',data.message,"info");
 									}
 								}
 							});
@@ -147,9 +147,9 @@ var UserManage = (function () {
 									if(data.result){
 										$("#edit_user_dialog").dialog('close');
 										$("#user-datagrid").datagrid('reload');
-										$.messager.alert('提示','保存成功！');
+										$.messager.alert('提示','保存成功！',"info");
 									}else{
-										$.messager.alert('提示',data.message);
+										$.messager.alert('提示',data.message,"info");
 									}
 								}
 							});
@@ -170,7 +170,7 @@ var UserManage = (function () {
 		remove : function() {
 			var selections = $("#user-datagrid").datagrid('getSelections');
 			if (selections.length == 0) {
-				$.messager.alert('提示', '请至少选择一条记录进行操作!');
+				$.messager.alert('提示', '请至少选择一条记录进行操作!',"info");
 				return;
 			}
 			var ids = [];
@@ -187,7 +187,7 @@ var UserManage = (function () {
 						contentType: "application/json; charset=utf-8", 
 						success : function(data) {
 							$("#user-datagrid").datagrid('reload');
-							$.messager.alert('提示','删除成功！');
+							$.messager.alert('提示','删除成功！',"info");
 						}
 					});
 				}
@@ -199,7 +199,7 @@ var UserManage = (function () {
 		resetPassword : function() {
 			var selections = $("#user-datagrid").datagrid('getSelections');
 			if (selections.length == 0) {
-				$.messager.alert('提示', '请至少选择一条记录进行操作!');
+				$.messager.alert('提示', '请至少选择一条记录进行操作!',"info");
 				return;
 			}
 			var ids = [];
@@ -216,7 +216,7 @@ var UserManage = (function () {
 						contentType: "application/json; charset=utf-8", 
 						success : function(data) {
 							$("#user-datagrid").datagrid('reload');
-							$.messager.alert('提示','密码重置成功,初始化密码为:123456！');
+							$.messager.alert('提示','密码重置成功,初始化密码为:123456！',"info");
 						}
 					});
 				}
@@ -239,9 +239,9 @@ var UserManage = (function () {
 						success : function(data) {
 							if(data.result){
 								$("#user-datagrid").datagrid('reload');
-								$.messager.alert('提示',data.data);
+								$.messager.alert('提示',data.data,"info");
 							}else{
-								$.messager.alert('提示',data.message);
+								$.messager.alert('提示',data.message,"info");
 							}
 						}
 					});

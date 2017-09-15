@@ -156,7 +156,7 @@
 							var newPassword=$.trim($("#user-pwd").find("input[name='newPassword']").val());
 							var confirmPassword=$.trim($("#user-pwd").find("input[name='confirmPassword']").val());
 							if(newPassword != confirmPassword){
-								$.messager.alert("提示","确认密码与新密码输入不一致!");
+								$.messager.alert("提示","确认密码与新密码输入不一致!","info");
 							} else {
 								$.ajax({
 									method : 'post',
@@ -169,9 +169,9 @@
 									success : function(data) {
 										if(data.result){
 											$("#cui-cpwd").dialog('close');
-											$.messager.alert('提示','密码修改成功,请重新登陆!','',function(){window.location.href="logout";});
+											$.messager.alert('提示','密码修改成功,请重新登陆!',"info",function(){window.location.href="logout";});
 										}else{
-											$.messager.alert('提示',data.message);
+											$.messager.alert('提示',data.message,"info");
 										}
 									}
 								});

@@ -9,26 +9,44 @@ var InsureManage = (function () {
 		},
 		formatOutBuy : function(value, row, index) {
 			if(0==value){
-				return '否';
+				return '';
 			}else{
-				return '是';
+				return "是";
+			}
+		},
+		outBuyStyle : function(value, row, index){
+			if(1==value){
+				return 'background-color:green;color:#fff;font-weight:bold;';
 			}
 		},
 		formatHasReceive : function(value, row, index) {
 			if(0==value){
-				return '未领取';
+				return '是';
 			}else{
-				return '已领取';
+				return '';
+			}
+		},
+		hasReceiveStyle : function(value, row, index){
+			if(0==value){
+				return 'background-color:#0D8CEF;color:#fff;font-weight:bold;';
 			}
 		},
 		formatHasPay : function(value, row, index) {
 			if(0==value){
-				return '未缴费';
+				return '是';
 			}else{
-				return '已缴费';
+				return '';
 			}
 		},
-		formatRow : function(index,row){
+		hasPayStyle : function(value, row, index){
+			if(0==value){
+				return 'background-color:red;color:#fff;font-weight:bold;';
+			}
+		},
+		formatRowDate : function(value, row, index){
+			return DateUtil.formatDatebox(value);
+		},
+		dataRowStyle : function(value, row, index){
 			var currentDate = new Date();
 			currentDate.setHours(0);
 			currentDate.setMinutes(0);
@@ -37,18 +55,17 @@ var InsureManage = (function () {
 			var currentTimes = currentDate.getTime();
 			currentDate.setMonth(currentDate.getMonth()+3);
 			var afterTimes = currentDate.getTime();
-			if(!row.forceInsure || !row.busInsure){//已过期:红色
-				return 'background-color:red;color:#fff;font-weight:bold;';
-			} else if(1 == row.outBuy){//外面购买：绿色
-				return 'background-color:green;color:#fff;font-weight:bold;';
-			} else if(0 == row.hasPay){//未缴费：
+			if(!value || currentTimes > value){//已过期:灰色
 				return 'background-color:grey;color:#fff;font-weight:bold;';
-			} else if(0 == row.hasReceive){//未取：蓝色
-				return 'background-color:#0D8CEF;color:#fff;font-weight:bold;';
-			} else if(currentTimes > row.forceInsure || currentTimes > row.busInsure){//已过期:红色
-				return 'background-color:red;color:#fff;font-weight:bold;';
-			} else if(afterTimes > row.forceInsure || afterTimes > row.busInsure){//即将过期:黄色
+			} else if(afterTimes > value){//即将过期:黄色
 				return 'background-color:yellow;color:#fff;font-weight:bold;';
+			}
+		},
+		formatOperateUser : function(value, row, index){
+			if(row.user){
+				return row.user.name;
+			}else{
+				return "";
 			}
 		},
 		/**
@@ -57,16 +74,15 @@ var InsureManage = (function () {
 		query: function(){
 			var carNum=$("#insure-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#insure-search").find("input[name='operateNum']").val().toUpperCase();
-			var outBuy=$("#search-out-buy").combobox('getValue');
 			var deadline=$("#search-deadline").combobox('getValue');
-			$("#insure-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'outBuy':outBuy,'deadline':deadline});
+			$("#insure-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'deadline':deadline});
 		},
 		/**
 		 * 重置按钮事件
 		 */
 		reset: function(){
-			$("#insure-search").form('load',{'carNum':'','operateNum':'','outBuy':'','deadline':''});
-			$("#insure-datagrid").datagrid('load',{'carNum':'','operateNum':'','outBuy':'','deadline':''});
+			$("#insure-search").form('load',{'carNum':'','operateNum':'','deadline':''});
+			$("#insure-datagrid").datagrid('load',{'carNum':'','operateNum':'','deadline':''});
 		},
 		/**
 		 * 新增按钮事件
@@ -75,7 +91,7 @@ var InsureManage = (function () {
 			$("#add_insure_dialog").dialog({
 				title : '新增',
 				width : 600,
-				height : 360,
+				height : 290,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -90,11 +106,18 @@ var InsureManage = (function () {
 						if($("#insure-add").form('validate')){
 							var carNum=$.trim($("#insure-add").find("input[name='carNum']").val().toUpperCase());
 							var operateNum=$.trim($("#insure-add").find("input[name='operateNum']").val().toUpperCase());
+							var ownerName = $("#insure-add").find("input[name='ownerName']").val();
+							var ownerPhone = $("#insure-add").find("input[name='ownerPhone']").val();
 							var forceInsure = $("#insure-add").find("input[name='forceInsure']").val();
 							var busInsure = $("#insure-add").find("input[name='busInsure']").val();
 							var outBuy=$("#insure-out-buy").combobox('getValue');
-							var hasReceive=$("#insure-has-receive").combobox('getValue');
-							var hasPay=$("#insure-has-pay").combobox('getValue');
+							var hasPay = 1; var hasReceive = 1;
+							var doType=$("#insure-do-type").combobox('getValue');
+							if("1" == doType){
+								hasPay = 0;
+							} else if("2" == doType) {
+								hasReceive = 0;
+							}
 							$.ajax({
 								method : 'post',
 								url : 'insure-manage/addInsure',
@@ -103,6 +126,8 @@ var InsureManage = (function () {
 									'operateNum' : operateNum,
 									'forceInsure' : forceInsure,
 									'busInsure' : busInsure,
+									'ownerName' : ownerName,
+									'ownerPhone' : ownerPhone,
 									'outBuy' : outBuy,
 									'hasReceive' : hasReceive,
 									'hasPay' : hasPay
@@ -112,9 +137,9 @@ var InsureManage = (function () {
 									if(data.result){
 										$("#add_insure_dialog").dialog('close');
 										$("#insure-datagrid").datagrid('reload');
-										$.messager.alert('提示','保存成功！');
+										$.messager.alert('提示','保存成功！',"info");
 									}else{
-										$.messager.alert('提示',data.message);
+										$.messager.alert('提示',data.message,"info");
 									}
 								}
 							});
@@ -137,13 +162,21 @@ var InsureManage = (function () {
 			$("#edit_insure_dialog").dialog({
 				title : '编辑',
 				width : 600,
-				height : 360,
+				height : 290,
 				closed : false,
 				cache : false,
 				resizable : false,
 				href : "insure-manage/view/edit",
 				modal : true,
 				onLoad : function() {
+					if(0 == record.hasPay){
+						record.doType = 1;
+					} else if(0 == record.hasReceive){
+						record.doType = 2;
+					} else{
+						record.doType = 0;
+					}
+					
 					$("#insure-edit").form('load',record);
 				},
 				buttons : [ {
@@ -156,9 +189,16 @@ var InsureManage = (function () {
 							var operateNum=$.trim($("#insure-edit").find("input[name='operateNum']").val().toUpperCase());
 							var forceInsure = $("#insure-edit").find("input[name='forceInsure']").val();
 							var busInsure = $("#insure-edit").find("input[name='busInsure']").val();
+							var ownerName = $("#insure-edit").find("input[name='ownerName']").val();
+							var ownerPhone = $("#insure-edit").find("input[name='ownerPhone']").val();
 							var outBuy=$("#insure-out-buy").combobox('getValue');
-							var hasReceive=$("#insure-has-receive").combobox('getValue');
-							var hasPay=$("#insure-has-pay").combobox('getValue');
+							var hasPay = 1; var hasReceive = 1;
+							var doType=$("#insure-do-type").combobox('getValue');
+							if("1" == doType){
+								hasPay = 0;
+							} else if("2" == doType) {
+								hasReceive = 0;
+							}
 							$.ajax({
 								method : 'post',
 								url : 'insure-manage/editInsure',
@@ -168,6 +208,8 @@ var InsureManage = (function () {
 									'operateNum' : operateNum,
 									'forceInsure' : forceInsure,
 									'busInsure' : busInsure,
+									'ownerName' : ownerName,
+									'ownerPhone' : ownerPhone,
 									'outBuy' : outBuy,
 									'hasReceive' : hasReceive,
 									'hasPay' : hasPay
@@ -177,9 +219,9 @@ var InsureManage = (function () {
 									if(data.result){
 										$("#edit_insure_dialog").dialog('close');
 										$("#insure-datagrid").datagrid('reload');
-										$.messager.alert('提示','保存成功！');
+										$.messager.alert('提示','保存成功！',"info");
 									}else{
-										$.messager.alert('提示',data.message);
+										$.messager.alert('提示',data.message,"info");
 									}
 								}
 							});
@@ -200,7 +242,7 @@ var InsureManage = (function () {
 		remove : function() {
 			var selections = $("#insure-datagrid").datagrid('getSelections');
 			if (selections.length == 0) {
-				$.messager.alert('提示', '请至少选择一条记录进行操作!');
+				$.messager.alert('提示', '请至少选择一条记录进行操作!',"info");
 				return;
 			}
 			var ids = [];
@@ -217,7 +259,7 @@ var InsureManage = (function () {
 						contentType: "application/json; charset=utf-8", 
 						success : function(data) {
 							$("#insure-datagrid").datagrid('reload');
-							$.messager.alert('提示','删除成功！');
+							$.messager.alert('提示','删除成功！',"info");
 						}
 					});
 				}
@@ -227,7 +269,7 @@ var InsureManage = (function () {
 		 * 数据导入
 		 */
 		importData : function(){
-			$.messager.alert('提示','待开发... ...');
+			$.messager.alert('提示','待开发... ...',"info");
 		}
 	};
 })();

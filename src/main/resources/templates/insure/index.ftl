@@ -16,21 +16,12 @@
 						<input class="easyui-textbox" type="text" name="operateNum"></input>
 					</td>
 					<td width='100px' align="right">
-						<label for="outBuy" >是否外购:</label>
-					</td>
-					<td width='200px' align="left">
-						<select id="search-out-buy" class="easyui-combobox" name="outBuy" data-options="editable:false" style="width:135px;">
-						    <option value="">全部</option>
-						    <option value="1">是</option>
-						    <option value="0">否</option>
-						</select>
-					</td>
-					<td width='100px' align="right">
 						<label for="deadline" >条件筛选:</label>
 					</td>
 					<td width='200px' align="left">
 						<select id="search-deadline" class="easyui-combobox" name="deadline" data-options="editable:false" style="width:135px;">
 						    <option value="">全部</option>
+						    <option value="0">外购</option>
 						    <option value="1">未领取</option>
 						    <option value="2">未缴费</option>
 						    <option value="3">即将过期</option>
@@ -39,10 +30,10 @@
 					</td>
 				</tr>
 				<tr style="height:45px;">
-					<td  style="text-align:right"  width='100px' colspan="4">
+					<td  style="text-align:right"  width='100px' colspan="3">
 						<a href="#" style="margin-right:50px;" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:InsureManage.query()">查询</a>
 					</td>
-					<td  style="text-align:left" width='100px' colspan="4">
+					<td  style="text-align:left" width='100px' colspan="3">
 						<a href="#" style="margin-left:50px;" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:InsureManage.reset()">重置</a>
 					</td>
 				</tr>
@@ -53,30 +44,30 @@
 		<table id="insure-datagrid" class="easyui-datagrid" style="height:100%"
 			data-options="url:'insure-manage/list',toolbar:'#insure-toolbar',
 				idField:'id',fitColumns:'true',fit:'true',
-				rownumbers:'true',pagination:'true',border:'false',
-				rowStyler: InsureManage.formatRow">
+				rownumbers:'true',pagination:'true',border:'false'">
 			<thead>
 				<tr>
 					<th data-options="field:'ck',checkbox:true"></th>
 					<th field="id" hidden="true"></th>
 					<th field="carNum" width="60">车号</th>
-					<th field="operateNum" width="60">建运号</th>
+					<th field="operateNum" width="70">建运号</th>
 					<th field="ownerName" width="60">车主姓名</th>
-					<th field="ownerPhone" width="60">联系方式</th>
-					<th field="forceInsure" width="60" data-options="formatter: DateUtil.formatDatebox">交强止期</th>
-					<th field="busInsure" width="60" data-options="formatter: DateUtil.formatDatebox">商业止期</th>
-					<th field="hasPay" width="60" data-options="formatter: InsureManage.formatHasPay">缴费情况</th>
-					<th field="hasReceive" width="60" data-options="formatter: InsureManage.formatHasReceive">领取情况</th>
-					<th field="outBuy" width="60" data-options="formatter: InsureManage.formatOutBuy">是否外购</th>
-					<th field="user.name" width="60">操作员</th>
-					<th data-options="field:'fck', width:100, formatter:InsureManage.editBtn" align="left">操作</th>
+					<th field="ownerPhone" width="70">联系方式</th>
+					<th field="forceInsure" width="80" data-options="styler:InsureManage.dataRowStyle,formatter: InsureManage.formatRowDate">交强止期</th>
+					<th field="busInsure" width="80" data-options="styler:InsureManage.dataRowStyle,formatter: InsureManage.formatRowDate">商业止期</th>
+					<th field="hasPay" width="30" data-options="styler:InsureManage.hasPayStyle,formatter: InsureManage.formatHasPay">未缴费</th>
+					<th field="hasReceive" width="30" data-options="styler:InsureManage.hasReceiveStyle,formatter: InsureManage.formatHasReceive">未领取</th>
+					<th field="outBuy" width="20" data-options="styler:InsureManage.outBuyStyle,formatter: InsureManage.formatOutBuy">外购</th>
+					<th field="user.name" width="60" data-options="formatter: InsureManage.formatOperateUser">操作员</th>
+					<th data-options="field:'fck', width:60, formatter:InsureManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>
 		</table>
 		<div id="insure-toolbar">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:InsureManage.add()">新增</a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:InsureManage.remove()">删除</a>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:InsureManage.importData()">数据导入</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="javascript:InsureManage.importData()">数据导入</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:InsureManage.importData()">数据导出</a>
 		</div>
 	</div>
 </div>

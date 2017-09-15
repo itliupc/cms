@@ -118,7 +118,7 @@ public class InsureController {
       if (principal instanceof SysUser) {
         userId = principal.getUserId();
       }
-      insure.setUpdateUser(userId);
+      insureInfo.setUpdateUser(userId);
       insureService.insureSave(insureInfo);
       return ResponseResult.success(insureInfo);
     }
