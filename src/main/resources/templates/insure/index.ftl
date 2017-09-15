@@ -59,10 +59,12 @@
 				<tr>
 					<th data-options="field:'ck',checkbox:true"></th>
 					<th field="id" hidden="true"></th>
-					<th field="carNum" width="100">车号</th>
-					<th field="operateNum" width="100">建运号</th>
-					<th field="forceInsure" width="100" data-options="formatter: DateUtil.formatDatebox">交强止期</th>
-					<th field="busInsure" width="100" data-options="formatter: DateUtil.formatDatebox">商业止期</th>
+					<th field="carNum" width="60">车号</th>
+					<th field="operateNum" width="60">建运号</th>
+					<th field="ownerName" width="60">车主姓名</th>
+					<th field="ownerPhone" width="60">联系方式</th>
+					<th field="forceInsure" width="60" data-options="formatter: DateUtil.formatDatebox">交强止期</th>
+					<th field="busInsure" width="60" data-options="formatter: DateUtil.formatDatebox">商业止期</th>
 					<th field="hasPay" width="60" data-options="formatter: InsureManage.formatHasPay">缴费情况</th>
 					<th field="hasReceive" width="60" data-options="formatter: InsureManage.formatHasReceive">领取情况</th>
 					<th field="outBuy" width="60" data-options="formatter: InsureManage.formatOutBuy">是否外购</th>

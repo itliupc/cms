@@ -32,7 +32,13 @@ public class Insure {
 
   @Column(name = "operate_num")
   private String operateNum;
-
+  
+  @Column(name = "owner_name")
+  private String ownerName;
+  
+  @Column(name = "owner_phone")
+  private String ownerPhone;
+  
   @Column(name = "force_insure")
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date forceInsure;
@@ -78,6 +84,22 @@ public class Insure {
 
   public void setOperateNum(String operateNum) {
     this.operateNum = operateNum;
+  }
+
+  public String getOwnerName() {
+    return ownerName;
+  }
+
+  public void setOwnerName(String ownerName) {
+    this.ownerName = ownerName;
+  }
+
+  public String getOwnerPhone() {
+    return ownerPhone;
+  }
+
+  public void setOwnerPhone(String ownerPhone) {
+    this.ownerPhone = ownerPhone;
   }
 
   public Date getForceInsure() {
@@ -140,12 +162,15 @@ public class Insure {
     super();
   }
 
-  public Insure(long id, String carNum, String operateNum, Date forceInsure, Date busInsure,
-      int outBuy, int hasReceive, int hasPay, String updateUser, Date updateTime) {
+  public Insure(long id, String carNum, String operateNum, String ownerName, 
+      String ownerPhone, Date forceInsure, Date busInsure, int outBuy, 
+      int hasReceive, int hasPay, String updateUser, Date updateTime) {
     super();
     this.id = id;
     this.carNum = carNum;
     this.operateNum = operateNum;
+    this.ownerName = ownerName;
+    this.ownerPhone = ownerPhone;
     this.forceInsure = forceInsure;
     this.busInsure = busInsure;
     this.outBuy = outBuy;

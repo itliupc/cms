@@ -103,6 +103,12 @@ public class InsureController {
       if (null != insure.getBusInsure()) {
         insureInfo.setBusInsure(insure.getBusInsure());
       }
+      if (null != insure.getOwnerName()) {
+        insureInfo.setOwnerName(insure.getOwnerName());
+      }
+      if (null != insure.getOwnerPhone()) {
+        insureInfo.setOwnerPhone(insure.getOwnerPhone());
+      }
       insureInfo.setOutBuy(insure.getOutBuy());
       insureInfo.setHasReceive(insure.getHasReceive());
       insureInfo.setHasPay(insure.getHasPay());
