@@ -17,6 +17,7 @@ public class SysUser implements UserDetails {
 
   private static final long serialVersionUID = 1L;
 
+  private long userId;
   private String name;
   private String password;
   private String username;
@@ -26,18 +27,19 @@ public class SysUser implements UserDetails {
   private boolean credentialsNonExpired;
   private boolean enabled;
 
-  public SysUser(String name, String username, String password,
+  public SysUser(long userId, String name, String username, String password,
       Collection<? extends GrantedAuthority> authorities) {
-    this(name, username, password, true, true, true, true, authorities);
+    this(userId, name, username, password, true, true, true, true, authorities);
   }
 
-  public SysUser(String name, String username, String password, boolean enabled,
+  public SysUser(long userId, String name, String username, String password, boolean enabled,
       boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked,
       Collection<? extends GrantedAuthority> authorities) {
 
     if (((username == null) || "".equals(username)) || (password == null)) {
       throw new IllegalArgumentException("Cannot pass null or empty values to constructor");
     }
+    this.userId = userId;
     this.name = name;
     this.username = username;
     this.password = password;
@@ -48,6 +50,10 @@ public class SysUser implements UserDetails {
     this.authorities = Collections.unmodifiableSet(sortAuthorities(authorities));
   }
 
+  public long getUserId() {
+    return userId;
+  }
+  
   public String getName() {
     return name;
   }

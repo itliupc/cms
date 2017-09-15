@@ -34,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     } else if (1 == user.getStatus()){
         throw new BadCredentialsException("账号已被锁定");
     } else {
-      return new SysUser(user.getName(), username, user.getPassword(),
+      return new SysUser(user.getUserId(), user.getName(), username, user.getPassword(),
           true, true, true, true, mapToGrantedAuthorities(Arrays.asList(user.getUserAuthority())));
     }
   }
