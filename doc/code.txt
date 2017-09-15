@@ -1,0 +1,30 @@
+  @OneToOne
+  @JoinColumn(name = "school_id", insertable=false, updatable=false)
+  private School school;
+  
+  public School getSchool() {
+    return school;
+  }
+
+  public void setSchool(School school) {
+    this.school = school;
+  }
+
+
+
+
+    public Page<User> getUserList(){
+    Pageable pageable = new PageRequest(0, 10, null);
+    return userRepository.findAll(new Specification<User>() {
+      @Override
+      public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(cb.equal(root.get("userAuthority"), 1));
+        
+        Join<User,School> join = root.join("school", JoinType.LEFT);
+        predicates.add(cb.equal(join.get("schoolName"), "北大"));;
+        
+        return cb.and(predicates.toArray(new Predicate[predicates.size()]));
+      }
+    },pageable);
+  }
