@@ -28,7 +28,7 @@ CREATE TABLE `ps_insure`(
   `out_buy` INT(1) DEFAULT 0  NOT NULL  COMMENT '是否外购',
   `has_receive` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否领取',
   `has_pay` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否缴费',
-  `update_user` VARCHAR(255) NOT NULL COMMENT '操作人',
+  `update_user` INT(11) NULL COMMENT '操作人',
   `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
@@ -39,3 +39,6 @@ INSERT INTO `ps_user` (`user_id`, `name`, `user_name`, `password`, `email`, `pho
 
 ALTER TABLE `ps_insure` ADD COLUMN `owner_phone` VARCHAR(64) NULL  COMMENT '车主电话' AFTER `operate_num`;
 ALTER TABLE `ps_insure` ADD COLUMN `owner_name` VARCHAR(64) NULL  COMMENT '车主姓名' AFTER `operate_num`;
+
+UPDATE ps_insure SET update_user = 1;
+ALTER TABLE `ps_insure` CHANGE `update_user` `update_user` INT(11) NULL  COMMENT '操作人';

@@ -6,9 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -57,10 +61,15 @@ public class Insure {
   private int hasPay;
 
   @Column(name = "update_user")
-  private String updateUser;
+  private long updateUser;
 
   @Column(name = "update_time")
   private Date updateTime;
+  
+  @OneToOne
+  @NotFound(action=NotFoundAction.IGNORE)
+  @JoinColumn(name = "update_user", nullable=true, insertable=false, updatable=false)
+  private User user;
 
   public long getId() {
     return id;
@@ -118,7 +127,7 @@ public class Insure {
     this.busInsure = busInsure;
   }
 
-  public String getUpdateUser() {
+  public long getUpdateUser() {
     return updateUser;
   }
 
@@ -146,7 +155,7 @@ public class Insure {
     this.hasPay = hasPay;
   }
 
-  public void setUpdateUser(String updateUser) {
+  public void setUpdateUser(long updateUser) {
     this.updateUser = updateUser;
   }
 
@@ -158,13 +167,21 @@ public class Insure {
     this.updateTime = updateTime;
   }
 
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
   public Insure() {
     super();
   }
 
   public Insure(long id, String carNum, String operateNum, String ownerName, 
       String ownerPhone, Date forceInsure, Date busInsure, int outBuy, 
-      int hasReceive, int hasPay, String updateUser, Date updateTime) {
+      int hasReceive, int hasPay, long updateUser, Date updateTime) {
     super();
     this.id = id;
     this.carNum = carNum;

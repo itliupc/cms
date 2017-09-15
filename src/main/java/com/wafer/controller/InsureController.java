@@ -66,11 +66,11 @@ public class InsureController {
     } else {
       SysUser principal =
           (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      String userName = "";
+      long userId = 0L;
       if (principal instanceof SysUser) {
-        userName = principal.getName();
+        userId = principal.getUserId();
       }
-      insure.setUpdateUser(userName);
+      insure.setUpdateUser(userId);
       insureService.insureSave(insure);
       return ResponseResult.success(insure);
     }
@@ -114,11 +114,11 @@ public class InsureController {
       insureInfo.setHasPay(insure.getHasPay());
       SysUser principal =
           (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      String userName = "";
+      long userId = 0L;
       if (principal instanceof SysUser) {
-        userName = principal.getName();
+        userId = principal.getUserId();
       }
-      insureInfo.setUpdateUser(userName);
+      insure.setUpdateUser(userId);
       insureService.insureSave(insureInfo);
       return ResponseResult.success(insureInfo);
     }

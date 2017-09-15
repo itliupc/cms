@@ -68,7 +68,7 @@
 					<th field="hasPay" width="60" data-options="formatter: InsureManage.formatHasPay">缴费情况</th>
 					<th field="hasReceive" width="60" data-options="formatter: InsureManage.formatHasReceive">领取情况</th>
 					<th field="outBuy" width="60" data-options="formatter: InsureManage.formatOutBuy">是否外购</th>
-					<th field="updateUser" width="60">操作员</th>
+					<th field="user.name" width="60">操作员</th>
 					<th data-options="field:'fck', width:100, formatter:InsureManage.editBtn" align="left">操作</th>
 				</tr>
 			</thead>
