@@ -270,6 +270,19 @@ var InsureManage = (function () {
 		 */
 		importData : function(){
 			$.messager.alert('提示','待开发... ...',"info");
+		},
+		/**
+		 * 数据导出
+		 */
+		exportData : function(){
+			$.messager.confirm('提示', '确认要导出数据吗?', function(flag) {
+				if (flag) {
+					var carNum=$("#insure-search").find("input[name='carNum']").val().toUpperCase();
+					var operateNum=$("#insure-search").find("input[name='operateNum']").val().toUpperCase();
+					var deadline=$("#search-deadline").combobox('getValue');
+					window.location.href = "impexp-manage/export/insure?param1="+carNum+"&param2="+operateNum+"&param3="+deadline;
+				}
+			});
 		}
 	};
 })();
