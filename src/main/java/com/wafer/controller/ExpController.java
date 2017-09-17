@@ -29,15 +29,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.wafer.domain.Insure;
 import com.wafer.service.InsureService;
 
+
+
 @Controller
-@RequestMapping("/impexp-manage")
+@RequestMapping("/exp-manage")
 @Transactional
-public class ImpExpController {
+public class ExpController {
 
 	@Autowired
 	InsureService insureService;
 
-	Logger logger = LoggerFactory.getLogger(ImpExpController.class);
+	Logger logger = LoggerFactory.getLogger(ExpController.class);
 
 	@RequestMapping("/export/{name}")
 	public void exportExcel(@PathVariable("name") String name, @RequestParam("param1") String param1,
