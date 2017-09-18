@@ -28,9 +28,9 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
     }
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public List<T> listBySql(String sql) {
+  public List listBySql(String sql) {
     if (sql.contains("ps_")) {
       return em.createNativeQuery(sql).getResultList();
     } else {

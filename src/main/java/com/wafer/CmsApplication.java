@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.wafer.repository.base.BaseRepositoryFactoryBean;
 
-
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableJpaRepositories(repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class)

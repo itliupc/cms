@@ -33,12 +33,30 @@ CREATE TABLE `ps_insure`(
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
+
+CREATE TABLE `ps_car`(  
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `car_num` VARCHAR(255) NOT NULL COMMENT '车辆号码',
+  `operate_num` VARCHAR(255) NOT NULL COMMENT '营运号码',
+  `owner_name` VARCHAR(64) NULL COMMENT '车主姓名',
+  `owner_phone` VARCHAR(64) NULL COMMENT '车主电话',
+  `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ps_insure1`(  
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `car_id` INT(11) NOT NULL COMMENT '车辆Id',
+  `force_insure` DATE COMMENT '交强险日期',
+  `bus_insure` DATE COMMENT '商业保险日期',
+  `out_buy` INT(1) DEFAULT 0  NOT NULL  COMMENT '是否外购',
+  `has_receive` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否领取',
+  `has_pay` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否缴费',
+  `update_user` INT(11) NULL COMMENT '操作人',
+  `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_insure_car_id` FOREIGN KEY (`car_id`) REFERENCES `ps_car` (`id`) ON DELETE CASCADE
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
 -- admin/admin
 INSERT INTO `ps_user` (`user_id`, `name`, `user_name`, `password`, `email`, `phone`, `status`, `user_authority`, `latest_login_time`, `create_time`, `update_time`) VALUES('1','系统管理员','admin','$2a$10$tG/aBbjRLB2lM1U4vXthRe8SO0/NWDirluHpq96B.pNrxMasOyOs6','','','0','0','2017-08-23 09:04:00','2017-08-18 09:32:24','2017-08-22 16:55:08');
-
-
-ALTER TABLE `ps_insure` ADD COLUMN `owner_phone` VARCHAR(64) NULL  COMMENT '车主电话' AFTER `operate_num`;
-ALTER TABLE `ps_insure` ADD COLUMN `owner_name` VARCHAR(64) NULL  COMMENT '车主姓名' AFTER `operate_num`;
-
-UPDATE ps_insure SET update_user = 1;
-ALTER TABLE `ps_insure` CHANGE `update_user` `update_user` INT(11) NULL  COMMENT '操作人';

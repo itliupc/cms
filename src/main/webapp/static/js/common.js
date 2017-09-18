@@ -116,3 +116,36 @@ var DateUtil = (function () {
 	};
 })();
 
+var CommonUtil = (function () {
+	return {
+		carSelect : function(id) { 
+			console.info(id);
+			var selectDialog = $("<div></div>").dialog({
+				title : '车辆选择',
+				width : 600,
+				height : 500,
+				closed : false,
+				cache : false,
+				resizable : false,
+				href : "car-manage/view/index",
+				modal : true,
+				onLoad : function() {
+				},
+				buttons : [ {
+					iconCls: "icon-save",
+					text : '确定',
+					handler : function(){
+						selectDialog.dialog('close');
+					}
+				}, {
+					iconCls: "icon-cancel",
+					text : '关闭',
+					handler : function() {
+						selectDialog.dialog('close');
+					}
+				} ]
+			});
+		}
+	};
+})();
+
