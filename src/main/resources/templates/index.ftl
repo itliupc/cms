@@ -55,11 +55,11 @@
     <!-- end of footer -->  
     <script type="text/javascript">
 		$(function(){
-			$('.cui-side-tree a').bind("click",function(){
-				var title = $(this).text();
-				var url = $(this).attr('data-link');
-				var iconCls = $(this).attr('data-icon');
-				var iframe = $(this).attr('iframe')==1?true:false;
+			$('.cui-side-tree li').bind("click",function(){
+				var title = $(this).find('a').text();
+				var url = $(this).find('a').attr('data-link');
+				var iconCls = $(this).find('a').attr('data-icon');
+				var iframe = $(this).find('a').attr('iframe')==1?true:false;
 				addTab(title,url,iconCls,iframe);
 			});	
 		})
@@ -67,7 +67,7 @@
 		/**
 		* Name 载入树形菜单 
 		*/
-		$('#cui-side-tree').tree({
+		/*$('#cui-side-tree').tree({
 			url:'pages/menu.php',
 			cache:false,
 			onClick:function(node){
@@ -79,7 +79,7 @@
 					addTab(node.text, url, '', node.attributes['iframe']);
 				}
 			}
-		});
+		});*/
 		
 		/**
 		* Name 选项卡初始化
