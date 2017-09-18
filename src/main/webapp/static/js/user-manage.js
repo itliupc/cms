@@ -23,6 +23,10 @@ var UserManage = (function () {
 				
 				return button;
 		},
+		
+		formatRowDateTime : function(value, row, index) {
+			return DateUtil.formatDateTime(value);
+		},
 		formatStatus : function(value, row, index) {
 			if(0==value){
 				return '启用';

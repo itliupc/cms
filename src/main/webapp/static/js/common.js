@@ -66,6 +66,24 @@ $.extend($.fn.validatebox.defaults.rules, {
 
 var DateUtil = (function () {
 	return {
+		formatDateTime : function(value) {  
+		    if (value == null || value == '') {  
+		        return '';  
+		    }  
+		    var dt;  
+		    if (value instanceof Date) {  
+		        dt = value;  
+		    } else {  
+		        dt = new Date(value);  
+		    }  
+		    var y = dt.getFullYear();
+			var m = dt.getMonth()+1;
+			var d = dt.getDate();
+			var h = dt.getHours();
+			var min = dt.getMinutes();
+			var s = dt.getSeconds();
+			return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d)+" "+(h<10?('0'+h):h)+':'+(min<10?('0'+min):min)+':'+(s<10?('0'+s):s);
+		},
 		formatDatebox : function(value) {  
 		    if (value == null || value == '') {  
 		        return '';  

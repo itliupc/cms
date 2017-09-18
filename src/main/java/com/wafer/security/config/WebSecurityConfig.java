@@ -54,10 +54,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .defaultSuccessUrl("/", true)
                 .loginProcessingUrl("/dologin")
                 .failureUrl("/login?error")
+                .successHandler(loginSuccessHandler())
                 .permitAll()
                .and()  
                 .logout()  
-                .logoutSuccessUrl("/login") //退出登录后的默认网址是”/home”  
+                .logoutSuccessUrl("/login") //退出登录后的默认网址是”/login”  
                 .permitAll();  
   }
   
@@ -65,5 +66,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {     
     auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());  
         auth.eraseCredentials(false);         
-    }  
+  }
+  
+  @Bean  
+  public LoginSuccessHandler loginSuccessHandler(){  
+      return new LoginSuccessHandler();  
+  }  
 }

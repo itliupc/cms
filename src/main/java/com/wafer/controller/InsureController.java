@@ -97,18 +97,14 @@ public class InsureController {
       if (null != insure.getOperateNum()) {
         insureInfo.setOperateNum(insure.getOperateNum());
       }
-      if (null != insure.getForceInsure()) {
-        insureInfo.setForceInsure(insure.getForceInsure());
-      }
-      if (null != insure.getBusInsure()) {
-        insureInfo.setBusInsure(insure.getBusInsure());
-      }
       if (null != insure.getOwnerName()) {
         insureInfo.setOwnerName(insure.getOwnerName());
       }
       if (null != insure.getOwnerPhone()) {
         insureInfo.setOwnerPhone(insure.getOwnerPhone());
       }
+      insureInfo.setForceInsure(insure.getForceInsure());
+      insureInfo.setBusInsure(insure.getBusInsure());
       insureInfo.setOutBuy(insure.getOutBuy());
       insureInfo.setHasReceive(insure.getHasReceive());
       insureInfo.setHasPay(insure.getHasPay());

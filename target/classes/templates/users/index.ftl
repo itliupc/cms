@@ -38,6 +38,7 @@
 					<th field="name" width="100">姓名</th>
 					<th field="email" width="100">邮箱地址</th>
 					<th field="phone" width="100">手机号码</th>
+					<th field="latestLoginTime" width="100" data-options="formatter:UserManage.formatRowDateTime">上次登陆</th>
 					<th field="status" width="60" data-options="formatter:UserManage.formatStatus">状态</th>
 					<th data-options="field:'fck', width:100, formatter:UserManage.editBtn" align="left">操作</th>
 				</tr>

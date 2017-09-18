@@ -40,13 +40,13 @@ var InsureManage = (function () {
 		},
 		hasPayStyle : function(value, row, index){
 			if(0==value){
-				return 'background-color:red;color:#fff;font-weight:bold;';
+				return 'background-color:yellow;color:black;font-weight:bold;';
 			}
 		},
 		formatRowDate : function(value, row, index){
 			return DateUtil.formatDatebox(value);
 		},
-		dataRowStyle : function(value, row, index){
+		dateRowStyle : function(value, row, index){
 			var currentDate = new Date();
 			currentDate.setHours(0);
 			currentDate.setMinutes(0);
@@ -55,10 +55,12 @@ var InsureManage = (function () {
 			var currentTimes = currentDate.getTime();
 			currentDate.setMonth(currentDate.getMonth()+3);
 			var afterTimes = currentDate.getTime();
-			if(!value || currentTimes > value){//已过期:灰色
+			if(!value){//日期空
+				return '';
+			}else if(currentTimes > value){//已过期:灰色
 				return 'background-color:grey;color:#fff;font-weight:bold;';
 			} else if(afterTimes > value){//即将过期:黄色
-				return 'background-color:yellow;color:#fff;font-weight:bold;';
+				return 'background-color:red;color:#fff;font-weight:bold;';
 			}
 		},
 		formatOperateUser : function(value, row, index){
