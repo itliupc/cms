@@ -134,7 +134,7 @@ public class InsureController {
       }
       carService.carSave(car);
       
-      Insure insureInfo = insureService.findByCarId(insure.getId());
+      Insure insureInfo = insureService.getInsureById(insure.getId());
       insureInfo.setCarId(car.getId());
       insureInfo.setForceInsure(insure.getForceInsure());
       insureInfo.setBusInsure(insure.getBusInsure());

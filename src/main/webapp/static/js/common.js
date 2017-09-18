@@ -119,7 +119,6 @@ var DateUtil = (function () {
 var CommonUtil = (function () {
 	return {
 		carSelect : function(id) { 
-			console.info(id);
 			var selectDialog = $("<div></div>").dialog({
 				title : '车辆选择',
 				width : 600,
@@ -129,6 +128,9 @@ var CommonUtil = (function () {
 				resizable : false,
 				href : "car-manage/view/index",
 				modal : true,
+				onClose : function(){
+					selectDialog.dialog('destroy');
+				},
 				onLoad : function() {
 				},
 				buttons : [ {

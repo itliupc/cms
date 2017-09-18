@@ -16,16 +16,16 @@
 						<input class="easyui-textbox" type="text" name="operateNum"></input>
 					</td>
 					<td  style="text-align:center"  width='100px'>
-						<a href="#" style="margin-right:50px;" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:InsureManage.query()">查询</a>
+						<a href="#" style="margin-right:10px;" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:CarManage.query()">查询</a>
 					</td>
 					<td  style="text-align:center" width='100px'>
-						<a href="#" style="margin-left:50px;" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:InsureManage.reset()">重置</a>
+						<a href="#" style="margin-left:10px;" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:CarManage.reset()">重置</a>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
-	<div id="car-content" region="center" title="列表区">
+	<div id="car-content" region="center" title="车辆信息">
 		<table id="car-datagrid" class="easyui-datagrid" style="height:100%"
 			data-options="url:'car-manage/list',singleSelect:true,
 				idField:'id',fitColumns:'true',fit:'true',

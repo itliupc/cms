@@ -1,4 +1,4 @@
-var InsureManage = (function () {
+var CarManage = (function () {
 	return {
 		/**
 		 * 查询按钮事件

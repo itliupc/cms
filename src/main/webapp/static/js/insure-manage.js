@@ -92,7 +92,7 @@ var InsureManage = (function () {
 		add :function(){
 			$("#add_insure_dialog").dialog({
 				title : '新增',
-				width : 600,
+				width : 700,
 				height : 290,
 				closed : false,
 				cache : false,
@@ -163,7 +163,7 @@ var InsureManage = (function () {
 			var record = $("#insure-datagrid").datagrid('getRows')[index];
 			$("#edit_insure_dialog").dialog({
 				title : '编辑',
-				width : 600,
+				width : 700,
 				height : 290,
 				closed : false,
 				cache : false,
