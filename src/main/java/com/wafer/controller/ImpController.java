@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.wafer.domain.Car;
 import com.wafer.domain.Insure;
 import com.wafer.security.domain.SysUser;
+import com.wafer.service.CarService;
 import com.wafer.service.InsureService;
 
 @Controller
@@ -40,6 +42,9 @@ public class ImpController {
 
 	@Autowired
 	InsureService insureService;
+	
+	@Autowired
+    CarService carService;
 
 	Logger logger = LoggerFactory.getLogger(ImpController.class);
 
@@ -149,15 +154,21 @@ public class ImpController {
 			String hasPay = getCellValue(row.getCell(5)).trim();
 			String hasReceive = getCellValue(row.getCell(6)).trim();
 			String outBuy = getCellValue(row.getCell(7)).trim();
-			Insure insure = insureService.findByOperateNum(operateNum);
+			Insure insure = null;
+		    Car car = carService.findByOperateNum(operateNum);
+		    if(null != car){
+		      insure = insureService.findByCarId(car.getId());
+		      car.setCarNum(carNum);
+		    } else {
+		      car = new Car();
+		      car.setOperateNum(operateNum);
+		      car.setCarNum(carNum);
+		    }
+		    carService.carSave(car);
+		    
 			if (null == insure) {
 				insure = new Insure();
-				insure.setOperateNum(operateNum);
-				insure.setCarNum(carNum);
-			} else {
-				if (!carNum.isEmpty()) {
-					insure.setCarNum(carNum);
-				}
+				insure.setCarId(car.getId());
 			}
 			if (forceInsure.isEmpty()) {
 				insure.setForceInsure(null);

@@ -178,7 +178,10 @@ var InsureManage = (function () {
 					} else{
 						record.doType = 0;
 					}
-					
+					record.carNum = record.car.carNum;
+					record.operateNum = record.car.operateNum;
+					record.ownerName = record.car.ownerName;
+					record.ownerPhone = record.car.ownerPhone;
 					$("#insure-edit").form('load',record);
 				},
 				buttons : [ {

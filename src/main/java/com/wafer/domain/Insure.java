@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -30,25 +29,14 @@ public class Insure {
   @GenericGenerator(name = "generator", strategy = "native")
   @Column(name = "id", unique = true, nullable = false)
   private long id;
-
-  @Column(name = "car_num")
-  private String carNum;
-
-  @Column(name = "operate_num")
-  private String operateNum;
   
-  @Column(name = "owner_name")
-  private String ownerName;
-  
-  @Column(name = "owner_phone")
-  private String ownerPhone;
+  @Column(name = "car_id")
+  private long carId;
   
   @Column(name = "force_insure")
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date forceInsure;
 
   @Column(name = "bus_insure")
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date busInsure;
 
   @Column(name = "out_buy")
@@ -70,6 +58,11 @@ public class Insure {
   @NotFound(action=NotFoundAction.IGNORE)
   @JoinColumn(name = "update_user", nullable=true, insertable=false, updatable=false)
   private User user;
+  
+  @OneToOne
+  @NotFound(action=NotFoundAction.IGNORE)
+  @JoinColumn(name = "car_id", nullable=true, insertable=false, updatable=false)
+  private Car car;
 
   public long getId() {
     return id;
@@ -79,36 +72,12 @@ public class Insure {
     this.id = id;
   }
 
-  public String getCarNum() {
-    return carNum;
+  public long getCarId() {
+    return carId;
   }
 
-  public void setCarNum(String carNum) {
-    this.carNum = carNum;
-  }
-
-  public String getOperateNum() {
-    return operateNum;
-  }
-
-  public void setOperateNum(String operateNum) {
-    this.operateNum = operateNum;
-  }
-
-  public String getOwnerName() {
-    return ownerName;
-  }
-
-  public void setOwnerName(String ownerName) {
-    this.ownerName = ownerName;
-  }
-
-  public String getOwnerPhone() {
-    return ownerPhone;
-  }
-
-  public void setOwnerPhone(String ownerPhone) {
-    this.ownerPhone = ownerPhone;
+  public void setCarId(long carId) {
+    this.carId = carId;
   }
 
   public Date getForceInsure() {
@@ -174,20 +143,25 @@ public class Insure {
   public void setUser(User user) {
     this.user = user;
   }
+  
+  public Car getCar() {
+    return car;
+  }
+
+  public void setCar(Car car) {
+    this.car = car;
+  }
 
   public Insure() {
     super();
   }
 
-  public Insure(long id, String carNum, String operateNum, String ownerName, 
-      String ownerPhone, Date forceInsure, Date busInsure, int outBuy, 
-      int hasReceive, int hasPay, long updateUser, Date updateTime) {
+  public Insure(long id, long carId, Date forceInsure, Date busInsure, 
+      int outBuy, int hasReceive, int hasPay, long updateUser, 
+      Date updateTime) {
     super();
     this.id = id;
-    this.carNum = carNum;
-    this.operateNum = operateNum;
-    this.ownerName = ownerName;
-    this.ownerPhone = ownerPhone;
+    this.carId = carId;
     this.forceInsure = forceInsure;
     this.busInsure = busInsure;
     this.outBuy = outBuy;

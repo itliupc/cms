@@ -135,6 +135,16 @@ var CommonUtil = (function () {
 					iconCls: "icon-save",
 					text : '确定',
 					handler : function(){
+						var row = $("#car-datagrid").datagrid('getSelected');
+						if(row){
+							var result = {
+								'carNum' : row.carNum,
+								'operateNum' : row.operateNum,
+								'ownerName' : row.ownerName,
+								'ownerPhone' : row.ownerPhone	
+							};
+							$("#"+id).form('load',result);
+						}
 						selectDialog.dialog('close');
 					}
 				}, {

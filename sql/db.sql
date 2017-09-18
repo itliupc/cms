@@ -34,7 +34,7 @@ CREATE TABLE `ps_insure`(
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `ps_car`(  
+CREATE TABLE `ps_car_bak`(  
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `car_num` VARCHAR(255) NOT NULL COMMENT '车辆号码',
   `operate_num` VARCHAR(255) NOT NULL COMMENT '营运号码',
@@ -44,7 +44,7 @@ CREATE TABLE `ps_car`(
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `ps_insure1`(  
+CREATE TABLE `ps_insure`(  
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `car_id` INT(11) NOT NULL COMMENT '车辆Id',
   `force_insure` DATE COMMENT '交强险日期',
@@ -60,3 +60,5 @@ CREATE TABLE `ps_insure1`(
 
 -- admin/admin
 INSERT INTO `ps_user` (`user_id`, `name`, `user_name`, `password`, `email`, `phone`, `status`, `user_authority`, `latest_login_time`, `create_time`, `update_time`) VALUES('1','系统管理员','admin','$2a$10$tG/aBbjRLB2lM1U4vXthRe8SO0/NWDirluHpq96B.pNrxMasOyOs6','','','0','0','2017-08-23 09:04:00','2017-08-18 09:32:24','2017-08-22 16:55:08');
+
+drop table ps_insure;

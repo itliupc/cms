@@ -146,10 +146,10 @@ public class ExpController {
 			cell.setCellValue(i);
 			
 			cell = row.createCell((int) 1);// 创建一列
-			cell.setCellValue(insure.getCarNum());
+			cell.setCellValue(insure.getCar().getCarNum());
 			
 			cell = row.createCell((int) 2);// 创建一列
-			cell.setCellValue(insure.getOperateNum());
+			cell.setCellValue(insure.getCar().getOperateNum());
 			
 			cell = row.createCell((int) 3);// 创建一列
 			if(null != insure.getForceInsure()){

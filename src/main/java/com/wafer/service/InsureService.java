@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.wafer.domain.Car;
 import com.wafer.domain.Insure;
 import com.wafer.repository.InsureRepository;
 import com.wafer.utils.DateUtils;
@@ -28,8 +31,8 @@ public class InsureService {
   @Autowired
   private InsureRepository insureRepository;
 
-  public Insure findByOperateNum(String operateNum) {
-    return insureRepository.findByOperateNum(operateNum);
+  public Insure findByCarId(long carId) {
+    return insureRepository.findByCarId(carId);
   }
 
   public Page<Insure> getInsureList(Map<String, String> param) {
@@ -44,11 +47,12 @@ public class InsureService {
       @Override
       public Predicate toPredicate(Root<Insure> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
         List<Predicate> predicates = new ArrayList<>();
+        Join<Insure,Car> join = root.join("car", JoinType.LEFT);
         if (null != operateNum && !operateNum.isEmpty()) {
-          predicates.add(cb.like(root.<String>get("operateNum"), "%" + operateNum + "%"));
+          predicates.add(cb.like(join.<String>get("operateNum"), "%" + operateNum + "%"));
         }
         if (null != carNum && !carNum.isEmpty()) {
-          predicates.add(cb.like(root.<String>get("carNum"), "%" + carNum + "%"));
+          predicates.add(cb.like(join.<String>get("carNum"), "%" + carNum + "%"));
         }
         if (null != deadline && !deadline.isEmpty()) {
           if ("0".equals(deadline)) {// 未领取
@@ -85,8 +89,8 @@ public class InsureService {
     insureRepository.save(insure);
   }
 
-  public Insure getOtherInsureByOperateNum(String operateNum, long id) {
-    return insureRepository.getOtherInsureByOperateNum(operateNum, id);
+  public Insure getOtherInsureByCarId(long carId, long id) {
+    return insureRepository.getOtherInsureByCarId(carId, id);
   }
 
   public void deleteInsureByIds(List<Long> ids) {

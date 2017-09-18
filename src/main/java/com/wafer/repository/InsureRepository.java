@@ -14,12 +14,12 @@ import com.wafer.repository.base.BaseRepository;
 
 public interface InsureRepository extends BaseRepository<Insure, Long> {
 
-  Insure findByOperateNum(String operateNum);
+  Insure findByCarId(long carId);
   
   Page<Insure> findAll(Specification<Insure> specification, Pageable pageable);
 
-  @Query(value = "from Insure ins where ins.operateNum = :operateNum and ins.id != :id")
-  Insure getOtherInsureByOperateNum(@Param("operateNum") String operateNum, @Param("id") long id);
+  @Query(value = "from Insure ins where ins.carId = :carId and ins.id != :id")
+  Insure getOtherInsureByCarId(@Param("carId") long carId, @Param("id") long id);
   
   @Modifying
   @Query(value = "delete from Insure ins where ins.id in (:ids)")

@@ -56,7 +56,7 @@ public class CarService {
     carRepository.save(car);
   }
 
-  public Car getInsureById(long id) {
+  public Car getCarById(long id) {
     return carRepository.findOne(id);
   }
 
@@ -75,7 +75,7 @@ public class CarService {
   @SuppressWarnings("rawtypes")
   public List getDateBySql() {
     String sql =
-        "SELECT c.* FROM ps_car c LEFT JOIN ps_insure1 ins ON c.id = ins.car_id WHERE ins.id IS NULL";
+        "SELECT c.* FROM ps_car c LEFT JOIN ps_insure ins ON c.id = ins.car_id WHERE ins.id IS NULL";
     return carRepository.listBySql(sql);
   }
 }
