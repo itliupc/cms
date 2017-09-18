@@ -30,12 +30,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     User user = userService.findByUserName(username);
 
     if (user == null) {
-    	throw new BadCredentialsException("账号不存在");
-    } else if (1 == user.getStatus()){
-        throw new BadCredentialsException("账号已被锁定");
+      throw new BadCredentialsException("账号不存在");
+    } else if (1 == user.getStatus()) {
+      throw new BadCredentialsException("账号已被锁定");
     } else {
       return new SysUser(user.getUserId(), user.getName(), username, user.getPassword(),
-          true, true, true, true, mapToGrantedAuthorities(Arrays.asList(user.getUserAuthority())));
+          user.getUserAuthority(), true, true, true, true,
+          mapToGrantedAuthorities(Arrays.asList(user.getUserAuthority())));
     }
   }
 
@@ -47,11 +48,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
    */
   private static List<GrantedAuthority> mapToGrantedAuthorities(List<Integer> authorities) {
     List<GrantedAuthority> grants = new ArrayList<GrantedAuthority>();
-    if(null != authorities && authorities.size()>0){
-      for(int authoritie: authorities){
-        if(0 == authoritie){
+    if (null != authorities && authorities.size() > 0) {
+      for (int authoritie : authorities) {
+        if (0 == authoritie) {
           grants.add(new SimpleGrantedAuthority("ADMIN"));
-        }else{
+        } else {
           grants.add(new SimpleGrantedAuthority("USER"));
         }
       }

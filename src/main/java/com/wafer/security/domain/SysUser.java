@@ -21,20 +21,21 @@ public class SysUser implements UserDetails {
   private String name;
   private String password;
   private String username;
+  private int userAuthority;
   private Set<GrantedAuthority> authorities;
   private boolean accountNonExpired;
   private boolean accountNonLocked;
   private boolean credentialsNonExpired;
   private boolean enabled;
 
-  public SysUser(long userId, String name, String username, String password,
+  public SysUser(long userId, String name, String username, String password, int userAuthority,
       Collection<? extends GrantedAuthority> authorities) {
-    this(userId, name, username, password, true, true, true, true, authorities);
+    this(userId, name, username, password, userAuthority, true, true, true, true, authorities);
   }
 
-  public SysUser(long userId, String name, String username, String password, boolean enabled,
-      boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked,
-      Collection<? extends GrantedAuthority> authorities) {
+  public SysUser(long userId, String name, String username, String password, int userAuthority,
+      boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired,
+      boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
 
     if (((username == null) || "".equals(username)) || (password == null)) {
       throw new IllegalArgumentException("Cannot pass null or empty values to constructor");
@@ -43,6 +44,7 @@ public class SysUser implements UserDetails {
     this.name = name;
     this.username = username;
     this.password = password;
+    this.userAuthority = userAuthority;
     this.enabled = enabled;
     this.accountNonExpired = accountNonExpired;
     this.credentialsNonExpired = credentialsNonExpired;
@@ -53,9 +55,13 @@ public class SysUser implements UserDetails {
   public long getUserId() {
     return userId;
   }
-  
+
   public String getName() {
     return name;
+  }
+
+  public int getUserAuthority() {
+    return userAuthority;
   }
 
   @Override

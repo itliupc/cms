@@ -21,24 +21,19 @@ import com.wafer.vo.ResponseResult;
 
 @Controller
 public class AuthController {
-  
+
   @Autowired
   UserService userService;
 
-  @SuppressWarnings({"unchecked"})
   @RequestMapping(value = "/")
   public ModelAndView indexView() {
-    SysUser principal = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    SysUser principal =
+        (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     String userName = "";
-    String userRole = "1";
+    int userRole = 1;
     if (principal instanceof SysUser) {
       userName = principal.getName();
-      Collection<GrantedAuthority> grants = (Collection<GrantedAuthority>) principal.getAuthorities();
-      for (GrantedAuthority grante : grants) {
-        if("ADMIN".equals(grante.getAuthority())){
-          userRole = "0";
-        }
-      }
+      userRole = principal.getUserAuthority();
     }
     ModelAndView view = new ModelAndView();
     view.setViewName("index");
@@ -51,12 +46,12 @@ public class AuthController {
   public String loginView() {
     return "login";
   }
-  
+
   @RequestMapping(value = "/home")
   public String homeView() {
     return "home";
   }
-  
+
   @RequestMapping(value = "/changepwd", method = RequestMethod.POST)
   @ResponseBody
   public ResponseResult passwordModify(PasswordVo passwordVo) {
@@ -68,12 +63,12 @@ public class AuthController {
     User user = userService.findByUserName(userName);
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     boolean flag = encoder.matches(passwordVo.getOldPassword(), user.getPassword());
-    if(flag){
+    if (flag) {
       user.setPassword(encoder.encode(passwordVo.getNewPassword()));
       user.setUpdateTime(new Date());
       userService.userSave(user);
       return ResponseResult.success(user);
-    }else{
+    } else {
       return ResponseResult.failure("原密码输入错误！");
     }
   }
