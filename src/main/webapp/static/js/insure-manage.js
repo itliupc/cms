@@ -55,8 +55,8 @@ var InsureManage = (function () {
 			var currentTimes = currentDate.getTime();
 			currentDate.setMonth(currentDate.getMonth()+3);
 			var afterTimes = currentDate.getTime();
-			if(!value){//日期空
-				return '';
+			if(!value){//日期空:白色
+				return 'background-color:white;';
 			}else if(currentTimes > value){//已过期:灰色
 				return 'background-color:grey;color:#fff;font-weight:bold;';
 			} else if(afterTimes > value){//即将过期:黄色
