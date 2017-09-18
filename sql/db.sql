@@ -1,4 +1,4 @@
-CREATE DATABASE cms;
+﻿CREATE DATABASE cms;
 
 use cms;
 
@@ -17,7 +17,7 @@ CREATE TABLE `ps_user` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `ps_insure`(  
+CREATE TABLE `ps_insure_bak`(  
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `car_num` VARCHAR(255) NOT NULL COMMENT '车辆号码',
   `operate_num` VARCHAR(255) NOT NULL COMMENT '营运号码',
@@ -34,7 +34,7 @@ CREATE TABLE `ps_insure`(
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `ps_car_bak`(  
+CREATE TABLE `ps_car`(  
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `car_num` VARCHAR(255) NOT NULL COMMENT '车辆号码',
   `operate_num` VARCHAR(255) NOT NULL COMMENT '营运号码',

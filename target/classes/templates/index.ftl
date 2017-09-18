@@ -28,7 +28,7 @@
 	<div class="cui-sidebar" data-options="region:'west',split:true,border:true,title:'导航菜单'"> 
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
         	<ul class="easyui-tree cui-side-tree">
-        		 <#if userRole == '0'>
+        		 <#if userRole == 0>
              	 	<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="user-manage/view/index" iframe="0">用户管理</a></li>
              	 </#if>
                  <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="insure-manage/view/index" iframe="0">车险管理</a></li>
