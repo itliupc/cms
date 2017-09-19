@@ -5,22 +5,31 @@
 <title>DIVCSS</title>
 <style>
 .cui-table-container{
-	border: 1px solid #D1D0D6;
-	width:20%;
-	height:245px;
+	width:100%;
+	height:100%;
+	min-height:250px;
 	color:#767D87;
+	overflow-y: auto;
+	border: 1px solid #D1D0D6;
 }
 .cui-table{
 	border-collapse:collapse; 
 	width:100%;
 }
 .cui-table thead tr{
+	font-weight:bold;
 	background:#03e3ff;
 }
 .cui-table tbody{
+	display:block;
+    min-height:218px;
+    overflow-y:auto;
 	background:#FFFFFF;
 }
 .cui-table tbody tr, .cui-table thead tr{
+	display:table;
+    width:100%;
+    table-layout:fixed;
 	line-height: 40px;
 	border-bottom:grey dashed 1px;
 }
@@ -33,6 +42,9 @@
 	text-overflow:ellipsis;
 	white-space: nowrap;
 }
+.cui-table tbody tr td .item {
+	margin-left: 10px;
+}
 </style>
 </head>
 <body>
@@ -42,8 +54,8 @@
 			<tr>
 				<th>
 					<div style="text-align: left;">
-						<span style="width: 100px;">122sdasdasdasdsadsadsadsa3</span>
-						<span style="float: right; margin-right: 20px;">3435</span>
+						<span style="width: 100px; margin-left: 10px;">待办事项</span>
+						<span style="float: right; margin-right: 20px;">更多</span>
 					</div>
 				</th>
 			</tr>
@@ -51,17 +63,41 @@
 		<tbody>
 			<tr>
 				<td>
-					<div>
-						<span style="width: calc(100% - 60px);">123</span>
-						<span style="float: right; margin-right: 20px;">3435</span>
+					<div class="item">
+						<span style="width: 49%;">石油化工有限公司</span>
+						<span style="width: 49%; text-align: right;">2017-9-20</span>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<div>
-						<span style="width: calc(100% - 60px);">123</span>
-						<span style="float: right; margin-right: 20px;">3435</span>
+					<div class="item">
+						<span style="width: 49%;">石油化工有限公司</span>
+						<span style="width: 49%; text-align: right;">2017-9-20</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="item">
+						<span style="width: 49%;">石油化工有限公司</span>
+						<span style="width: 49%; text-align: right;">2017-9-20</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="item">
+						<span style="width: 49%;">石油化工有限公司</span>
+						<span style="width: 49%; text-align: right;">2017-9-20</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="item">
+						<span style="width: 49%;">石油化工有限公司</span>
+						<span style="width: 49%; text-align: right;">2017-9-20</span>
 					</div>
 				</td>
 			</tr>
