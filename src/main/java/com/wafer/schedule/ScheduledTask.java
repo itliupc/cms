@@ -15,10 +15,10 @@ import com.wafer.service.CarService;
 @Configuration
 @EnableScheduling
 public class ScheduledTask {
-  
+
   @Autowired
   CarService carService;
-  
+
   Logger logger = LoggerFactory.getLogger(ScheduledTask.class);
 
   /**
@@ -29,10 +29,12 @@ public class ScheduledTask {
   public void scheduledJobTest() {
     List<Object[]> list = carService.getDateBySql();
     List<Long> ids = new ArrayList<Long>();
-    for(Object[] obj : list){
+    for (Object[] obj : list) {
       ids.add(Long.valueOf(obj[0].toString()));
     }
-    carService.deleteCarByIds(ids);
+    if (ids.size() > 0) {
+      carService.deleteCarByIds(ids);
+    }
     logger.info("清理垃圾数据,共{}条.", list.size());
   }
 
