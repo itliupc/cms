@@ -1,6 +1,6 @@
-﻿CREATE DATABASE cms;
+﻿CREATE DATABASE cims;
 
-use cms;
+use cims;
 
 CREATE TABLE `ps_user` (
   `user_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -62,3 +62,6 @@ CREATE TABLE `ps_insure`(
 INSERT INTO `ps_user` (`user_id`, `name`, `user_name`, `password`, `email`, `phone`, `status`, `user_authority`, `latest_login_time`, `create_time`, `update_time`) VALUES('1','系统管理员','admin','$2a$10$tG/aBbjRLB2lM1U4vXthRe8SO0/NWDirluHpq96B.pNrxMasOyOs6','','','0','0','2017-08-23 09:04:00','2017-08-18 09:32:24','2017-08-22 16:55:08');
 
 drop table ps_insure;
+CREATE DATABASE cims;
+RENAME TABLE cms.ps_user TO cims.ps_user, cms.ps_car TO cims.ps_car,cms.ps_insure TO cims.ps_insure;
+DROP DATABASE cms;

@@ -98,8 +98,6 @@ tmp/
 local.properties
 .settings/
 .loadpath
-/src/src/main/webapp/*
-/src/democms.app/src/main/webapp/*
 
 # Eclipse Core
 .project

@@ -12,16 +12,16 @@ import com.wafer.repository.base.BaseRepositoryFactoryBean;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableJpaRepositories(repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class)
-public class CmsApplication extends SpringBootServletInitializer {
+public class CimsApplication extends SpringBootServletInitializer {
 
 
   @Override
   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-    return application.sources(CmsApplication.class);
+    return application.sources(CimsApplication.class);
   }
 
   public static void main(String[] args) {
-    SpringApplication.run(CmsApplication.class, args);
+    SpringApplication.run(CimsApplication.class, args);
   }
 
 }
