@@ -1,12 +1,14 @@
 <div class="cui-table-container">
 	<div class="head">快捷应用</div>
 	<div class="cui-kj-list">
+		<#if userRole == 0>
+			<div class="item" onclick="openTab('user-dashed')">
+				<img src="static/images/icon-01.png">
+				<div class="item-label">用户管理</div>
+			</div>
+		</#if>
 		<div class="item">
-			<img src="static/images/icon-01.png">
-			<div class="item-label">用户管理</div>
-		</div>
-		<div class="item">
-			<img src="static/images/icon-02.png">
+			<img src="static/images/icon-02.png" onclick="openTab('insure-dashed')">
 			<div class="item-label">车险管理</div>
 		</div>
 	</div>

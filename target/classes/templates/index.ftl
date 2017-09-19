@@ -29,9 +29,9 @@
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
         	<ul class="easyui-tree cui-side-tree">
         		 <#if userRole == 0>
-             	 	<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="user-manage/view/index" iframe="0">用户管理</a></li>
+             	 	<li iconCls="icon-users"><a id="user-dashed" href="javascript:void(0)" data-icon="icon-users" data-link="user-manage/view/index" iframe="0">用户管理</a></li>
              	 </#if>
-                 <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="insure-manage/view/index" iframe="0">车险管理</a></li>
+                 <li iconCls="icon-book"><a id="insure-dashed" href="javascript:void(0)" data-icon="icon-book" data-link="insure-manage/view/index" iframe="0">车险管理</a></li>
                  <!-- <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="pages/layout-3.html" iframe="0">角色管理</a></li>
                  <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="pages/layout-3.html" iframe="0">数据字典</a></li>
                  <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="pages/layout-3.html" iframe="0">系统参数</a></li>
@@ -133,6 +133,13 @@
 				var index = tabPanel.tabs('getTabIndex', tab);
 				tabPanel.tabs('close', index);
 			}
+		}
+		
+		/**
+		* 打开Tab
+		*/
+		function openTab(tabId){
+			$('#' + tabId).trigger('click');
 		}
 		
 		function changePassword(){

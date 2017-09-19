@@ -46,8 +46,17 @@ public class AuthController {
   }
 
   @RequestMapping(value = "/home")
-  public String homeView() {
-    return "home";
+  public ModelAndView homeView() {
+    SysUser principal =
+        (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    int userRole = 1;
+    if (principal instanceof SysUser) {
+      userRole = principal.getUserAuthority();
+    }
+    ModelAndView view = new ModelAndView();
+    view.setViewName("home");
+    view.addObject("userRole", userRole);
+    return view;
   }
 
   @RequestMapping(value = "/changepwd", method = RequestMethod.POST)
