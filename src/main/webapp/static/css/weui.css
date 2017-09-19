@@ -155,7 +155,9 @@ input[type="checkbox"] { cursor: pointer;}
 .cui-kj-list .item img{
 	margin-top:5px;
 }
-.cui-kj-list .item item-label{
+.cui-kj-list .item .item-label{
+	font-size: 16px;
+	color: #23b7e5;
 }
 
 
