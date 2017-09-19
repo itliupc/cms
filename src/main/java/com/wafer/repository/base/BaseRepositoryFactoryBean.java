@@ -19,6 +19,7 @@ public class BaseRepositoryFactoryBean<R extends JpaRepository<T, I>, T, I exten
   }
 
   @Override
+  @SuppressWarnings("rawtypes")
   protected RepositoryFactorySupport createRepositoryFactory(EntityManager em) {
     return new BaseRepositoryFactory(em);
   }
@@ -36,6 +37,7 @@ public class BaseRepositoryFactoryBean<R extends JpaRepository<T, I>, T, I exten
 
     // 设置具体的实现类是BaseRepositoryImple
     @Override
+    @SuppressWarnings("unchecked")
     protected Object getTargetRepository(RepositoryInformation information) {
       return new BaseRepositoryImpl<T, I>((Class<T>) information.getDomainType(), em);
     }
