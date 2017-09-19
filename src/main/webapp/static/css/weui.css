@@ -88,5 +88,74 @@ input[type="checkbox"] { cursor: pointer;}
 .uppercase input{
 	text-transform: uppercase;
 }
+.cui-table-container{
+	width:99%;
+	color:#767D87;
+	overflow-y: auto;
+	margin : 5px;
+	border: 1px solid #D1D0D6;
+}
+
+.cui-table{
+	border-collapse:collapse; 
+	width:100%;
+}
+.cui-table thead tr{
+	font-weight:bold;
+	background:#03e3ff;
+}
+
+.cui-table tbody{
+	display:block;
+    min-height:218px;
+    overflow-y:auto;
+	background:#FFFFFF;
+}
+.cui-table tbody tr, .cui-table thead tr{
+	display:table;
+    width:100%;
+    table-layout:fixed;
+	line-height: 40px;
+	border-bottom:grey dashed 1px;
+}
+.cui-table tbody tr td div, .cui-table thead tr div{
+	height: 40px;
+}
+.cui-table tbody tr td span, .cui-table thead tr th span{
+	display:inline-block;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.cui-table tbody tr td .item {
+	margin-left: 10px;
+}
+
+.cui-table-container .head{
+	font-weight:bold;
+	background:#03e3ff;
+	line-height : 40px;
+	padding-left : 10px;
+}
+
+.cui-kj-list{
+	display:flex;
+	flex-wrap: wrap;
+	/*justify-content:space-around;*/
+}
+
+.cui-kj-list .item{
+	width:100px; 
+	height:100px; 
+	display:inline-block; 
+	margin:2px 30px;
+	text-align:center;
+	cursor:pointer;
+}
+.cui-kj-list .item img{
+	margin-top:5px;
+}
+.cui-kj-list .item item-label{
+}
 
 
