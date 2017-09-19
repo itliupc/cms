@@ -1,3 +1,22 @@
+jQuery(function($){  
+    // 备份jquery的ajax方法    
+    var _ajax = $.ajax;  
+    // 重写ajax方法，先判断登录在执行success函数   
+    $.ajax = function(opt){  
+        var _success = opt && opt.success || function(a, b){};  
+        var _opt = $.extend(opt, {  
+            success:function(data, textStatus){
+                // 如果后台将请求重定向到了登录页  
+                if(data && data.toString().indexOf('check_session_for_login') != -1) {  
+                    window.location.href= 'login';  
+                    return;  
+                }  
+                _success(data, textStatus);    
+            }    
+        });  
+        _ajax(_opt);  
+    };  
+});
 $.extend($.fn.validatebox.defaults.rules, {
     /*必须和某个字段相等*/
 	equalTo: { 

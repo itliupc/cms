@@ -36,7 +36,7 @@
 	     <div class="cnt">
 	        <p id="huanying"><span id="cnt_one">用户登录</span></p>
 	        <hr>
-	        <div>
+	        <div id="check_session_for_login">
 	           <form action="dologin" method="post" id="login-form" class="bs-example bs-example-form" role="form">
 			      <div class="input-group">
 				      <span class="input-group-addon"><img src="./static/images/account.png"></span>
