@@ -38,7 +38,7 @@ var CarManage = (function () {
 		query: function(){
 			var carNum=$("#car-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#car-search").find("input[name='operateNum']").val().toUpperCase();
-			$("#car-select-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum});
+			$("#car-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum});
 		},
 		/**
 		 * 重置按钮事件
@@ -55,7 +55,7 @@ var CarManage = (function () {
 			$("#add_car_dialog").dialog({
 				title : '新增',
 				width : 500,
-				height : 340,
+				height : 290,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -111,7 +111,7 @@ var CarManage = (function () {
 			$("#edit_car_dialog").dialog({
 				title : '编辑',
 				width : 500,
-				height : 340,
+				height : 290,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -175,7 +175,7 @@ var CarManage = (function () {
 			for(var i = 0;i < selections.length; i++){
 				ids.push(selections[i].id);
 			}
-			$.messager.confirm('提示', '确认要删除吗?', function(flag) {
+			$.messager.confirm('提示', '删除车辆信息，同时会删除车辆其他相关信息，确认要删除吗?', function(flag) {
 				if (flag) {
 					$.ajax({
 						url : "car-manage/deleteCar",

@@ -1,5 +1,5 @@
 ﻿<div class="easyui-layout" style="height:100%;">
-	<div region="north" split="true" title="查询区" style="height:90px;" >
+	<div region="north" split="true" title="查询区" style="height:130px;" >
 		<form id="car-search" class="easyui-form">
 			<table width='100%' style="margin:15px auto;">
 				<tr style="height:45px;">

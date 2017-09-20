@@ -6,14 +6,12 @@
 			</td>
 			<td class="uppercase">
 				<input class="easyui-textbox" type="text" name="carNum" data-options="required:true,validType:'length[1,20]'"></input>
-				<a href="#" class="easyui-linkbutton" iconCls="icon-advancedsettings" plain="true" onclick="javascript:CommonUtil.carSelect('insure-edit')"></a>
 			</td>
 		</tr>
 		<tr>
 			<td class="formLayoutTit">建运号:</td>
 			<td class="uppercase">
 				<input class="easyui-textbox" type="text" name="operateNum" data-options="required:true,validType:'length[1,20]'"></input>
-				<a href="#" class="easyui-linkbutton" iconCls="icon-advancedsettings" plain="true" onclick="javascript:CommonUtil.carSelect('insure-edit')"></a>
 			</td>
 		</tr>
 		<tr>

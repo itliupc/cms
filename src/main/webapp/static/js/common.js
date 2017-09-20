@@ -140,8 +140,8 @@ var CommonUtil = (function () {
 		carSelect : function(id) { 
 			var selectDialog = $("<div></div>").dialog({
 				title : '车辆选择',
-				width : 600,
-				height : 500,
+				width : 700,
+				height : 640,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -151,6 +151,8 @@ var CommonUtil = (function () {
 					selectDialog.dialog('destroy');
 				},
 				onLoad : function() {
+					var scid = $("#"+id).find("input[name='carId']").val();
+					$("#car-select-search").parent().find("input[name='carId']").val(scid);
 				},
 				buttons : [ {
 					iconCls: "icon-save",
@@ -177,6 +179,17 @@ var CommonUtil = (function () {
 					}
 				} ]
 			});
+		},
+		checkSelectRow : function(data){
+			var scid = $("#car-select-search").parent().find("input[name='carId']").val();
+			if(scid && data.total > 0){
+				for(var j = 0; j < data.total; j++){
+					if(data.rows[j].id == scid){
+						$("#car-select-datagrid").datagrid('selectRow',j);
+						break;
+					}
+				}
+			}
 		}
 	};
 })();

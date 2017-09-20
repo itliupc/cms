@@ -100,6 +100,18 @@ var InsureManage = (function () {
 				href : "insure-manage/view/add",
 				modal : true,
 				onLoad : function() {
+					$("#insure-add").find("input[name='carNum']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('insure-add');
+					});
+					$("#insure-add").find("input[name='operateNum']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('insure-add');
+					});
+					$("#insure-add").find("input[name='ownerName']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('insure-add');
+					});
+					$("#insure-add").find("input[name='ownerPhone']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('insure-add');
+					});
 				},
 				buttons : [ {
 					iconCls: "icon-save",
@@ -165,6 +177,10 @@ var InsureManage = (function () {
 				href : "insure-manage/view/edit",
 				modal : true,
 				onLoad : function() {
+					record.carNum = record.car.carNum;
+					record.operateNum = record.car.operateNum;
+					record.ownerName = record.car.ownerName;
+					record.ownerPhone = record.car.ownerPhone;
 					if(0 == record.hasPay){
 						record.doType = 1;
 					} else if(0 == record.hasReceive){
@@ -173,6 +189,18 @@ var InsureManage = (function () {
 						record.doType = 0;
 					}
 					$("#insure-edit").form('load',record);
+					$("#insure-edit").find("input[name='carNum']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('insure-edit');
+					});
+					$("#insure-edit").find("input[name='operateNum']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('insure-edit');
+					});
+					$("#insure-edit").find("input[name='ownerName']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('insure-edit');
+					});
+					$("#insure-edit").find("input[name='ownerPhone']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('insure-edit');
+					});
 				},
 				buttons : [ {
 					iconCls: "icon-save",

@@ -23,7 +23,7 @@ CREATE TABLE `ps_car`(
   `operate_num` VARCHAR(255) NOT NULL COMMENT '营运号码',
   `owner_name` VARCHAR(64) NULL COMMENT '车主姓名',
   `owner_phone` VARCHAR(64) NULL COMMENT '车主电话',
-  `update_user` INT(11) NULL COMMENT '操作人',
+  `update_user` INT(11) DEFAULT 0 NULL COMMENT '操作人',
   `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
@@ -36,7 +36,7 @@ CREATE TABLE `ps_insure`(
   `out_buy` INT(1) DEFAULT 0  NOT NULL  COMMENT '是否外购',
   `has_receive` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否领取',
   `has_pay` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否缴费',
-  `update_user` INT(11) NULL COMMENT '操作人',
+  `update_user` INT(11) DEFAULT 0 NULL COMMENT '操作人',
   `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_insure_car_id` FOREIGN KEY (`car_id`) REFERENCES `ps_car` (`id`) ON DELETE CASCADE
@@ -60,4 +60,4 @@ drop table ps_insure;
 CREATE DATABASE cims;
 RENAME TABLE cms.ps_user TO cims.ps_user, cms.ps_car TO cims.ps_car,cms.ps_insure TO cims.ps_insure;
 DROP DATABASE cms;
-ALTER TABLE ps_car ADD COLUMN update_user INT(11) NULL  COMMENT '操作人' AFTER owner_phone;
+ALTER TABLE ps_car ADD COLUMN update_user INT(11) DEFAULT 0 NULL  COMMENT '操作人' AFTER owner_phone;

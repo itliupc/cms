@@ -1,67 +1,69 @@
 var ViolateManage = (function () {
 	return {
+		mergeCell : function(data){
+			var rows = data.rows;
+			var rowCount = data.total;
+			if(rowCount > 1){
+				var span = 1;
+				var preId = 0;
+				var curId = 0;
+				for(var i = 0; i <= rowCount; i++){
+					if(i == rowCount) {
+						curId = 0;
+					} else {
+						curId = rows[i].car.id;
+					}
+					if(preId == curId) {
+						span += 1;
+					} else {
+						var index = i -span;
+						$("#violate-datagrid").datagrid('mergeCells',{
+							index : index,
+							field : 'carNum',
+							rowspan : span,
+							colspan : null
+						});
+						$("#violate-datagrid").datagrid('mergeCells',{
+							index : index,
+							field : 'operateNum',
+							rowspan : span,
+							colspan : null
+						});
+						$("#violate-datagrid").datagrid('mergeCells',{
+							index : index,
+							field : 'ownerName',
+							rowspan : span,
+							colspan : null
+						});
+						$("#violate-datagrid").datagrid('mergeCells',{
+							index : index,
+							field : 'ownerPhone',
+							rowspan : span,
+							colspan : null
+						});
+						span = 1;
+						preId = curId;
+					}
+				}
+			}
+			
+		},
 		editBtn : function(value, row, index) {
-				var button = "<a href=\"#\" data-roles=\"mui-linkbutton\" title=\"编辑\" data-options=\"iconCls:'icon-edit',plain:true\" class=\"l-btn l-btn-plain\" onclick=\"InsureManage.edit('"
+				var button = "<a href=\"#\" data-roles=\"mui-linkbutton\" title=\"编辑\" data-options=\"iconCls:'icon-edit',plain:true\" class=\"l-btn l-btn-plain\" onclick=\"ViolateManage.edit('"
 						+ index + "');\">";
 				button = button
 						+ "<span class=\"l-btn-left\"><span class=\"l-btn-text icon-edit l-btn-icon-left\">编辑</span></span></a>";
 				return button;
 		},
-		formatOutBuy : function(value, row, index) {
+		formatHasDeal : function(value, row, index) {
 			if(0==value){
 				return '';
 			}else{
-				return "是";
-			}
-		},
-		outBuyStyle : function(value, row, index){
-			if(1==value){
-				return 'background-color:green;color:#fff;font-weight:bold;';
-			}
-		},
-		formatHasReceive : function(value, row, index) {
-			if(0==value){
-				return '是';
-			}else{
-				return '';
-			}
-		},
-		hasReceiveStyle : function(value, row, index){
-			if(0==value){
-				return 'background-color:#0D8CEF;color:#fff;font-weight:bold;';
-			}
-		},
-		formatHasPay : function(value, row, index) {
-			if(0==value){
-				return '是';
-			}else{
-				return '';
-			}
-		},
-		hasPayStyle : function(value, row, index){
-			if(0==value){
-				return 'background-color:yellow;color:black;font-weight:bold;';
+				return "已缴费";
 			}
 		},
 		formatRowDate : function(value, row, index){
 			return DateUtil.formatDatebox(value);
-		},
-		dateRowStyle : function(value, row, index){
-			var currentDate = new Date();
-			currentDate.setHours(0);
-			currentDate.setMinutes(0);
-			currentDate.setSeconds(0);
-			currentDate.setMilliseconds(0);
-			var currentTimes = currentDate.getTime();
-			currentDate.setMonth(currentDate.getMonth()+2);
-			var afterTimes = currentDate.getTime();
-			if(!value){//日期空:白色
-				return 'background-color:white;';
-			}else if(currentTimes > value){//已过期:灰色
-				return 'background-color:grey;color:#fff;font-weight:bold;';
-			} else if(afterTimes > value){//即将过期:黄色
-				return 'background-color:red;color:#fff;font-weight:bold;';
-			}
 		},
 		formatOperateUser : function(value, row, index){
 			if(row.user){
@@ -74,65 +76,66 @@ var ViolateManage = (function () {
 		 * 查询按钮事件
 		 */
 		query: function(){
-			var carNum=$("#insure-search").find("input[name='carNum']").val().toUpperCase();
-			var operateNum=$("#insure-search").find("input[name='operateNum']").val().toUpperCase();
-			var deadline=$("#search-deadline").combobox('getValue');
-			$("#insure-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'deadline':deadline});
+			var carNum=$("#violate-search").find("input[name='carNum']").val().toUpperCase();
+			var operateNum=$("#violate-search").find("input[name='operateNum']").val().toUpperCase();
+			var hasDeal=$("#search-hasDeal").combobox('getValue');
+			$("#violate-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'hasDeal':hasDeal});
 		},
 		/**
 		 * 重置按钮事件
 		 */
 		reset: function(){
-			$("#insure-search").form('load',{'carNum':'','operateNum':'','deadline':''});
-			$("#insure-datagrid").datagrid('load',{'carNum':'','operateNum':'','deadline':''});
+			$("#violate-search").form('load',{'carNum':'','operateNum':'','hasDeal':''});
+			$("#violate-datagrid").datagrid('load',{'carNum':'','operateNum':'','hasDeal':''});
 		},
 		/**
 		 * 新增按钮事件
 		 */
 		add :function(){
-			$("#add_insure_dialog").dialog({
+			$("#add_violate_dialog").dialog({
 				title : '新增',
 				width : 700,
-				height : 290,
+				height : 240,
 				closed : false,
 				cache : false,
 				resizable : false,
-				href : "insure-manage/view/add",
+				href : "violate-manage/view/add",
 				modal : true,
 				onLoad : function() {
+					$("#violate-add").find("input[name='carNum']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('violate-add');
+					});
+					$("#violate-add").find("input[name='operateNum']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('violate-add');
+					});
+					$("#violate-add").find("input[name='ownerName']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('violate-add');
+					});
+					$("#violate-add").find("input[name='ownerPhone']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('violate-add');
+					});
 				},
 				buttons : [ {
 					iconCls: "icon-save",
 					text : '保存',
 					handler : function(){
-						if($("#insure-add").form('validate')){
-							var carId = $("#insure-add").find("input[name='carId']").val();
-							var forceInsure = $("#insure-add").find("input[name='forceInsure']").val();
-							var busInsure = $("#insure-add").find("input[name='busInsure']").val();
-							var outBuy=$("#insure-out-buy").combobox('getValue');
-							var hasPay = 1; var hasReceive = 1;
-							var doType=$("#insure-do-type").combobox('getValue');
-							if("1" == doType){
-								hasPay = 0;
-							} else if("2" == doType) {
-								hasReceive = 0;
-							}
+						if($("#violate-add").form('validate')){
+							var carId = $("#violate-add").find("input[name='carId']").val();
+							var recordDate = $("#violate-add").find("input[name='recordDate']").val();
+							var hasDeal=$("#violate-has-deal").combobox('getValue');
 							$.ajax({
 								method : 'post',
-								url : 'insure-manage/addInsure',
+								url : 'violate-manage/addViolate',
 								data : {
 									'carId' : carId,
-									'forceInsure' : forceInsure,
-									'busInsure' : busInsure,
-									'outBuy' : outBuy,
-									'hasReceive' : hasReceive,
-									'hasPay' : hasPay
+									'recordDate' : recordDate,
+									'hasDeal' : hasDeal
 								},
 								async : false,
 								success : function(data) {
 									if(data.result){
-										$("#add_insure_dialog").dialog('close');
-										$("#insure-datagrid").datagrid('reload');
+										$("#add_violate_dialog").dialog('close');
+										$("#violate-datagrid").datagrid('reload');
 										$.messager.alert('提示','保存成功！',"info");
 									}else{
 										$.messager.alert('提示',data.message,"info");
@@ -145,7 +148,7 @@ var ViolateManage = (function () {
 					iconCls: "icon-cancel",
 					text : '关闭',
 					handler : function() {
-						$("#add_insure_dialog").dialog('close');
+						$("#add_violate_dialog").dialog('close');
 					}
 				} ]
 			});
@@ -154,60 +157,59 @@ var ViolateManage = (function () {
 		 * 编辑按钮事件
 		 */
 		edit :function(index){
-			var record = $("#insure-datagrid").datagrid('getRows')[index];
-			$("#edit_insure_dialog").dialog({
+			var record = $("#violate-datagrid").datagrid('getRows')[index];
+			$("#edit_violate_dialog").dialog({
 				title : '编辑',
 				width : 700,
-				height : 290,
+				height : 240,
 				closed : false,
 				cache : false,
 				resizable : false,
-				href : "insure-manage/view/edit",
+				href : "violate-manage/view/edit",
 				modal : true,
 				onLoad : function() {
-					if(0 == record.hasPay){
-						record.doType = 1;
-					} else if(0 == record.hasReceive){
-						record.doType = 2;
-					} else{
-						record.doType = 0;
-					}
-					$("#insure-edit").form('load',record);
+					record.carNum = record.car.carNum;
+					record.operateNum = record.car.operateNum;
+					record.ownerName = record.car.ownerName;
+					record.ownerPhone = record.car.ownerPhone;
+					$("#violate-edit").form('load',record);
+					$("#violate-edit").form('load',record);
+					$("#violate-edit").find("input[name='carNum']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('violate-edit');
+					});
+					$("#violate-edit").find("input[name='operateNum']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('violate-edit');
+					});
+					$("#violate-edit").find("input[name='ownerName']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('violate-edit');
+					});
+					$("#violate-edit").find("input[name='ownerPhone']").parent().unbind('click').bind('click',function(){
+						CommonUtil.carSelect('violate-edit');
+					});
 				},
 				buttons : [ {
 					iconCls: "icon-save",
 					text : '保存',
 					handler : function(){
-						if($("#insure-edit").form('validate')){
-							var id=$.trim($("#insure-edit").find("input[name='id']").val());
-							var carId=$.trim($("#insure-edit").find("input[name='carId']").val());
-							var forceInsure = $("#insure-edit").find("input[name='forceInsure']").val();
-							var busInsure = $("#insure-edit").find("input[name='busInsure']").val();
-							var outBuy=$("#insure-out-buy").combobox('getValue');
-							var hasPay = 1; var hasReceive = 1;
-							var doType=$("#insure-do-type").combobox('getValue');
-							if("1" == doType){
-								hasPay = 0;
-							} else if("2" == doType) {
-								hasReceive = 0;
-							}
+						if($("#violate-edit").form('validate')){
+							var id=$.trim($("#violate-edit").find("input[name='id']").val());
+							var carId = $("#violate-edit").find("input[name='carId']").val();
+							var recordDate = $("#violate-edit").find("input[name='recordDate']").val();
+							var hasDeal=$("#violate-has-deal").combobox('getValue');
 							$.ajax({
 								method : 'post',
-								url : 'insure-manage/editInsure',
+								url : 'violate-manage/editViolate',
 								data : {
 									'id' : id,
 									'carId' : carId,
-									'forceInsure' : forceInsure,
-									'busInsure' : busInsure,
-									'outBuy' : outBuy,
-									'hasReceive' : hasReceive,
-									'hasPay' : hasPay
+									'recordDate' : recordDate,
+									'hasDeal' : hasDeal
 								},
 								async : false,
 								success : function(data) {
 									if(data.result){
-										$("#edit_insure_dialog").dialog('close');
-										$("#insure-datagrid").datagrid('reload');
+										$("#edit_violate_dialog").dialog('close');
+										$("#violate-datagrid").datagrid('reload');
 										$.messager.alert('提示','保存成功！',"info");
 									}else{
 										$.messager.alert('提示',data.message,"info");
@@ -220,7 +222,7 @@ var ViolateManage = (function () {
 					iconCls: "icon-cancel",
 					text : '关闭',
 					handler : function() {
-						$("#edit_insure_dialog").dialog('close');
+						$("#edit_violate_dialog").dialog('close');
 					}
 				} ]
 			});
@@ -229,7 +231,7 @@ var ViolateManage = (function () {
 		 * 删除按钮事件
 		 */
 		remove : function() {
-			var selections = $("#insure-datagrid").datagrid('getSelections');
+			var selections = $("#violate-datagrid").datagrid('getSelections');
 			if (selections.length == 0) {
 				$.messager.alert('提示', '请至少选择一条记录进行操作!',"info");
 				return;
@@ -241,13 +243,13 @@ var ViolateManage = (function () {
 			$.messager.confirm('提示', '确认要删除吗?', function(flag) {
 				if (flag) {
 					$.ajax({
-						url : "insure-manage/deleteInsure",
+						url : "violate-manage/deleteViolate",
 						data : JSON.stringify(ids),
 						method : 'post',
 						dataType : 'json',
 						contentType: "application/json; charset=utf-8", 
 						success : function(data) {
-							$("#insure-datagrid").datagrid('reload');
+							$("#violate-datagrid").datagrid('reload');
 							$.messager.alert('提示','删除成功！',"info");
 						}
 					});
@@ -258,14 +260,14 @@ var ViolateManage = (function () {
 		 * 数据导入
 		 */
 		importData : function(){
-			var importDialog = $("<div id='insure-import'></div>").dialog({
+			var importDialog = $("<div id='violate-import'></div>").dialog({
 			    title: '数据导入',
 			    width: 400,
 			    height: 160,
 			    closed: false,
 			    cache: false,
 			    resizable : false,
-			    content: '<form method="POST" enctype="multipart/form-data" action="imp-manage/import/insure"><table style="margin-top:10px;"><tr style="height:30px;"><td style="width:30%;text-align: center;">保险清单:</td><td><input id="upfile" name="upfile" type="file"/></td></tr></table></form>',
+			    content: '<form method="POST" enctype="multipart/form-data" action="imp-manage/import/violate"><table style="margin-top:10px;"><tr style="height:30px;"><td style="width:30%;text-align: center;">违章清单:</td><td><input id="upfile" name="upfile" type="file"/></td></tr></table></form>',
 			    modal: true,
 			    buttons : [{
 					iconCls: "icon-save",
@@ -281,11 +283,11 @@ var ViolateManage = (function () {
 		                	importDialog.dialog('close');
 		                	$.messager.progress({title: '正在导入'});
 		                	importDialog.find('form').ajaxSubmit({    
-		                            url:'imp-manage/import/insure',  
+		                            url:'imp-manage/import/violate',  
 		                            dataType: 'text',  
 		                            success: function(result){
 		                            	$.messager.progress('close');
-		                            	$("#insure-datagrid").datagrid('reload');
+		                            	$("#violate-datagrid").datagrid('reload');
 		                            	$.messager.alert('提示','Excel导入成功！',"info");
 		                            },  
 		                            error: function(){
@@ -309,10 +311,10 @@ var ViolateManage = (function () {
 		exportData : function(){
 			$.messager.confirm('提示', '确认要导出数据吗?', function(flag) {
 				if (flag) {
-					var carNum=$("#insure-search").find("input[name='carNum']").val().toUpperCase();
-					var operateNum=$("#insure-search").find("input[name='operateNum']").val().toUpperCase();
-					var deadline=$("#search-deadline").combobox('getValue');
-					window.location.href = "exp-manage/export/insure?param1="+carNum+"&param2="+operateNum+"&param3="+deadline;
+					var carNum=$("#violate-search").find("input[name='carNum']").val().toUpperCase();
+					var operateNum=$("#violate-search").find("input[name='operateNum']").val().toUpperCase();
+					var hasDeal=$("#violate-hasDeal").combobox('getValue');
+					window.location.href = "exp-manage/export/violate?param1="+carNum+"&param2="+operateNum+"&param3="+hasDeal;
 				}
 			});
 		}

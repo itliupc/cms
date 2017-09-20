@@ -16,16 +16,12 @@
 						<input class="easyui-textbox" type="text" name="operateNum"></input>
 					</td>
 					<td width='100px' align="right">
-						<label for="deadline" >条件筛选:</label>
+						<label for="hasDeal" >条件筛选:</label>
 					</td>
 					<td width='200px' align="left">
-						<select id="search-deadline" class="easyui-combobox" name="deadline" data-options="editable:false" style="width:135px;">
+						<select id="search-hasDeal" class="easyui-combobox" name="hasDeal" data-options="editable:false" style="width:135px;">
 						    <option value="">全部</option>
-						    <option value="0">外购</option>
-						    <option value="1">未领取</option>
-						    <option value="2">未缴费</option>
-						    <option value="3">即将过期</option>
-						    <option value="4">已经过期</option>
+						    <option value="1">已缴费</option>
 						</select>
 					</td>
 				</tr>
@@ -44,7 +40,8 @@
 		<table id="violate-datagrid" class="easyui-datagrid" style="height:100%"
 			data-options="url:'violate-manage/list',toolbar:'#violate-toolbar',
 				idField:'id',fitColumns:'true',fit:'true',
-				rownumbers:'true',pagination:'true',border:'false'">
+				rownumbers:'true',pagination:'true',border:'false',
+				onLoadSuccess: ViolateManage.mergeCell">
 			<thead>
 				<tr>
 					<th data-options="field:'ck',checkbox:true"></th>
@@ -54,7 +51,7 @@
 					<th field="ownerName" width="60" data-options="formatter: function(value, row, index){return row.car.ownerName}">车主姓名</th>
 					<th field="ownerPhone" width="70" data-options="formatter: function(value, row, index){return row.car.ownerPhone}">联系方式</th>
 					<th field="recordDate" width="80" data-options="formatter: ViolateManage.formatRowDate">日期</th>
-					<th field="hasDeal" width="30" data-options="formatter: ViolateManage.formatHasPay">已缴费</th>
+					<th field="hasDeal" width="30" data-options="formatter: ViolateManage.formatHasDeal">已缴费</th>
 					<th field="user.name" width="60" data-options="formatter: ViolateManage.formatOperateUser">操作员</th>
 					<th data-options="field:'fck', width:60, formatter:ViolateManage.editBtn" align="left">操作</th>
 				</tr>

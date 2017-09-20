@@ -1,5 +1,6 @@
 ﻿<div class="easyui-layout" style="height:100%;">
 	<div region="north" split="true" style="height:90px;" >
+		<input type="hidden" name="carId" />
 		<form id="car-select-search" class="easyui-form">
 			<table width='100%' style="margin:15px auto;">
 				<tr style="height:45px;">
@@ -29,9 +30,11 @@
 		<table id="car-select-datagrid" class="easyui-datagrid" style="height:100%"
 			data-options="url:'car-manage/list',singleSelect:true,
 				idField:'id',fitColumns:'true',fit:'true',
-				rownumbers:'true',pagination:'true',border:'false'">
+				rownumbers:'true',pagination:'true',border:'false',
+				onLoadSuccess: CommonUtil.checkSelectRow">
 			<thead>
 				<tr>
+					<th data-options="field:'ck',checkbox:true"></th>
 					<th field="id" hidden="true"></th>
 					<th field="carNum" width="60">车号</th>
 					<th field="operateNum" width="70">建运号</th>
