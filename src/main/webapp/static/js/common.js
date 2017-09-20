@@ -145,7 +145,7 @@ var CommonUtil = (function () {
 				closed : false,
 				cache : false,
 				resizable : false,
-				href : "car-manage/view/index",
+				href : "car-manage/view/select",
 				modal : true,
 				onClose : function(){
 					selectDialog.dialog('destroy');
@@ -156,9 +156,10 @@ var CommonUtil = (function () {
 					iconCls: "icon-save",
 					text : '确定',
 					handler : function(){
-						var row = $("#car-datagrid").datagrid('getSelected');
+						var row = $("#car-select-datagrid").datagrid('getSelected');
 						if(row){
 							var result = {
+								'carId' : row.id,
 								'carNum' : row.carNum,
 								'operateNum' : row.operateNum,
 								'ownerName' : row.ownerName,

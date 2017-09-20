@@ -62,7 +62,7 @@ public class InsureService {
           } else if ("2".equals(deadline)) {// 未缴费
             predicates.add(cb.equal(root.get("hasPay"), "0"));
           } else if ("3".equals(deadline)) {// 即将过期
-            Date afterDate = DateUtils.formatSqlDate(3);
+            Date afterDate = DateUtils.formatSqlDate(2);
             Date nowDate = DateUtils.formatSqlDate(0);
             predicates.add(cb.or(cb.between(root.<Date>get("busInsure"), nowDate, afterDate),
                 cb.between(root.<Date>get("forceInsure"), nowDate, afterDate)));

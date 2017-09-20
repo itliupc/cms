@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -34,9 +35,11 @@ public class Insure {
   private long carId;
   
   @Column(name = "force_insure")
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date forceInsure;
 
   @Column(name = "bus_insure")
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date busInsure;
 
   @Column(name = "out_buy")

@@ -158,12 +158,12 @@ public class ImpController {
 		    Car car = carService.findByOperateNum(operateNum);
 		    if(null != car){
 		      insure = insureService.findByCarId(car.getId());
-		      car.setCarNum(carNum);
 		    } else {
 		      car = new Car();
 		      car.setOperateNum(operateNum);
-		      car.setCarNum(carNum);
 		    }
+		    car.setCarNum(carNum);
+		    car.setUpdateUser(userId);
 		    carService.carSave(car);
 		    
 			if (null == insure) {

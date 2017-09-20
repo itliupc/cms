@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -21,8 +22,8 @@ import org.hibernate.annotations.NotFoundAction;
  */
 
 @Entity
-@Table(name = "ps_car")
-public class Car {
+@Table(name = "ps_violate")
+public class Violate {
 
   @Id
   @GeneratedValue(generator = "generator")
@@ -30,30 +31,32 @@ public class Car {
   @Column(name = "id", unique = true, nullable = false)
   private long id;
 
-  @Column(name = "car_num")
-  private String carNum;
+  @Column(name = "car_id")
+  private long carId;
 
-  @Column(name = "operate_num")
-  private String operateNum;
-  
-  @Column(name = "owner_name")
-  private String ownerName;
-  
-  @Column(name = "owner_phone")
-  private String ownerPhone;
-  
+  @Column(name = "record_date")
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private Date recordDate;
+
+  @Column(name = "has_deal")
+  private int hasDeal;
+
   @Column(name = "update_user")
   private long updateUser;
 
-  
   @Column(name = "update_time")
   private Date updateTime;
-  
+
   @OneToOne
-  @NotFound(action=NotFoundAction.IGNORE)
-  @JoinColumn(name = "update_user", nullable=true, insertable=false, updatable=false)
+  @NotFound(action = NotFoundAction.IGNORE)
+  @JoinColumn(name = "update_user", nullable = true, insertable = false, updatable = false)
   private User user;
-  
+
+  @OneToOne
+  @NotFound(action = NotFoundAction.IGNORE)
+  @JoinColumn(name = "car_id", nullable = true, insertable = false, updatable = false)
+  private Car car;
+
   public long getId() {
     return id;
   }
@@ -62,36 +65,28 @@ public class Car {
     this.id = id;
   }
 
-  public String getCarNum() {
-    return carNum;
+  public long getCarId() {
+    return carId;
   }
 
-  public void setCarNum(String carNum) {
-    this.carNum = carNum;
+  public void setCarId(long carId) {
+    this.carId = carId;
   }
 
-  public String getOperateNum() {
-    return operateNum;
+  public Date getRecordDate() {
+    return recordDate;
   }
 
-  public void setOperateNum(String operateNum) {
-    this.operateNum = operateNum;
+  public void setRecordDate(Date recordDate) {
+    this.recordDate = recordDate;
   }
 
-  public String getOwnerName() {
-    return ownerName;
+  public int getHasDeal() {
+    return hasDeal;
   }
 
-  public void setOwnerName(String ownerName) {
-    this.ownerName = ownerName;
-  }
-
-  public String getOwnerPhone() {
-    return ownerPhone;
-  }
-
-  public void setOwnerPhone(String ownerPhone) {
-    this.ownerPhone = ownerPhone;
+  public void setHasDeal(int hasDeal) {
+    this.hasDeal = hasDeal;
   }
 
   public long getUpdateUser() {
@@ -118,18 +113,25 @@ public class Car {
     this.user = user;
   }
 
-  public Car() {
+  public Car getCar() {
+    return car;
+  }
+
+  public void setCar(Car car) {
+    this.car = car;
+  }
+
+  public Violate() {
     super();
   }
 
-  public Car(long id, String carNum, String operateNum, String ownerName, 
-      String ownerPhone, long updateUser, Date updateTime) {
+  public Violate(long id, long carId, Date recordDate, int hasDeal, long updateUser,
+      Date updateTime) {
     super();
     this.id = id;
-    this.carNum = carNum;
-    this.operateNum = operateNum;
-    this.ownerName = ownerName;
-    this.ownerPhone = ownerPhone;
+    this.carId = carId;
+    this.recordDate = recordDate;
+    this.hasDeal = hasDeal;
     this.updateUser = updateUser;
     this.updateTime = updateTime;
   }

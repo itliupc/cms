@@ -1,4 +1,4 @@
-var InsureManage = (function () {
+var ViolateManage = (function () {
 	return {
 		editBtn : function(value, row, index) {
 				var button = "<a href=\"#\" data-roles=\"mui-linkbutton\" title=\"编辑\" data-options=\"iconCls:'icon-edit',plain:true\" class=\"l-btn l-btn-plain\" onclick=\"InsureManage.edit('"

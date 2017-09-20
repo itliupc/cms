@@ -1,8 +1,5 @@
 package com.wafer.schedule;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +21,9 @@ public class ScheduledTask {
   /**
    * 每天删除上一天产生的垃圾数据
    */
-  @SuppressWarnings("unchecked")
   @Scheduled(cron = "0 0 4 0/1 * ?")
   public void scheduledJobTest() {
-    List<Object[]> list = carService.getDateBySql();
+    /*List<Object[]> list = carService.getDateBySql();
     List<Long> ids = new ArrayList<Long>();
     for (Object[] obj : list) {
       ids.add(Long.valueOf(obj[0].toString()));
@@ -35,7 +31,7 @@ public class ScheduledTask {
     if (ids.size() > 0) {
       carService.deleteCarByIds(ids);
     }
-    logger.info("清理垃圾数据,共{}条.", list.size());
+    logger.info("清理垃圾数据,共{}条.", list.size());*/
   }
 
 }
