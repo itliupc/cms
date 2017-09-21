@@ -71,11 +71,4 @@ public class CarService {
   public void deleteCarByIds(List<Long> ids) {
     carRepository.deleteCarByIds(ids);
   }
-  
-  @SuppressWarnings("rawtypes")
-  public List getDateBySql() {
-    String sql =
-        "SELECT c.* FROM ps_car c LEFT JOIN ps_insure ins ON c.id = ins.car_id WHERE ins.id IS NULL";
-    return carRepository.listBySql(sql);
-  }
 }
