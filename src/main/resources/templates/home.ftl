@@ -9,6 +9,10 @@
 			<img src="static/images/icon-02.png" onclick="openTab('violate-dashed')">
 			<div class="item-label">违章管理</div>
 		</div>
+		<div class="item">
+			<img src="static/images/icon-03.png" onclick="openTab('gps-dashed')">
+			<div class="item-label">GPS管理</div>
+		</div>
 	</div>
 </div>
 <div class="cui-table-container">

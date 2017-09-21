@@ -47,10 +47,20 @@ CREATE TABLE `ps_violate`(
   `car_id` INT(11) NOT NULL COMMENT '车辆Id',
   `record_date` DATE COMMENT '违章时间',
   `has_deal` INT(1) DEFAULT 1  NOT NULL  COMMENT '是否缴费',
-  `update_user` INT(11) NULL COMMENT '操作人',
+  `update_user` INT(11) DEFAULT 0 NULL COMMENT '操作人',
   `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_violate_car_id` FOREIGN KEY (`car_id`) REFERENCES `ps_car` (`id`) ON DELETE CASCADE
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ps_gps`(  
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `car_id` INT(11) NOT NULL COMMENT '车辆Id',
+  `end_date` DATE COMMENT '到期时间',
+  `update_user` INT(11) DEFAULT 0 NULL COMMENT '操作人',
+  `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_gps_car_id` FOREIGN KEY (`car_id`) REFERENCES `ps_car` (`id`) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 -- admin/admin

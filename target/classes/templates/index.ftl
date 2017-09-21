@@ -34,8 +34,8 @@
                  <li iconCls="icon-02"><a id="car-dashed" href="javascript:void(0)" data-icon="icon-02" data-link="car-manage/view/index" iframe="0">车辆管理</a></li>
                  <li iconCls="icon-03"><a id="insure-dashed" href="javascript:void(0)" data-icon="icon-03" data-link="insure-manage/view/index" iframe="0">车险管理</a></li>
                  <li iconCls="icon-04"><a id="violate-dashed" href="javascript:void(0)" data-icon="icon-04" data-link="violate-manage/view/index" iframe="0">违章管理</a></li>
-                 <!-- <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="pages/layout-3.html" iframe="0">系统参数</a></li>
-                 <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="pages/layout-3.html" iframe="0">操作日志</a></li>-->
+                 <li iconCls="icon-05"><a id="gps-dashed" href="javascript:void(0)" data-icon="icon-05" data-link="gps-manage/view/index" iframe="0">GPS管理</a></li>
+                 <!-- <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="pages/layout-3.html" iframe="0">操作日志</a></li>-->
              </ul>
         </div>
     </div>	
