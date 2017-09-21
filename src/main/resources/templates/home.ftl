@@ -1,85 +1,60 @@
-<div class="cui-table-container">
-	<div class="head">常用功能</div>
-	<div class="cui-kj-list">
-		<div class="item">
-			<img src="static/images/icon-01.png" onclick="openTab('insure-dashed')">
-			<div class="item-label">车险管理</div>
+<div class="easyui-layout" style="height:100%;">
+	<div region="north" split="false" border="false" style="height:197px;" >
+		<div class="cui-table-container" style="overflow:hidden;margin-bottom: 0px;">
+			<div class="head">常用功能</div>
+			<div style="height: 104px; overflow: auto;">
+				<div class="cui-kj-list">
+					<div class="item">
+						<img src="static/images/icon-01.png" onclick="openTab('insure-dashed')">
+						<div class="item-label">车险管理</div>
+					</div>
+					<div class="item">
+						<img src="static/images/icon-02.png" onclick="openTab('violate-dashed')">
+						<div class="item-label">违章管理</div>
+					</div>
+					<div class="item">
+						<img src="static/images/icon-03.png" onclick="openTab('gps-dashed')">
+						<div class="item-label">GPS管理</div>
+					</div>
+					<div class="item">
+						<img src="static/images/icon-04.png" onclick="openTab('operate-dashed')">
+						<div class="item-label">营运管理</div>
+					</div>
+					<div class="item">
+						<img src="static/images/icon-05.png" onclick="openTab('exam-dashed')">
+						<div class="item-label">审车管理</div>
+					</div>
+					<div class="item">
+						<img src="static/images/icon-06.png" onclick="openTab('manage-dashed')">
+						<div class="item-label">管理费用</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="item">
-			<img src="static/images/icon-02.png" onclick="openTab('violate-dashed')">
-			<div class="item-label">违章管理</div>
+		<div class="cui-table-container" style="overflow:hidden;border-bottom: none;margin-bottom:0px;">
+			<div class="head" style="margin-bottom: 0px;">车辆汇总</div>
 		</div>
-		<div class="item">
-			<img src="static/images/icon-03.png" onclick="openTab('gps-dashed')">
-			<div class="item-label">GPS管理</div>
-		</div>
-		<div class="item">
-			<img src="static/images/icon-04.png" onclick="openTab('operate-dashed')">
-			<div class="item-label">营运管理</div>
-		</div>
-		<div class="item">
-			<img src="static/images/icon-05.png" onclick="openTab('exam-dashed')">
-			<div class="item-label">审车管理</div>
-		</div>
-		<div class="item">
-			<img src="static/images/icon-06.png" onclick="openTab('manage-dashed')">
-			<div class="item-label">管理费用</div>
+	</div>
+	<div id="homepage-content" region="center" border="false">
+		<div style="min-height:150px; height:100%;margin-left: 5px;margin-right: 5px;">
+			<table id="hompage-datagrid" class="easyui-datagrid" style="height:100%;width:98%;"
+				data-options="url:'car-manage/list',toolbar:'#hompage-toolbar',
+					idField:'id',fitColumns:'true',fit:'true',
+					rownumbers:'true',pagination:'true',border:'false'">
+				<thead>
+					<tr>
+						<th field="id" hidden="true"></th>
+						<th field="carNum" width="60">车号</th>
+						<th field="operateNum" width="70">建运号</th>
+						<th field="ownerName" width="60">车主姓名</th>
+					</tr>
+				</thead>
+			</table>
+			<div id="hompage-toolbar">
+				<input id="search-box" name="searchBox" class="search-box" placeholder="请输入关键字" />
+				<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:alert()">查询</a>
+			</div>
 		</div>
 	</div>
 </div>
-<div class="cui-table-container">
-	<table class="cui-table" border="0" cellpadding="0" cellspacing="0">
-		<thead>
-			<tr>
-				<th>
-					<div style="text-align: left;">
-						<span style="width: 100px; margin-left: 10px;">待办事项</span>
-						<span style="float: right; margin-right: 20px;">更多</span>
-					</div>
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					<div class="item">
-						<span style="width: 49%;">系统版本更新通知</span>
-						<span style="width: 49%; text-align: right;">2017-9-20</span>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="item">
-						<span style="width: 49%;">系统版本更新通知</span>
-						<span style="width: 49%; text-align: right;">2017-9-20</span>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="item">
-						<span style="width: 49%;">系统版本更新通知</span>
-						<span style="width: 49%; text-align: right;">2017-9-20</span>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="item">
-						<span style="width: 49%;">系统版本更新通知</span>
-						<span style="width: 49%; text-align: right;">2017-9-20</span>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="item">
-						<span style="width: 49%;">系统版本更新通知</span>
-						<span style="width: 49%; text-align: right;">2017-9-20</span>
-					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+
