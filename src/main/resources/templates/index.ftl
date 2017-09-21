@@ -35,7 +35,8 @@
                  <li iconCls="icon-03"><a id="insure-dashed" href="javascript:void(0)" data-icon="icon-03" data-link="insure-manage/view/index" iframe="0">车险管理</a></li>
                  <li iconCls="icon-04"><a id="violate-dashed" href="javascript:void(0)" data-icon="icon-04" data-link="violate-manage/view/index" iframe="0">违章管理</a></li>
                  <li iconCls="icon-05"><a id="gps-dashed" href="javascript:void(0)" data-icon="icon-05" data-link="gps-manage/view/index" iframe="0">GPS管理</a></li>
-                 <li iconCls="icon-06"><a id="operate-dashed" href="javascript:void(0)" data-icon="icon-06" data-link="operate-manage/view/index" iframe="0">营运管理</a></li>-->
+                 <li iconCls="icon-06"><a id="operate-dashed" href="javascript:void(0)" data-icon="icon-06" data-link="operate-manage/view/index" iframe="0">营运管理</a></li>
+             	 <li iconCls="icon-07"><a id="exam-dashed" href="javascript:void(0)" data-icon="icon-07" data-link="exam-manage/view/index" iframe="0">审车管理</a></li>
              </ul>
         </div>
     </div>	

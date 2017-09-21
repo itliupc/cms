@@ -18,7 +18,7 @@ public interface OperateRepository extends BaseRepository<Operate, Long> {
   
   Page<Operate> findAll(Specification<Operate> specification, Pageable pageable);
 
-  @Query(value = "from Operate t where t.carId = :carId and g.id != :id")
+  @Query(value = "from Operate t where t.carId = :carId and t.id != :id")
   Operate getOtherOperateByCarId(@Param("carId") long carId, @Param("id") long id);
   
   @Modifying
