@@ -64,18 +64,23 @@ public class GpsController {
   @RequestMapping(value = "addGps", method = RequestMethod.POST)
   @ResponseBody
   public ResponseResult gpsCreate(Gps gps) {
-    SysUser principal =
-        (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    long userId = 0L;
-    if (principal instanceof SysUser) {
-      userId = principal.getUserId();
+    Gps gpsForCompareNum = gpsService.findByCarId(gps.getCarId());
+    if (null != gpsForCompareNum) {
+      return ResponseResult.failure("保存失败,该车辆GPS信息已存在!");
+    } else {
+      SysUser principal =
+          (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      long userId = 0L;
+      if (principal instanceof SysUser) {
+        userId = principal.getUserId();
+      }
+      Gps gpsInfo = new Gps();
+      gpsInfo.setCarId(gps.getCarId());
+      gpsInfo.setEndDate(gps.getEndDate());
+      gpsInfo.setUpdateUser(userId);
+      gpsService.gpsSave(gpsInfo);
+      return ResponseResult.success(gpsInfo);
     }
-    Gps gpsInfo = new Gps();
-    gpsInfo.setCarId(gps.getCarId());
-    gpsInfo.setEndDate(gps.getEndDate());
-    gpsInfo.setUpdateUser(userId);
-    gpsService.gpsSave(gpsInfo);
-    return ResponseResult.success(gpsInfo);
   }
 
   /**
@@ -87,18 +92,23 @@ public class GpsController {
   @RequestMapping(value = "editGps", method = RequestMethod.POST)
   @ResponseBody
   public ResponseResult gpsModify(Gps gps) {
-    SysUser principal =
-        (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    long userId = 0L;
-    if (principal instanceof SysUser) {
-      userId = principal.getUserId();
+    Gps gpsForCompareNum = gpsService.getOtherGpsByCarId(gps.getCarId(), gps.getId());
+    if (null != gpsForCompareNum) {
+      return ResponseResult.failure("保存失败,该车辆GPS信息已存在!");
+    } else {
+      SysUser principal =
+          (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      long userId = 0L;
+      if (principal instanceof SysUser) {
+        userId = principal.getUserId();
+      }
+      Gps gpsInfo = gpsService.getGpsById(gps.getId());
+      gpsInfo.setCarId(gps.getCarId());
+      gpsInfo.setEndDate(gps.getEndDate());
+      gpsInfo.setUpdateUser(userId);
+      gpsService.gpsSave(gpsInfo);
+      return ResponseResult.success(gpsInfo);
     }
-    Gps gpsInfo = gpsService.getGpsById(gps.getId());
-    gpsInfo.setCarId(gps.getCarId());
-    gpsInfo.setEndDate(gps.getEndDate());
-    gpsInfo.setUpdateUser(userId);
-    gpsService.gpsSave(gpsInfo);
-    return ResponseResult.success(gpsInfo);
   }
 
   /**

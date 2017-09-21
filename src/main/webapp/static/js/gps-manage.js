@@ -225,7 +225,7 @@ var GpsManage = (function () {
 			    closed: false,
 			    cache: false,
 			    resizable : false,
-			    content: '<form method="POST" enctype="multipart/form-data" action="imp-manage/import/gps"><table style="margin-top:10px;"><tr style="height:30px;"><td style="width:30%;text-align: center;">违章清单:</td><td><input id="upfile" name="upfile" type="file"/></td></tr></table></form>',
+			    content: '<form method="POST" enctype="multipart/form-data" action="imp-manage/import/gps"><table style="margin-top:10px;"><tr style="height:30px;"><td style="width:30%;text-align: center;">GPS清单:</td><td><input id="upfile" name="upfile" type="file"/></td></tr></table></form>',
 			    modal: true,
 			    buttons : [{
 					iconCls: "icon-save",
