@@ -13,6 +13,10 @@
 			<img src="static/images/icon-03.png" onclick="openTab('gps-dashed')">
 			<div class="item-label">GPS管理</div>
 		</div>
+		<div class="item">
+			<img src="static/images/icon-04.png" onclick="openTab('operate-dashed')">
+			<div class="item-label">营运管理</div>
+		</div>
 	</div>
 </div>
 <div class="cui-table-container">
