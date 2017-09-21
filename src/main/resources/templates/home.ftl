@@ -1,5 +1,5 @@
-<div class="easyui-layout" style="height:100%;">
-	<div region="north" split="false" border="false" style="height:197px;" >
+﻿<div class="easyui-layout" style="height:100%;">
+	<div region="north" split="false" border="false" style="overflow:hidden;height:197px;" >
 		<div class="cui-table-container" style="overflow:hidden;margin-bottom: 0px;">
 			<div class="head">常用功能</div>
 			<div style="height: 104px; overflow: auto;">
