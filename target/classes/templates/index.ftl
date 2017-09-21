@@ -29,13 +29,13 @@
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
         	<ul class="easyui-tree cui-side-tree">
         		 <#if userRole == 0>
-             	 	<li iconCls="icon-users"><a id="user-dashed" href="javascript:void(0)" data-icon="icon-users" data-link="user-manage/view/index" iframe="0">用户管理</a></li>
+             	 	<li iconCls="icon-01"><a id="user-dashed" href="javascript:void(0)" data-icon="icon-01" data-link="user-manage/view/index" iframe="0">用户管理</a></li>
              	 </#if>
-                 <li iconCls="icon-cog"><a id="car-dashed" href="javascript:void(0)" data-icon="icon-cog" data-link="car-manage/view/index" iframe="0">车辆管理</a></li>
-                 <li iconCls="icon-book"><a id="insure-dashed" href="javascript:void(0)" data-icon="icon-book" data-link="insure-manage/view/index" iframe="0">车险管理</a></li>
-                 <li iconCls="icon-application-osx-error"><a id="violate-dashed" href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="violate-manage/view/index" iframe="0">违章管理</a></li>
+                 <li iconCls="icon-02"><a id="car-dashed" href="javascript:void(0)" data-icon="icon-02" data-link="car-manage/view/index" iframe="0">车辆管理</a></li>
+                 <li iconCls="icon-03"><a id="insure-dashed" href="javascript:void(0)" data-icon="icon-03" data-link="insure-manage/view/index" iframe="0">车险管理</a></li>
+                 <li iconCls="icon-04"><a id="violate-dashed" href="javascript:void(0)" data-icon="icon-04" data-link="violate-manage/view/index" iframe="0">违章管理</a></li>
                  <!-- <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="pages/layout-3.html" iframe="0">系统参数</a></li>
-                 <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="pages/layout-3.html" iframe="0">操作日志</a></li>-->
+                 <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="pages/layout-3.html" iframe="0">操作日志</a></li>-->
              </ul>
         </div>
     </div>	
