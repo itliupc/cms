@@ -93,11 +93,5 @@ CREATE TABLE `ps_manage`(
   CONSTRAINT `fk_manage_car_id` FOREIGN KEY (`car_id`) REFERENCES `ps_car` (`id`) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
--- admin/admin
+-- admin/123456
 INSERT INTO `ps_user` (`user_id`, `name`, `user_name`, `password`, `email`, `phone`, `status`, `user_authority`, `latest_login_time`, `create_time`, `update_time`) VALUES('1','系统管理员','admin','$2a$10$tG/aBbjRLB2lM1U4vXthRe8SO0/NWDirluHpq96B.pNrxMasOyOs6','','','0','0','2017-08-23 09:04:00','2017-08-18 09:32:24','2017-08-22 16:55:08');
-
-drop table ps_insure;
-CREATE DATABASE cims;
-RENAME TABLE cms.ps_user TO cims.ps_user, cms.ps_car TO cims.ps_car,cms.ps_insure TO cims.ps_insure;
-DROP DATABASE cms;
-ALTER TABLE ps_car ADD COLUMN update_user INT(11) DEFAULT 0 NULL  COMMENT '操作人' AFTER owner_phone;
