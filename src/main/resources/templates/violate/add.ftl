@@ -23,9 +23,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="formLayoutTit">日期:</td>
+			<td class="formLayoutTit">违章日期:</td>
 			<td><input class="easyui-datebox" type="text" name="recordDate" data-options="parser:DateUtil.parseDatebox"></input></td>
-			<td class="formLayoutTit">已缴费:</td>
+			<td class="formLayoutTit">缴费情况:</td>
 			<td>
 				<select id="violate-has-deal" class="easyui-combobox" name="hasDeal" data-options="editable:false" style="width:135px;">
 				    <option value="0">&nbsp;</option>
