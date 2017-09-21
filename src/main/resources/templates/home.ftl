@@ -21,6 +21,10 @@
 			<img src="static/images/icon-05.png" onclick="openTab('exam-dashed')">
 			<div class="item-label">审车管理</div>
 		</div>
+		<div class="item">
+			<img src="static/images/icon-06.png" onclick="openTab('manage-dashed')">
+			<div class="item-label">管理费用</div>
+		</div>
 	</div>
 </div>
 <div class="cui-table-container">
