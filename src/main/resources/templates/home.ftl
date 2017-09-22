@@ -47,7 +47,7 @@
 						<th field="carNum" width="60">车号</th>
 						<th field="operateNum" width="60">建运号</th>
 						<th field="ownerName" width="60">车主姓名</th>
-						<th data-options="field:'fck', width:60, formatter:HomeManage.operateBtn" align="left">操作</th>
+						<th data-options="field:'fck', width:20, formatter:HomeManage.operateBtn" align="left">操作</th>
 					</tr>
 				</thead>
 			</table>

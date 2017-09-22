@@ -163,13 +163,24 @@ input[type="checkbox"] { cursor: pointer;}
 .cui-side-tree li {
 	margin:10px 0px;
 }
-.search-box{
+.search-box {
 	width:230px;
 	height:24px;
 	font-size:14px;
 	line-height: 24px;
 	border: 1px solid #ccc; 
 	padding-left:5px;
+}
+
+fieldset {
+	margin: 10px;
+	border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+}
+
+legend {
+	font-size: 14px;
 }
 
 
