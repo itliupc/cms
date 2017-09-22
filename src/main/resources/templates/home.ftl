@@ -52,8 +52,8 @@
 				</thead>
 			</table>
 			<div id="home-toolbar">
-				<input id="search-box" name="searchBox" class="search-box" placeholder="请输入关键字" />
-				<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:alert()">查询</a>
+				<input id="search-box" name="searchBox" class="search-box" placeholder="请输入车号、建运号、车主姓名" />
+				<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:HomeManage.query()">查询</a>
 			</div>
 		</div>
 	</div>

@@ -144,6 +144,13 @@ var HomeManage = (function () {
 					+ "<span class=\"l-btn-left\"><span class=\"l-btn-text icon-help l-btn-icon-left\">详细信息</span></span></a>";
 			return button;
 		},
+		/**
+		 * 查询按钮事件
+		 */
+		query: function(){
+			var searchText=$.trim($("#search-box").val());
+			$("#home-datagrid").datagrid('load',{'searchText':searchText});
+		},
 		showDetail : function(index){
 			var record = $("#home-datagrid").datagrid('getRows')[index];
 			var detailDialog = $("<div></div>").dialog({

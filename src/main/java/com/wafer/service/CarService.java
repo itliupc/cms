@@ -81,12 +81,18 @@ public class CarService {
   public List<CarSummaryVo> getCarSummaryList(Map<String, String> param) {
     int pageNum = Integer.parseInt(String.valueOf(param.get("page")));
     int pageSize = Integer.parseInt(String.valueOf(param.get("rows")));
-    // String searchText = param.containsKey("searchText") ? param.get("searchText") : null;
+    String searchText = param.containsKey("searchText") ? param.get("searchText") : null;
 
     StringBuffer sql = new StringBuffer();
-    sql.append(" SELECT c.id, c.car_num carNum, c.operate_num operateNum, ")
-        .append("     c.owner_name ownerName, c.owner_phone ownerPhone ")
-        .append(" FROM ps_car c ORDER BY id DESC");
+    sql.append(" SELECT c.id, c.car_num carNum, c.operate_num operateNum, ");
+    sql.append("     c.owner_name ownerName, c.owner_phone ownerPhone ");
+    sql.append(" FROM ps_car c where 1=1 ");
+    if (null != searchText && !searchText.isEmpty()) {
+      sql.append(" AND (c.car_num like '%").append(searchText.toUpperCase()).append("%' ");
+      sql.append(" OR c.operate_num like '%").append(searchText.toUpperCase()).append("%' ");
+      sql.append(" OR c.owner_name like '%").append(searchText).append("%') ");
+    }
+    sql.append(" ORDER BY c.id DESC ");
     Query query = carRepository.createQuery(sql.toString());
     query.setFirstResult((pageNum - 1) * pageSize);
     query.setMaxResults(pageSize);
@@ -97,10 +103,17 @@ public class CarService {
 
   @SuppressWarnings("unchecked")
   public BigInteger getCarSummaryCount(Map<String, String> param) {
-    // String searchText = param.containsKey("searchText") ? param.get("searchText") : null;
+    String searchText = param.containsKey("searchText") ? param.get("searchText") : null;
 
     StringBuffer sql = new StringBuffer();
-    sql.append("SELECT count(1) total FROM ps_car c");
+    sql.append(" SELECT count(1) total ");
+    sql.append(" FROM ps_car c where 1=1 ");
+    if (null != searchText && !searchText.isEmpty()) {
+      sql.append(" AND (c.car_num like '%").append(searchText.toUpperCase()).append("%' ");
+      sql.append(" OR c.operate_num like '%").append(searchText.toUpperCase()).append("%' ");
+      sql.append(" OR c.owner_name like '%").append(searchText).append("%') ");
+    }
+    sql.append(" ORDER BY c.id DESC ");
     Query query = carRepository.createQuery(sql.toString());
     query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
     Map<String, BigInteger> result = (Map<String, BigInteger>) query.getSingleResult();
