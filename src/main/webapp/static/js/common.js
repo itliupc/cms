@@ -135,6 +135,22 @@ var DateUtil = (function () {
 	};
 })();
 
+var HomeManage = (function () {
+	return {
+		operateBtn : function(value, row, index) {
+			var button = "<a href=\"#\" data-roles=\"mui-linkbutton\" title=\"详细信息\" data-options=\"iconCls:'icon-help',plain:true\" class=\"l-btn l-btn-plain\" onclick=\"HomeManage.showDetail('"
+					+ index + "');\">";
+			button = button
+					+ "<span class=\"l-btn-left\"><span class=\"l-btn-text icon-help l-btn-icon-left\">详细信息</span></span></a>";
+			return button;
+		},
+		showDetail : function(index){
+			var record = $("#home-datagrid").datagrid('getRows')[index];
+			alert(record.carNum);
+		}
+	};
+})();
+
 var CommonUtil = (function () {
 	return {
 		preSelectTab : null,
