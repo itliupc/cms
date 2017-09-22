@@ -6,7 +6,7 @@ server :
  
 spring : 
   datasource : 
-    url : jdbc:mysql://localhost:3306/cims
+    url : jdbc:mysql://localhost:3306/cims?characterEncoding=utf8&useSSL=false
     username : wafer
     password : wafer
     driver-class-name : com.mysql.jdbc.Driver
