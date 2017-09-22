@@ -3,6 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>车辆信息管理系统</title>
+<link rel="icon" href="static/images/liu.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="static/images/liu.ico" type="image/x-icon" />
+<link rel="bookmark" href="static/images/liu.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="static/easyui/1.5.2/themes/insdep/easyui.css" />
 <link rel="stylesheet" type="text/css" href="static/css/weui.css" />
 <link rel="stylesheet" type="text/css" href="static/css/icon.css" />
