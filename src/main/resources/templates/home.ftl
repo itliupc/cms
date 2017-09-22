@@ -36,7 +36,7 @@
 		</div>
 	</div>
 	<div id="home-content" region="center" border="false">
-		<div style="min-height:150px; height:100%;margin-left: 5px;margin-right: 5px;">
+		<div style="min-height:150px; height:100%;margin-left: 5px;margin-right: 10px;">
 			<table id="home-datagrid" class="easyui-datagrid" style="height:100%;width:98%;"
 				data-options="url:'home-manage/list',toolbar:'#home-toolbar',
 					idField:'id',fitColumns:'true',fit:'true',
