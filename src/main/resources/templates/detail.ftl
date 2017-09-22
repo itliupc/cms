@@ -9,8 +9,6 @@
 				<td class="uppercase">
 					<input class="easyui-textbox" type="text" name="carNum" data-options="readonly:true" />
 				</td>
-			</tr>
-			<tr>
 				<td class="formLayoutTit">建运号:</td>
 				<td class="uppercase">
 					<input class="easyui-textbox" type="text" name="operateNum" data-options="readonly:true"></input>
@@ -21,8 +19,6 @@
 				<td>
 					<input class="easyui-textbox" type="text" name="ownerName" data-options="readonly:true" />
 				</td>
-			</tr>
-			<tr>
 				<td class="formLayoutTit">联系方式:</td>
 				<td>
 					<input class="easyui-textbox" type="text" name="ownerPhone" data-options="readonly:true" />
