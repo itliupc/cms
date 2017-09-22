@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		<div class="cui-table-container" style="overflow:hidden;border-bottom: none;margin-bottom:0px;">
-			<div class="head" style="margin-bottom: 0px;margin-right:0px;padding-left: 0px;">车辆汇总</div>
+			<div class="head" style="margin-bottom: 0px;margin-right:0px;">车辆汇总</div>
 		</div>
 	</div>
 	<div id="home-content" region="center" border="false">
