@@ -40,6 +40,11 @@ public class HomeController {
     view.addObject("userRole", userRole);
     return view;
   }
+  
+  @RequestMapping(value = "/view/detail")
+  public String detailView() {
+    return "detail";
+  }
 
   /**
    * 查询Car汇总信息

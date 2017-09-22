@@ -146,7 +146,29 @@ var HomeManage = (function () {
 		},
 		showDetail : function(index){
 			var record = $("#home-datagrid").datagrid('getRows')[index];
-			alert(record.carNum);
+			var detailDialog = $("<div></div>").dialog({
+				title : '车辆详细信息',
+				width : 700,
+				height : 640,
+				closed : false,
+				cache : false,
+				resizable : false,
+				href : "home-manage/view/detail",
+				modal : true,
+				onClose : function(){
+					detailDialog.dialog('destroy');
+				},
+				onLoad : function() {
+					detailDialog.find("#home-detail").form('load',record);
+				},
+				buttons : [{
+					iconCls: "icon-cancel",
+					text : '关闭',
+					handler : function() {
+						detailDialog.dialog('close');
+					}
+				} ]
+			});
 		}
 	};
 })();
