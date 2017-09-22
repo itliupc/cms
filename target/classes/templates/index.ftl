@@ -45,7 +45,7 @@
     <!-- begin of main -->
     <div class="cui-main" data-options="region:'center'">
         <div id="cui-tabs" class="easyui-tabs" data-options="border:false,fit:true">  
-            <div title="首页" data-options="href:'home',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
+            <div title="首页" data-options="id:'home-tab', href:'home-manage/view/index',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
         </div>
     </div>
     <!-- end of main --> 
@@ -58,49 +58,64 @@
     <script type="text/javascript">
 		$(function(){
 			$('.cui-side-tree li').bind("click",function(){
+				var id = $(this).find('a').attr('id');
 				var title = $(this).find('a').text();
 				var url = $(this).find('a').attr('data-link');
 				var iconCls = $(this).find('a').attr('data-icon');
 				var iframe = $(this).find('a').attr('iframe')==1?true:false;
-				addTab(title,url,iconCls,iframe);
+				addTab(id,title,url,iconCls,iframe);
 			});	
 		})
 		
 		/**
-		* Name 载入树形菜单 
-		*/
-		/*$('#cui-side-tree').tree({
-			url:'pages/menu.php',
-			cache:false,
-			onClick:function(node){
-				var url = node.attributes['url'];
-				if(url==null || url == ""){
-					return false;
-				}
-				else{
-					addTab(node.text, url, '', node.attributes['iframe']);
-				}
-			}
-		});*/
-		
-		/**
 		* Name 选项卡初始化
 		*/
-		$('#cui-tabs').tabs();
+		$('#cui-tabs').tabs({
+			onBeforeClose:function(title,index){
+				var closeTab = $('#cui-tabs').tabs('getTab',index);
+				var tabId = closeTab.panel('options').id;
+				for(var i=0; i<CommonUtil.openedTabs.length; i++) {
+				  if(CommonUtil.openedTabs[i] == tabId) {
+				    CommonUtil.openedTabs.splice(i, 1);
+				    break;
+				  }
+				}
+				// console.info(title + " is before close.");
+			},
+			onSelect:function(title,index){
+				var selectTab = $('#cui-tabs').tabs('getTab',index);
+				var tabId = selectTab.panel('options').id;
+				if($.inArray(tabId,CommonUtil.openedTabs) > -1 && CommonUtil.preSelectTab != tabId){
+					var dgId = tabId.replace('-tab','-datagrid');
+					$("#" + dgId).datagrid('reload');
+					// console.info(title + " is select. " + dgId + " is reload.");
+				}
+				CommonUtil.preSelectTab = tabId;
+				if($.inArray(tabId,CommonUtil.openedTabs) == -1){
+					CommonUtil.openedTabs.push(tabId);
+				}
+			},
+			onClose:function(title,index){
+				// console.info(title + " is close.")
+			}
+		});
 			
 		/**
 		* Name 添加菜单选项
+		* Param id id
 		* Param title 名称
 		* Param href 链接
 		* Param iconCls 图标样式
 		* Param iframe 链接跳转方式（true为iframe，false为href）
 		*/	
-		function addTab(title, href, iconCls, iframe){
+		function addTab(id, title, href, iconCls, iframe){
+			var tabId = id.replace('-dashed','-tab');
 			var tabPanel = $('#cui-tabs');
 			if(!tabPanel.tabs('exists',title)){
 				var content = '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:100%;"></iframe>';
 				if(iframe){
 					tabPanel.tabs('add',{
+						id:tabId,
 						title:title,
 						content:content,
 						iconCls:iconCls,
@@ -111,6 +126,7 @@
 				}
 				else{
 					tabPanel.tabs('add',{
+						id:tabId,
 						title:title,
 						href:href,
 						iconCls:iconCls,

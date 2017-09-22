@@ -35,10 +35,10 @@
 			<div class="head" style="margin-bottom: 0px;">车辆汇总</div>
 		</div>
 	</div>
-	<div id="homepage-content" region="center" border="false">
+	<div id="home-content" region="center" border="false">
 		<div style="min-height:150px; height:100%;margin-left: 5px;margin-right: 5px;">
-			<table id="hompage-datagrid" class="easyui-datagrid" style="height:100%;width:98%;"
-				data-options="url:'car-manage/list',toolbar:'#hompage-toolbar',
+			<table id="home-datagrid" class="easyui-datagrid" style="height:100%;width:98%;"
+				data-options="url:'home-manage/list',toolbar:'#home-toolbar',
 					idField:'id',fitColumns:'true',fit:'true',
 					rownumbers:'true',pagination:'true',border:'false'">
 				<thead>
@@ -50,7 +50,7 @@
 					</tr>
 				</thead>
 			</table>
-			<div id="hompage-toolbar">
+			<div id="home-toolbar">
 				<input id="search-box" name="searchBox" class="search-box" placeholder="请输入关键字" />
 				<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:alert()">查询</a>
 			</div>

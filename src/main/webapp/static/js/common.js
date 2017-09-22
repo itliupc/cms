@@ -137,6 +137,8 @@ var DateUtil = (function () {
 
 var CommonUtil = (function () {
 	return {
+		preSelectTab : null,
+		openedTabs : [],
 		carSelect : function(id) { 
 			var selectDialog = $("<div></div>").dialog({
 				title : '车辆选择',
