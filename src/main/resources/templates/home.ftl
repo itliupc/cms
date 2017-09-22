@@ -32,11 +32,11 @@
 			</div>
 		</div>
 		<div class="cui-table-container" style="overflow:hidden;border-bottom: none;margin-bottom:0px;">
-			<div class="head" style="margin-bottom: 0px;">车辆汇总</div>
+			<div class="head" style="margin-bottom: 0px;margin-right:0px;padding-left: 0px;">车辆汇总</div>
 		</div>
 	</div>
 	<div id="home-content" region="center" border="false">
-		<div style="min-height:150px; height:100%;margin-left: 5px;margin-right: 7px;">
+		<div style="width:99%;min-height:150px; height:100%;margin-left: 5px;margin-right: 5px;">
 			<table id="home-datagrid" class="easyui-datagrid" style="height:100%;width:98%;"
 				data-options="url:'home-manage/list',toolbar:'#home-toolbar',
 					idField:'id',fitColumns:'true',fit:'true',
