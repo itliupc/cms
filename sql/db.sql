@@ -1,6 +1,6 @@
-﻿CREATE DATABASE cims;
+﻿CREATE DATABASE woa;
 
-use cims;
+use woa;
 
 CREATE TABLE `ps_user` (
   `user_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',

@@ -1,6 +1,6 @@
 server.xml  
 
-<Context path="" docBase="cims" debug="false" reloadable="true" />
+<Context path="" docBase="woa" debug="false" reloadable="true" />
 
 
 在catalina.bat的第一行增加：  
