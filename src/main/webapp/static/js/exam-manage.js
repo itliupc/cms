@@ -213,6 +213,19 @@ var ExamManage = (function () {
 					});
 				}
 			});
+		},
+		/**
+		 * 数据导出
+		 */
+		exportData : function(){
+			$.messager.confirm('提示', '确认要导出数据吗?', function(flag) {
+				if (flag) {
+					var carNum=$("#exam-search").find("input[name='carNum']").val().toUpperCase();
+					var operateNum=$("#exam-search").find("input[name='operateNum']").val().toUpperCase();
+					var deadline=$("#exam-deadline").combobox('getValue');
+					window.location.href = "exp-manage/export/exam?param1="+carNum+"&param2="+operateNum+"&param3="+deadline;
+				}
+			});
 		}
 	};
 })();

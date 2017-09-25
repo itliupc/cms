@@ -213,6 +213,19 @@ var ManageManage = (function () {
 					});
 				}
 			});
+		},
+		/**
+		 * 数据导出
+		 */
+		exportData : function(){
+			$.messager.confirm('提示', '确认要导出数据吗?', function(flag) {
+				if (flag) {
+					var carNum=$("#manage-search").find("input[name='carNum']").val().toUpperCase();
+					var operateNum=$("#manage-search").find("input[name='operateNum']").val().toUpperCase();
+					var deadline=$("#manage-deadline").combobox('getValue');
+					window.location.href = "exp-manage/export/manage?param1="+carNum+"&param2="+operateNum+"&param3="+deadline;
+				}
+			});
 		}
 	};
 })();
