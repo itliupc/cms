@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wafer</groupId>
-	<artifactId>cims</artifactId>
+	<artifactId>woa</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>CIMS Maven Webapp</name>
+	<name>WOA Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<parent>
@@ -98,7 +98,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>cims</finalName>
+		<finalName>woa</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
