@@ -78,7 +78,7 @@ var ViolateManage = (function () {
 		query: function(){
 			var carNum=$("#violate-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#violate-search").find("input[name='operateNum']").val().toUpperCase();
-			var hasDeal=$("#search-hasDeal").combobox('getValue');
+			var hasDeal=$("#violate-hasDeal").combobox('getValue');
 			$("#violate-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'hasDeal':hasDeal});
 		},
 		/**

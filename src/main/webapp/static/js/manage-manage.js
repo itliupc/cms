@@ -40,7 +40,7 @@ var ManageManage = (function () {
 		query: function(){
 			var carNum=$("#manage-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#manage-search").find("input[name='operateNum']").val().toUpperCase();
-			var deadline=$("#search-deadline").combobox('getValue');
+			var deadline=$("#manage-deadline").combobox('getValue');
 			$("#manage-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'deadline':deadline});
 		},
 		/**

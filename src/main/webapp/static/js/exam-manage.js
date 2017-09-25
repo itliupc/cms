@@ -40,7 +40,7 @@ var ExamManage = (function () {
 		query: function(){
 			var carNum=$("#exam-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#exam-search").find("input[name='operateNum']").val().toUpperCase();
-			var deadline=$("#search-deadline").combobox('getValue');
+			var deadline=$("#exam-deadline").combobox('getValue');
 			$("#exam-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'deadline':deadline});
 		},
 		/**

@@ -19,7 +19,7 @@
 						<label for="deadline" >条件筛选:</label>
 					</td>
 					<td width='200px' align="left">
-						<select id="search-deadline" class="easyui-combobox" name="hasDeal" data-options="editable:false" style="width:135px;">
+						<select id="operate-deadline" class="easyui-combobox" name="hasDeal" data-options="editable:false" style="width:135px;">
 						    <option value="0">全部</option>
 						    <option value="1">即将到期</option>
 						    <option value="2">已经到期</option>

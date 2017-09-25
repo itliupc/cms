@@ -40,7 +40,7 @@ var GpsManage = (function () {
 		query: function(){
 			var carNum=$("#gps-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#gps-search").find("input[name='operateNum']").val().toUpperCase();
-			var deadline=$("#search-deadline").combobox('getValue');
+			var deadline=$("#gps-deadline").combobox('getValue');
 			$("#gps-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'deadline':deadline});
 		},
 		/**

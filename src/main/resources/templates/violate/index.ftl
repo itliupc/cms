@@ -19,7 +19,7 @@
 						<label for="hasDeal" >条件筛选:</label>
 					</td>
 					<td width='200px' align="left">
-						<select id="search-hasDeal" class="easyui-combobox" name="hasDeal" data-options="editable:false" style="width:135px;">
+						<select id="violate-hasDeal" class="easyui-combobox" name="hasDeal" data-options="editable:false" style="width:135px;">
 						    <option value="">全部</option>
 						    <option value="1">已缴费</option>
 						</select>
