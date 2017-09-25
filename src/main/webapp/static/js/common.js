@@ -151,6 +151,9 @@ var HomeManage = (function () {
 			var searchText=$.trim($("#search-box").val());
 			$("#home-datagrid").datagrid('load',{'searchText':searchText});
 		},
+		formatRowDate : function(value, row, index){
+			return DateUtil.formatDatebox(value);
+		},
 		showDetail : function(index){
 			var record = $("#home-datagrid").datagrid('getRows')[index];
 			var detailDialog = $("<div></div>").dialog({
@@ -166,7 +169,15 @@ var HomeManage = (function () {
 					detailDialog.dialog('destroy');
 				},
 				onLoad : function() {
+					if(0 == record.hasPay){
+						record.doType = 1;
+					} else if(0 == record.hasReceive){
+						record.doType = 2;
+					} else{
+						record.doType = 0;
+					}
 					detailDialog.find("#home-detail").form('load',record);
+					detailDialog.find("#detail-violate-datagrid").datagrid('load',{'carId':record.id})
 				},
 				buttons : [{
 					iconCls: "icon-cancel",

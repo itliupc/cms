@@ -85,8 +85,30 @@ public class CarService {
 
     StringBuffer sql = new StringBuffer();
     sql.append(" SELECT c.id, c.car_num carNum, c.operate_num operateNum, ");
-    sql.append("     c.owner_name ownerName, c.owner_phone ownerPhone ");
-    sql.append(" FROM ps_car c where 1=1 ");
+    sql.append("     c.owner_name ownerName, c.owner_phone ownerPhone, ");
+    sql.append("     i.force_insure forceInsure, i.bus_insure busInsure, ");
+    sql.append("     i.out_buy outBuy, i.has_receive hasReceive, i.has_pay hasPay, ");
+    sql.append("     o.end_date operateDate, g.end_date gpsDate, ");
+    sql.append("     v.violateNum, e.end_date examDate, m.end_date manageDate ");
+    sql.append(" FROM ps_car c ");
+    sql.append(" LEFT JOIN ps_insure i ");
+    sql.append(" ON c.id = i.car_id ");
+    sql.append(" LEFT JOIN ps_operate o ");
+    sql.append(" ON c.id = o.car_id ");
+    sql.append(" LEFT JOIN ps_gps g ");
+    sql.append(" ON c.id = g.car_id ");
+    sql.append(" LEFT JOIN ( ");
+    sql.append("      SELECT car_id,COUNT(1) violateNum ");
+    sql.append("      FROM ps_violate ");
+    sql.append("      WHERE has_deal = 0 ");
+    sql.append("      GROUP BY car_id ");
+    sql.append(" ) v ");
+    sql.append("  ON c.id = v.car_id ");
+    sql.append("  LEFT JOIN ps_exam e ");
+    sql.append("  ON c.id = e.car_id ");
+    sql.append("  LEFT JOIN ps_manage m ");
+    sql.append(" ON c.id = m.car_id ");
+    sql.append(" where 1=1 ");
     if (null != searchText && !searchText.isEmpty()) {
       sql.append(" AND (c.car_num like '%").append(searchText.toUpperCase()).append("%' ");
       sql.append(" OR c.operate_num like '%").append(searchText.toUpperCase()).append("%' ");
@@ -107,7 +129,25 @@ public class CarService {
 
     StringBuffer sql = new StringBuffer();
     sql.append(" SELECT count(1) total ");
-    sql.append(" FROM ps_car c where 1=1 ");
+    sql.append(" FROM ps_car c ");
+    sql.append(" LEFT JOIN ps_insure i ");
+    sql.append(" ON c.id = i.car_id ");
+    sql.append(" LEFT JOIN ps_operate o ");
+    sql.append(" ON c.id = o.car_id ");
+    sql.append(" LEFT JOIN ps_gps g ");
+    sql.append(" ON c.id = g.car_id ");
+    sql.append(" LEFT JOIN ( ");
+    sql.append("      SELECT car_id,COUNT(1) violateNum ");
+    sql.append("      FROM ps_violate ");
+    sql.append("      WHERE has_deal = 0 ");
+    sql.append("      GROUP BY car_id ");
+    sql.append(" ) v ");
+    sql.append("  ON c.id = v.car_id ");
+    sql.append("  LEFT JOIN ps_exam e ");
+    sql.append("  ON c.id = e.car_id ");
+    sql.append("  LEFT JOIN ps_manage m ");
+    sql.append(" ON c.id = m.car_id ");
+    sql.append(" where 1=1 ");
     if (null != searchText && !searchText.isEmpty()) {
       sql.append(" AND (c.car_num like '%").append(searchText.toUpperCase()).append("%' ");
       sql.append(" OR c.operate_num like '%").append(searchText.toUpperCase()).append("%' ");

@@ -83,4 +83,8 @@ public class ViolateService {
   public void deleteViolateByIds(List<Long> ids) {
     violateRepository.deleteViolateByIds(ids);
   }
+
+  public List<Violate> getViolateListByCarId(Long carId) {
+    return violateRepository.findViolateByCarId(carId);
+  }
 }

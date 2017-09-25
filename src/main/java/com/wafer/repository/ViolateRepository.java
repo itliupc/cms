@@ -25,4 +25,5 @@ public interface ViolateRepository extends BaseRepository<Violate, Long> {
   @Query(value = "delete from Violate vio where vio.id in (:ids)")
   void deleteViolateByIds(@Param(value = "ids") List<Long> ids);
 
+  List<Violate> findViolateByCarId(Long carId);
 }

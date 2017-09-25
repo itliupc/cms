@@ -1,5 +1,6 @@
 package com.wafer.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +54,23 @@ public class ViolateController {
   public GridView<Violate> violateList(@RequestParam Map<String, String> param) {
     Page<Violate> page = violateService.getViolateList(param);
     return new GridView<Violate>(page.getContent(), page.getTotalElements());
+  }
+  
+  /**
+   * 根据CarId查询Violate信息
+   * 
+   * @return 封装的Violate list信息
+   */
+  @RequestMapping(value = "listByCarId", method = RequestMethod.POST)
+  @Transactional(readOnly = true)
+  @ResponseBody
+  public List<Violate> listViolateByCarId(@RequestParam Map<String, String> param) {
+    List<Violate> list = new ArrayList<Violate>();
+    if(param.containsKey("carId") && null != param.get("carId")){
+      Long carId = Long.parseLong(param.get("carId"));
+      list = violateService.getViolateListByCarId(carId);
+    }
+    return list;
   }
 
   /**
