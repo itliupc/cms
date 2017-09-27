@@ -95,14 +95,3 @@ CREATE TABLE `ps_manage`(
 
 -- admin/123456
 INSERT INTO `ps_user` (`user_id`, `name`, `user_name`, `password`, `email`, `phone`, `status`, `user_authority`, `latest_login_time`, `create_time`, `update_time`) VALUES('1','系统管理员','admin','$2a$10$tG/aBbjRLB2lM1U4vXthRe8SO0/NWDirluHpq96B.pNrxMasOyOs6','','','0','0','2017-08-23 09:04:00','2017-08-18 09:32:24','2017-08-22 16:55:08');
-
-CREATE DATABASE woa;
-RENAME TABLE cims.ps_car TO woa.ps_car,
-cims.ps_exam TO woa.ps_exam,
-cims.ps_gps TO woa.ps_gps,
-cims.ps_insure TO woa.ps_insure,
-cims.ps_manage TO woa.ps_manage,
-cims.ps_operate TO woa.ps_operate,
-cims.ps_user TO woa.ps_user,
-cims.ps_violate TO woa.ps_violate;
-DROP DATABASE cims;
