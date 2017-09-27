@@ -1,4 +1,4 @@
-﻿package com.wafer.controller;
+package com.wafer.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
