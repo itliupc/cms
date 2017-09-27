@@ -1,4 +1,4 @@
-package com.wafer.controller;
+﻿package com.wafer.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -470,7 +470,7 @@ public class ExpController {
 
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
-    cell.setCellValue("到期时间");
+    cell.setCellValue("年审日期");
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Exam> examList = examService.getExamList(map).getContent();
@@ -528,7 +528,7 @@ public class ExpController {
 
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
-    cell.setCellValue("到期时间");
+    cell.setCellValue("管理费止期");
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Manage> manageList = manageService.getManageList(map).getContent();
