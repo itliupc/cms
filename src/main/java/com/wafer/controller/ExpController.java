@@ -354,7 +354,7 @@ public class ExpController {
 
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
-    cell.setCellValue("到期时间");
+    cell.setCellValue("GPS止期");
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Gps> gpsList = gpsService.getGpsList(map).getContent();
@@ -412,7 +412,7 @@ public class ExpController {
 
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
-    cell.setCellValue("到期时间");
+    cell.setCellValue("营运证止期");
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Operate> operateList = operateService.getOperateList(map).getContent();

@@ -241,11 +241,8 @@ public class ImpController {
       String carNum = getCellValue(row.getCell(1)).trim();
       String recordDate = getCellValue(row.getCell(3)).trim();
       String hasDeal = getCellValue(row.getCell(4)).trim();
-      Violate violate = null;
       Car car = carService.findByOperateNum(operateNum);
-      if (null != car) {
-        violate = violateService.findByCarId(car.getId());
-      } else {
+      if (null == car) {
         car = new Car();
         car.setOperateNum(operateNum);
       }
@@ -253,10 +250,8 @@ public class ImpController {
       car.setUpdateUser(userId);
       carService.carSave(car);
 
-      if (null == violate) {
-        violate = new Violate();
-        violate.setCarId(car.getId());
-      }
+      Violate violate = new Violate();
+      violate.setCarId(car.getId());
       if (recordDate.isEmpty()) {
         violate.setRecordDate(null);
       } else {

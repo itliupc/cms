@@ -19,7 +19,7 @@
 					<td  style="text-align:center"  width='100px'>
 						<a href="#" style="margin-right:10px;" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:CarManage.querySelect()">查询</a>
 					</td>
-					<td  style="text-align:center" width='100px'>
+					<td  style="text-align:left" width='100px'>
 						<a href="#" style="margin-left:10px;" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:CarManage.resetSelect()">重置</a>
 					</td>
 				</tr>

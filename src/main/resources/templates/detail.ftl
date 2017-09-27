@@ -61,7 +61,7 @@
 		<legend>GPS信息</legend>
 		<table cellpadding="5" class="formLayout">
 			<tr>
-				<td class="formLayoutTit">到期时间:</td>
+				<td class="formLayoutTit">GPS止期:</td>
 				<td>
 					<input class="easyui-datebox" type="text" name="gpsDate" data-options="readonly:true" />
 				</td>
@@ -75,7 +75,7 @@
 		<legend>审车信息</legend>
 		<table cellpadding="5" class="formLayout">
 			<tr>
-				<td class="formLayoutTit">到期时间:</td>
+				<td class="formLayoutTit">年审日期:</td>
 				<td>
 					<input class="easyui-datebox" type="text" name="examDate" data-options="readonly:true" />
 				</td>
@@ -89,7 +89,7 @@
 		<legend>营运证信息</legend>
 		<table cellpadding="5" class="formLayout">
 			<tr>
-				<td class="formLayoutTit">到期时间:</td>
+				<td class="formLayoutTit">营运证止期:</td>
 				<td>
 					<input class="easyui-datebox" type="text" name="operateDate" data-options="readonly:true" />
 				</td>
@@ -103,7 +103,7 @@
 		<legend>管理费信息</legend>
 		<table cellpadding="5" class="formLayout">
 			<tr>
-				<td class="formLayoutTit">到期时间:</td>
+				<td class="formLayoutTit">管理费止期:</td>
 				<td>
 					<input class="easyui-datebox" type="text" name="manageDate" data-options="readonly:true" />
 				</td>

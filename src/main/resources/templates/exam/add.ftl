@@ -23,7 +23,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="formLayoutTit">到期时间:</td>
+			<td class="formLayoutTit">年审日期:</td>
 			<td><input class="easyui-datebox" type="text" name="endDate" data-options="parser:DateUtil.parseDatebox"></input></td>
 			<td>
 			</td>
