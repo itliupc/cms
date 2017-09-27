@@ -1,9 +1,9 @@
 ﻿<div class="easyui-layout" style="height:100%;">
-	<div region="north" split="true" style="height:90px;" >
+	<div region="north" split="true" style="height:80px;" >
 		<input type="hidden" name="carId" />
 		<form id="car-select-search" class="easyui-form">
 			<table width='100%' style="margin:15px auto;">
-				<tr style="height:45px;">
+				<tr>
 					<td width='100px' align="right">
 						<label for="carNum" >车号:</label>
 					</td>

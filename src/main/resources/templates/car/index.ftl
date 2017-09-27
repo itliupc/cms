@@ -1,24 +1,24 @@
 ﻿<div class="easyui-layout" style="height:100%;">
-	<div region="north" split="true" title="查询区" style="height:130px;" >
+	<div region="north" split="true" title="查询区" style="height:120px;" >
 		<form id="car-search" class="easyui-form">
-			<table width='100%' style="margin:15px auto;">
-				<tr style="height:45px;">
+			<table width='800px' style="margin:15px auto;">
+				<tr>
 					<td width='100px' align="right">
 						<label for="carNum" >车号:</label>
 					</td>
-					<td width='100px' align="left" class="uppercase">
+					<td width='200px' align="left" class="uppercase">
 						<input class="easyui-textbox" type="text" name="carNum"></input>
 					</td>
 					<td width='100px' align="right">
 						<label for="operateNum" >建运号:</label>
 					</td>
-					<td width='100px' align="left" class="uppercase">
+					<td width='200px' align="left" class="uppercase">
 						<input class="easyui-textbox" type="text" name="operateNum"></input>
 					</td>
 					<td  style="text-align:center"  width='100px'>
 						<a href="#" style="margin-right:10px;" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:CarManage.query()">查询</a>
 					</td>
-					<td  style="text-align:left" width='100px'>
+					<td  style="text-align:center" width='100px'>
 						<a href="#" style="margin-left:10px;" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:CarManage.reset()">重置</a>
 					</td>
 				</tr>
