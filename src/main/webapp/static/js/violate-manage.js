@@ -94,8 +94,8 @@ var ViolateManage = (function () {
 		add :function(){
 			$("#add_violate_dialog").dialog({
 				title : '新增',
-				width : 700,
-				height : 190,
+				width : 500,
+				height : 290,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -160,8 +160,8 @@ var ViolateManage = (function () {
 			var record = $("#violate-datagrid").datagrid('getRows')[index];
 			$("#edit_violate_dialog").dialog({
 				title : '编辑',
-				width : 700,
-				height : 190,
+				width : 500,
+				height : 290,
 				closed : false,
 				cache : false,
 				resizable : false,

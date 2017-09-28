@@ -56,8 +56,8 @@ var OperateManage = (function () {
 		add :function(){
 			$("#add_operate_dialog").dialog({
 				title : '新增',
-				width : 700,
-				height : 190,
+				width : 500,
+				height : 240,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -120,8 +120,8 @@ var OperateManage = (function () {
 			var record = $("#operate-datagrid").datagrid('getRows')[index];
 			$("#edit_operate_dialog").dialog({
 				title : '编辑',
-				width : 700,
-				height : 190,
+				width : 500,
+				height : 240,
 				closed : false,
 				cache : false,
 				resizable : false,

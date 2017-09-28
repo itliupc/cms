@@ -56,8 +56,8 @@ var ExamManage = (function () {
 		add :function(){
 			$("#add_exam_dialog").dialog({
 				title : '新增',
-				width : 700,
-				height : 190,
+				width : 500,
+				height : 240,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -120,8 +120,8 @@ var ExamManage = (function () {
 			var record = $("#exam-datagrid").datagrid('getRows')[index];
 			$("#edit_exam_dialog").dialog({
 				title : '编辑',
-				width : 700,
-				height : 190,
+				width : 500,
+				height : 240,
 				closed : false,
 				cache : false,
 				resizable : false,
