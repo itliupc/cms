@@ -57,7 +57,7 @@ var OperateManage = (function () {
 			$("#add_operate_dialog").dialog({
 				title : '新增',
 				width : 700,
-				height : 240,
+				height : 190,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -121,7 +121,7 @@ var OperateManage = (function () {
 			$("#edit_operate_dialog").dialog({
 				title : '编辑',
 				width : 700,
-				height : 240,
+				height : 190,
 				closed : false,
 				cache : false,
 				resizable : false,

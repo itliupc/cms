@@ -57,7 +57,7 @@ var ExamManage = (function () {
 			$("#add_exam_dialog").dialog({
 				title : '新增',
 				width : 700,
-				height : 240,
+				height : 190,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -121,7 +121,7 @@ var ExamManage = (function () {
 			$("#edit_exam_dialog").dialog({
 				title : '编辑',
 				width : 700,
-				height : 240,
+				height : 190,
 				closed : false,
 				cache : false,
 				resizable : false,

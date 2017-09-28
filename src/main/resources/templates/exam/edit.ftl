@@ -12,7 +12,7 @@
 				<input class="easyui-textbox" type="text" name="operateNum" data-options="required:true,validType:'length[1,20]',readonly:true" />
 			</td>
 		</tr>
-		<tr>
+		<tr style="display:none;">
 			<td class="formLayoutTit">车主姓名:</td>
 			<td>
 				<input class="easyui-textbox" type="text" name="ownerName" data-options="validType:'length[1,20]',readonly:true" />

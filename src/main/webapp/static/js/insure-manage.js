@@ -93,7 +93,7 @@ var InsureManage = (function () {
 			$("#add_insure_dialog").dialog({
 				title : '新增',
 				width : 700,
-				height : 290,
+				height : 240,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -170,7 +170,7 @@ var InsureManage = (function () {
 			$("#edit_insure_dialog").dialog({
 				title : '编辑',
 				width : 700,
-				height : 290,
+				height : 240,
 				closed : false,
 				cache : false,
 				resizable : false,
