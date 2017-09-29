@@ -123,6 +123,7 @@
 				<tr>
 					<th field="recordDate" width="60" data-options="formatter: function(value, row, index){return DateUtil.formatDatebox(value);}">违章日期</th>
 					<th field="hasDeal" width="60" data-options="formatter: function(value, row, index){if(1==value){return '已繳費';}else{return '';}}">缴费情况</th>
+					<th field="remark" width="60">备注</th>
 				</tr>
 			</thead>
 		</table>

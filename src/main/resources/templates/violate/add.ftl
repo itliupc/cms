@@ -42,7 +42,7 @@
 		<tr>
 			<td class="formLayoutTit">备注:</td>
 			<td>
-				<textarea id="violate-remark" name="remark" rows="4" cols="50"></textarea>
+				<textarea id="violate-remark" name="remark" rows="4" cols="50" style="resize: none;"></textarea>
 			</td>
 		</tr>
 	</table>

@@ -29,6 +29,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
       User user = userService.getUserbyUserId(userDetails.getUserId());
       user.setLatestLoginTime(new Date());
       userService.userSave(user);
-      super.onAuthenticationSuccess(request, response, authentication);    
+      super.onAuthenticationSuccess(request, response, authentication);   
+      request.getSession().setMaxInactiveInterval(-1);
   }    
 }
