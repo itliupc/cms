@@ -16,6 +16,7 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,7 @@ import com.wafer.service.InsureService;
 import com.wafer.service.ManageService;
 import com.wafer.service.OperateService;
 import com.wafer.service.ViolateService;
+import com.wafer.utils.DateUtils;
 
 
 @Controller
@@ -217,6 +219,12 @@ public class ExpController {
 
       cell = row.createCell((int) 3);
       if (null != insure.getForceInsure()) {
+        if (insure.getForceInsure().before(DateUtils.formatSqlDate(0))) {
+          cell.setCellStyle(this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index));
+        } else if (DateUtils.formatSqlDate(0).before(insure.getForceInsure())
+            && insure.getForceInsure().before(DateUtils.formatSqlDate(2))) {
+          cell.setCellStyle(this.createStyle(workbook, HSSFColor.RED.index));
+        }
         cell.setCellValue(sdf.format(insure.getForceInsure()));
       } else {
         cell.setCellValue("");
@@ -224,6 +232,12 @@ public class ExpController {
 
       cell = row.createCell((int) 4);
       if (null != insure.getBusInsure()) {
+        if (insure.getBusInsure().before(DateUtils.formatSqlDate(0))) {
+          cell.setCellStyle(this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index));
+        } else if (DateUtils.formatSqlDate(0).before(insure.getBusInsure())
+            && insure.getBusInsure().before(DateUtils.formatSqlDate(2))) {
+          cell.setCellStyle(this.createStyle(workbook, HSSFColor.RED.index));
+        }
         cell.setCellValue(sdf.format(insure.getBusInsure()));
       } else {
         cell.setCellValue("");
@@ -231,6 +245,7 @@ public class ExpController {
 
       cell = row.createCell((int) 5);
       if (0 == insure.getHasPay()) {
+        cell.setCellStyle(this.createStyle(workbook, HSSFColor.YELLOW.index));
         cell.setCellValue("是");
       } else {
         cell.setCellValue("");
@@ -238,6 +253,7 @@ public class ExpController {
 
       cell = row.createCell((int) 6);
       if (0 == insure.getHasReceive()) {
+        cell.setCellStyle(this.createStyle(workbook, HSSFColor.LIGHT_BLUE.index));
         cell.setCellValue("是");
       } else {
         cell.setCellValue("");
@@ -245,6 +261,7 @@ public class ExpController {
 
       cell = row.createCell((int) 7);
       if (1 == insure.getOutBuy()) {
+        cell.setCellStyle(this.createStyle(workbook, HSSFColor.GREEN.index));
         cell.setCellValue("是");
       } else {
         cell.setCellValue("");
@@ -554,4 +571,10 @@ public class ExpController {
     }
   }
 
+  private CellStyle createStyle(HSSFWorkbook workbook, short index) {
+    CellStyle cs = workbook.createCellStyle();
+    cs.setFillForegroundColor(index);
+    cs.setFillPattern(CellStyle.SOLID_FOREGROUND);
+    return cs;
+  }
 }

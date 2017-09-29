@@ -64,12 +64,12 @@ public class DateUtils {
    * @param days
    * @return
    */
-  public static Date formatSqlDate(int days) {
+  public static Date formatSqlDate(int months) {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     Date date = new Date();
     Calendar calendar = Calendar.getInstance();
-    if (days > 0) {
-      calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) + days);
+    if (months > 0) {
+      calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) + months);
     }
     calendar.set(Calendar.HOUR_OF_DAY, 0);
     calendar.set(Calendar.MINUTE, 0);
