@@ -1,7 +1,6 @@
 server :
   port : 80
   context-path : /woa
-  session-timeout : 60
  
 spring : 
   datasource : 
