@@ -92,6 +92,7 @@ public class ViolateController {
     violateInfo.setCarId(violate.getCarId());
     violateInfo.setRecordDate(violate.getRecordDate());
     violateInfo.setHasDeal(violate.getHasDeal());
+    violateInfo.setRemark(violate.getRemark());
     violateInfo.setUpdateUser(userId);
     violateService.violateSave(violateInfo);
     return ResponseResult.success(violateInfo);
@@ -116,6 +117,7 @@ public class ViolateController {
     violateInfo.setCarId(violate.getCarId());
     violateInfo.setRecordDate(violate.getRecordDate());
     violateInfo.setHasDeal(violate.getHasDeal());
+    violateInfo.setRemark(violate.getRemark());
     violateInfo.setUpdateUser(userId);
     violateService.violateSave(violateInfo);
     return ResponseResult.success(violateInfo);

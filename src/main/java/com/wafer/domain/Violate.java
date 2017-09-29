@@ -40,6 +40,9 @@ public class Violate {
 
   @Column(name = "has_deal")
   private int hasDeal;
+  
+  @Column(name = "remark")
+  private String remark;
 
   @Column(name = "update_user")
   private long updateUser;
@@ -89,6 +92,14 @@ public class Violate {
     this.hasDeal = hasDeal;
   }
 
+  public String getRemark() {
+    return remark;
+  }
+
+  public void setRemark(String remark) {
+    this.remark = remark;
+  }
+
   public long getUpdateUser() {
     return updateUser;
   }
@@ -125,13 +136,14 @@ public class Violate {
     super();
   }
 
-  public Violate(long id, long carId, Date recordDate, int hasDeal, long updateUser,
+  public Violate(long id, long carId, Date recordDate, int hasDeal, String remark, long updateUser,
       Date updateTime) {
     super();
     this.id = id;
     this.carId = carId;
     this.recordDate = recordDate;
     this.hasDeal = hasDeal;
+    this.remark = remark;
     this.updateUser = updateUser;
     this.updateTime = updateTime;
   }

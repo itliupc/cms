@@ -39,5 +39,11 @@
 				</select>
 			</td>
 		</tr>
+		<tr>
+			<td class="formLayoutTit">备注:</td>
+			<td>
+				<textarea id="violate-remark" name="remark" rows="4" cols="50"></textarea>
+			</td>
+		</tr>
 	</table>
 </form>

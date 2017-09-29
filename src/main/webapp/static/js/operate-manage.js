@@ -40,7 +40,7 @@ var OperateManage = (function () {
 		query: function(){
 			var carNum=$("#operate-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#operate-search").find("input[name='operateNum']").val().toUpperCase();
-			var deadline=$("#operate-deadline").combobox('getValue');
+			var deadline=$("#operate-search").find("#operate-deadline").combobox('getValue');
 			$("#operate-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'deadline':deadline});
 		},
 		/**
@@ -132,7 +132,6 @@ var OperateManage = (function () {
 					record.operateNum = record.car.operateNum;
 					record.ownerName = record.car.ownerName;
 					record.ownerPhone = record.car.ownerPhone;
-					$("#operate-edit").form('load',record);
 					$("#operate-edit").form('load',record);
 					$("#operate-edit").find("input[name='carNum']").parent().unbind('click').bind('click',function(){
 						CommonUtil.carSelect('operate-edit');

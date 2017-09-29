@@ -73,7 +73,7 @@ var UserManage = (function () {
 							var userName=$.trim($("#user-add").find("input[name='userName']").val());
 							var email=$.trim($("#user-add").find("input[name='email']").val());
 							var phone=$.trim($("#user-add").find("input[name='phone']").val());
-							var status=$("#user-status").combobox('getValue');
+							var status=$("#user-add").find("#user-status").combobox('getValue');
 							$.ajax({
 								method : 'post',
 								url : 'user-manage/addUser',
@@ -133,7 +133,7 @@ var UserManage = (function () {
 							var userName=$.trim($("#user-edit").find("input[name='userName']").val());
 							var email=$.trim($("#user-edit").find("input[name='email']").val());
 							var phone=$.trim($("#user-edit").find("input[name='phone']").val());
-							var status=$("#user-status").combobox('getValue');
+							var status=$("#user-edit").find("#user-status").combobox('getValue');
 							
 							$.ajax({
 								method : 'post',

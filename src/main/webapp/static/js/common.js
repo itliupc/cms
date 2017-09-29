@@ -1,10 +1,12 @@
-jQuery(function($){  
+jQuery(function($){
     // 备份jquery的ajax方法    
-    var _ajax = $.ajax;  
+    var _ajax = $.ajax; 
     // 重写ajax方法，先判断登录在执行success函数   
     $.ajax = function(opt){  
+    	var _url = opt.url != undefined ? ((opt.url.indexOf("?") > 0 ? "&" : "?") + "_=" + $.now()) : "";
         var _success = opt && opt.success || function(a, b){};  
-        var _opt = $.extend(opt, {  
+        var _opt = $.extend(opt, {
+        	url:opt.url + _url,
             success:function(data, textStatus){
                 // 如果后台将请求重定向到了登录页  
                 if(data && data.toString().indexOf('check_session_for_login') != -1) {  

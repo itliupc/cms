@@ -76,7 +76,7 @@ var InsureManage = (function () {
 		query: function(){
 			var carNum=$("#insure-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#insure-search").find("input[name='operateNum']").val().toUpperCase();
-			var deadline=$("#search-deadline").combobox('getValue');
+			var deadline=$("#insure-search").find("#search-deadline").combobox('getValue');
 			$("#insure-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'deadline':deadline});
 		},
 		/**
@@ -121,9 +121,9 @@ var InsureManage = (function () {
 							var carId = $("#insure-add").find("input[name='carId']").val();
 							var forceInsure = $("#insure-add").find("input[name='forceInsure']").val();
 							var busInsure = $("#insure-add").find("input[name='busInsure']").val();
-							var outBuy=$("#insure-out-buy").combobox('getValue');
+							var outBuy=$("#insure-add").find("#insure-out-buy").combobox('getValue');
 							var hasPay = 1; var hasReceive = 1;
-							var doType=$("#insure-do-type").combobox('getValue');
+							var doType=$("#insure-add").find("#insure-do-type").combobox('getValue');
 							if("1" == doType){
 								hasPay = 0;
 							} else if("2" == doType) {
@@ -211,9 +211,9 @@ var InsureManage = (function () {
 							var carId=$.trim($("#insure-edit").find("input[name='carId']").val());
 							var forceInsure = $("#insure-edit").find("input[name='forceInsure']").val();
 							var busInsure = $("#insure-edit").find("input[name='busInsure']").val();
-							var outBuy=$("#insure-out-buy").combobox('getValue');
+							var outBuy=$("#insure-edit").find("#insure-out-buy").combobox('getValue');
 							var hasPay = 1; var hasReceive = 1;
-							var doType=$("#insure-do-type").combobox('getValue');
+							var doType=$("#insure-edit").find("#insure-do-type").combobox('getValue');
 							if("1" == doType){
 								hasPay = 0;
 							} else if("2" == doType) {

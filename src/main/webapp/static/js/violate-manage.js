@@ -78,7 +78,7 @@ var ViolateManage = (function () {
 		query: function(){
 			var carNum=$("#violate-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#violate-search").find("input[name='operateNum']").val().toUpperCase();
-			var hasDeal=$("#violate-hasDeal").combobox('getValue');
+			var hasDeal=$("#violate-search").find("#violate-hasDeal").combobox('getValue');
 			$("#violate-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'hasDeal':hasDeal});
 		},
 		/**
@@ -95,7 +95,7 @@ var ViolateManage = (function () {
 			$("#add_violate_dialog").dialog({
 				title : '新增',
 				width : 500,
-				height : 290,
+				height : 355,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -122,14 +122,16 @@ var ViolateManage = (function () {
 						if($("#violate-add").form('validate')){
 							var carId = $("#violate-add").find("input[name='carId']").val();
 							var recordDate = $("#violate-add").find("input[name='recordDate']").val();
-							var hasDeal=$("#violate-has-deal").combobox('getValue');
+							var hasDeal=$("#violate-add").find("#violate-has-deal").combobox('getValue');
+							var remark = $("#violate-add").find("#violate-remark").val();
 							$.ajax({
 								method : 'post',
 								url : 'violate-manage/addViolate',
 								data : {
 									'carId' : carId,
 									'recordDate' : recordDate,
-									'hasDeal' : hasDeal
+									'hasDeal' : hasDeal,
+									'remark' : remark
 								},
 								async : false,
 								success : function(data) {
@@ -161,7 +163,7 @@ var ViolateManage = (function () {
 			$("#edit_violate_dialog").dialog({
 				title : '编辑',
 				width : 500,
-				height : 290,
+				height : 355,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -172,7 +174,6 @@ var ViolateManage = (function () {
 					record.operateNum = record.car.operateNum;
 					record.ownerName = record.car.ownerName;
 					record.ownerPhone = record.car.ownerPhone;
-					$("#violate-edit").form('load',record);
 					$("#violate-edit").form('load',record);
 					$("#violate-edit").find("input[name='carNum']").parent().unbind('click').bind('click',function(){
 						CommonUtil.carSelect('violate-edit');
@@ -195,7 +196,8 @@ var ViolateManage = (function () {
 							var id=$.trim($("#violate-edit").find("input[name='id']").val());
 							var carId = $("#violate-edit").find("input[name='carId']").val();
 							var recordDate = $("#violate-edit").find("input[name='recordDate']").val();
-							var hasDeal=$("#violate-has-deal").combobox('getValue');
+							var hasDeal=$("#violate-edit").find("#violate-has-deal").combobox('getValue');
+							var remark = $("#violate-edit").find("#violate-remark").val();
 							$.ajax({
 								method : 'post',
 								url : 'violate-manage/editViolate',
@@ -203,7 +205,8 @@ var ViolateManage = (function () {
 									'id' : id,
 									'carId' : carId,
 									'recordDate' : recordDate,
-									'hasDeal' : hasDeal
+									'hasDeal' : hasDeal,
+									'remark' : remark
 								},
 								async : false,
 								success : function(data) {

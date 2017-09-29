@@ -40,7 +40,7 @@ var GpsManage = (function () {
 		query: function(){
 			var carNum=$("#gps-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#gps-search").find("input[name='operateNum']").val().toUpperCase();
-			var deadline=$("#gps-deadline").combobox('getValue');
+			var deadline=$("#gps-search").find("#gps-deadline").combobox('getValue');
 			$("#gps-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'deadline':deadline});
 		},
 		/**
@@ -132,7 +132,6 @@ var GpsManage = (function () {
 					record.operateNum = record.car.operateNum;
 					record.ownerName = record.car.ownerName;
 					record.ownerPhone = record.car.ownerPhone;
-					$("#gps-edit").form('load',record);
 					$("#gps-edit").form('load',record);
 					$("#gps-edit").find("input[name='carNum']").parent().unbind('click').bind('click',function(){
 						CommonUtil.carSelect('gps-edit');

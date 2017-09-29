@@ -52,6 +52,7 @@
 					<th field="ownerPhone" width="70" data-options="formatter: function(value, row, index){return row.car.ownerPhone}">联系方式</th>
 					<th field="recordDate" width="80" data-options="formatter: ViolateManage.formatRowDate">违章日期</th>
 					<th field="hasDeal" width="30" data-options="formatter: ViolateManage.formatHasDeal">缴费情况</th>
+					<th field="remark" width="80">备注</th>
 					<th field="user.name" width="60" data-options="formatter: ViolateManage.formatOperateUser">操作员</th>
 					<th data-options="field:'fck', width:60, formatter:ViolateManage.editBtn" align="left">操作</th>
 				</tr>

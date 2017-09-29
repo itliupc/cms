@@ -40,7 +40,7 @@ var ExamManage = (function () {
 		query: function(){
 			var carNum=$("#exam-search").find("input[name='carNum']").val().toUpperCase();
 			var operateNum=$("#exam-search").find("input[name='operateNum']").val().toUpperCase();
-			var deadline=$("#exam-deadline").combobox('getValue');
+			var deadline=$("#exam-search").find("#exam-deadline").combobox('getValue');
 			$("#exam-datagrid").datagrid('load',{'carNum':carNum,'operateNum':operateNum,'deadline':deadline});
 		},
 		/**
@@ -132,7 +132,6 @@ var ExamManage = (function () {
 					record.operateNum = record.car.operateNum;
 					record.ownerName = record.car.ownerName;
 					record.ownerPhone = record.car.ownerPhone;
-					$("#exam-edit").form('load',record);
 					$("#exam-edit").form('load',record);
 					$("#exam-edit").find("input[name='carNum']").parent().unbind('click').bind('click',function(){
 						CommonUtil.carSelect('exam-edit');
