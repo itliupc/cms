@@ -30,10 +30,10 @@
 					</td>
 				</tr>
 				<tr style="height:45px;">
-					<td  style="text-align:right"  width='100px' colspan="3">
+					<td  style="text-align:right"  width='450px' colspan="3">
 						<a href="#" style="margin-right:50px;" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="javascript:InsureManage.query()">查询</a>
 					</td>
-					<td  style="text-align:left" width='100px' colspan="3">
+					<td  style="text-align:left" width='450px' colspan="3">
 						<a href="#" style="margin-left:50px;" class="easyui-linkbutton" iconCls="icon-reload" plain="false" onclick="javascript:InsureManage.reset()">重置</a>
 					</td>
 				</tr>
