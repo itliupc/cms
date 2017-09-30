@@ -3,6 +3,9 @@
 	<head>
 		<title>车辆信息管理系统</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" href="static/images/liu.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="static/images/liu.ico" type="image/x-icon" />
