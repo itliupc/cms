@@ -202,6 +202,12 @@ public class ExpController {
     cell.setCellStyle(cs);
     cell.setCellValue("外购");
 
+    CellStyle greyCell = this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index);
+    CellStyle redCell = this.createStyle(workbook, HSSFColor.RED.index);
+    CellStyle yellowCell = this.createStyle(workbook, HSSFColor.YELLOW.index);
+    CellStyle blueCell = this.createStyle(workbook, HSSFColor.LIGHT_BLUE.index);
+    CellStyle greenCell = this.createStyle(workbook, HSSFColor.GREEN.index);
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Insure> insures = insureService.getInsureList(map).getContent();
     for (int i = 1; i <= insures.size(); i++) {
@@ -220,10 +226,10 @@ public class ExpController {
       cell = row.createCell((int) 3);
       if (null != insure.getForceInsure()) {
         if (insure.getForceInsure().before(DateUtils.formatSqlDate(0))) {
-          cell.setCellStyle(this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index));
+          cell.setCellStyle(greyCell);
         } else if (DateUtils.formatSqlDate(0).before(insure.getForceInsure())
             && insure.getForceInsure().before(DateUtils.formatSqlDate(2))) {
-          cell.setCellStyle(this.createStyle(workbook, HSSFColor.RED.index));
+          cell.setCellStyle(redCell);
         }
         cell.setCellValue(sdf.format(insure.getForceInsure()));
       } else {
@@ -233,10 +239,10 @@ public class ExpController {
       cell = row.createCell((int) 4);
       if (null != insure.getBusInsure()) {
         if (insure.getBusInsure().before(DateUtils.formatSqlDate(0))) {
-          cell.setCellStyle(this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index));
+          cell.setCellStyle(greyCell);
         } else if (DateUtils.formatSqlDate(0).before(insure.getBusInsure())
             && insure.getBusInsure().before(DateUtils.formatSqlDate(2))) {
-          cell.setCellStyle(this.createStyle(workbook, HSSFColor.RED.index));
+          cell.setCellStyle(redCell);
         }
         cell.setCellValue(sdf.format(insure.getBusInsure()));
       } else {
@@ -245,7 +251,7 @@ public class ExpController {
 
       cell = row.createCell((int) 5);
       if (0 == insure.getHasPay()) {
-        cell.setCellStyle(this.createStyle(workbook, HSSFColor.YELLOW.index));
+        cell.setCellStyle(yellowCell);
         cell.setCellValue("是");
       } else {
         cell.setCellValue("");
@@ -253,7 +259,7 @@ public class ExpController {
 
       cell = row.createCell((int) 6);
       if (0 == insure.getHasReceive()) {
-        cell.setCellStyle(this.createStyle(workbook, HSSFColor.LIGHT_BLUE.index));
+        cell.setCellStyle(blueCell);
         cell.setCellValue("是");
       } else {
         cell.setCellValue("");
@@ -261,7 +267,7 @@ public class ExpController {
 
       cell = row.createCell((int) 7);
       if (1 == insure.getOutBuy()) {
-        cell.setCellStyle(this.createStyle(workbook, HSSFColor.GREEN.index));
+        cell.setCellStyle(greenCell);
         cell.setCellValue("是");
       } else {
         cell.setCellValue("");
@@ -372,6 +378,9 @@ public class ExpController {
     cell.setCellStyle(cs);
     cell.setCellValue("GPS止期");
 
+    CellStyle greyCell = this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index);
+    CellStyle redCell = this.createStyle(workbook, HSSFColor.RED.index);
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Gps> gpsList = gpsService.getGpsList(map).getContent();
     for (int i = 1; i <= gpsList.size(); i++) {
@@ -389,6 +398,12 @@ public class ExpController {
 
       cell = row.createCell((int) 3);
       if (null != gps.getEndDate()) {
+        if (gps.getEndDate().before(DateUtils.formatSqlDate(0))) {
+          cell.setCellStyle(greyCell);
+        } else if (DateUtils.formatSqlDate(0).before(gps.getEndDate())
+            && gps.getEndDate().before(DateUtils.formatSqlDate(2))) {
+          cell.setCellStyle(redCell);
+        }
         cell.setCellValue(sdf.format(gps.getEndDate()));
       } else {
         cell.setCellValue("");
@@ -430,6 +445,9 @@ public class ExpController {
     cell.setCellStyle(cs);
     cell.setCellValue("营运证止期");
 
+    CellStyle greyCell = this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index);
+    CellStyle redCell = this.createStyle(workbook, HSSFColor.RED.index);
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Operate> operateList = operateService.getOperateList(map).getContent();
     for (int i = 1; i <= operateList.size(); i++) {
@@ -447,6 +465,12 @@ public class ExpController {
 
       cell = row.createCell((int) 3);
       if (null != operate.getEndDate()) {
+        if (operate.getEndDate().before(DateUtils.formatSqlDate(0))) {
+          cell.setCellStyle(greyCell);
+        } else if (DateUtils.formatSqlDate(0).before(operate.getEndDate())
+            && operate.getEndDate().before(DateUtils.formatSqlDate(2))) {
+          cell.setCellStyle(redCell);
+        }
         cell.setCellValue(sdf.format(operate.getEndDate()));
       } else {
         cell.setCellValue("");
@@ -488,6 +512,9 @@ public class ExpController {
     cell.setCellStyle(cs);
     cell.setCellValue("年审日期");
 
+    CellStyle greyCell = this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index);
+    CellStyle redCell = this.createStyle(workbook, HSSFColor.RED.index);
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Exam> examList = examService.getExamList(map).getContent();
     for (int i = 1; i <= examList.size(); i++) {
@@ -505,6 +532,12 @@ public class ExpController {
 
       cell = row.createCell((int) 3);
       if (null != exam.getEndDate()) {
+        if (exam.getEndDate().before(DateUtils.formatSqlDate(0))) {
+          cell.setCellStyle(greyCell);
+        } else if (DateUtils.formatSqlDate(0).before(exam.getEndDate())
+            && exam.getEndDate().before(DateUtils.formatSqlDate(2))) {
+          cell.setCellStyle(redCell);
+        }
         cell.setCellValue(sdf.format(exam.getEndDate()));
       } else {
         cell.setCellValue("");
@@ -546,6 +579,9 @@ public class ExpController {
     cell.setCellStyle(cs);
     cell.setCellValue("管理费止期");
 
+    CellStyle greyCell = this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index);
+    CellStyle redCell = this.createStyle(workbook, HSSFColor.RED.index);
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Manage> manageList = manageService.getManageList(map).getContent();
     for (int i = 1; i <= manageList.size(); i++) {
@@ -563,6 +599,12 @@ public class ExpController {
 
       cell = row.createCell((int) 3);
       if (null != manage.getEndDate()) {
+        if (manage.getEndDate().before(DateUtils.formatSqlDate(0))) {
+          cell.setCellStyle(greyCell);
+        } else if (DateUtils.formatSqlDate(0).before(manage.getEndDate())
+            && manage.getEndDate().before(DateUtils.formatSqlDate(2))) {
+          cell.setCellStyle(redCell);
+        }
         cell.setCellValue(sdf.format(manage.getEndDate()));
       } else {
         cell.setCellValue("");
@@ -573,8 +615,8 @@ public class ExpController {
 
   private CellStyle createStyle(HSSFWorkbook workbook, short index) {
     CellStyle cs = workbook.createCellStyle();
-    cs.setFillForegroundColor(index);
     cs.setFillPattern(CellStyle.SOLID_FOREGROUND);
+    cs.setFillForegroundColor(index);
     return cs;
   }
 }

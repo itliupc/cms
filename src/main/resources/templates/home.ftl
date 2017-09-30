@@ -2,7 +2,7 @@
 	<div region="north" split="false" border="false" style="overflow:hidden;height:197px;" >
 		<div class="cui-table-container" style="overflow:hidden;margin-bottom: 0px;">
 			<div class="head">常用功能</div>
-			<div style="height: 104px; overflow: auto;">
+			<div style="height: 110px; overflow: auto;">
 				<div class="cui-kj-list">
 					<div class="item">
 						<img src="static/images/icon-01.png" onclick="openTab('insure-dashed')">

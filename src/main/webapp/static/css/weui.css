@@ -141,8 +141,8 @@ input[type="checkbox"] { cursor: pointer;}
 }
 
 .cui-kj-list{
-	display:flex;
-	flex-wrap: wrap;
+	display:block;
+	/*flex-wrap: wrap;*/
 	/*justify-content:space-around;*/
 }
 

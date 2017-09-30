@@ -1,7 +1,7 @@
 ﻿<div class="easyui-layout" style="height:100%;">
-	<div region="north" split="true" title="查询区" style="height:170px;" >
+	<div region="north" split="true" title="查询区" style="height:180px;" >
 		<form id="exam-search" class="easyui-form">
-			<table width='80%' style="margin:15px auto;">
+			<table style="margin:15px auto;min-width:915px;">
 				<tr style="height:45px;">
 					<td width='100px' align="right">
 						<label for="carNum" >车号:</label>
