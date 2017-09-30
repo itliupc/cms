@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="icon" href="static/images/liu.ico" type="image/x-icon" />
-  	<link rel="shortcut icon" href="static/images/liu.ico" type="image/x-icon" />
-  	<link rel="bookmark" href="static/images/liu.ico" type="image/x-icon" />
+	<title>车辆信息管理系统</title> 
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Cache-Control" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
-	<title>车辆信息管理系统</title> 
+	<link rel="icon" href="static/images/liu.ico" type="image/x-icon" />
+  	<link rel="shortcut icon" href="static/images/liu.ico" type="image/x-icon" />
+  	<link rel="bookmark" href="static/images/liu.ico" type="image/x-icon" />
 	<link href="static/css/login.css" type="text/css" rel="stylesheet" /> 
 	<link href="static/css/bootstrap.min.css" type="text/css" rel="stylesheet" /> 
 	<script type="text/javascript" src="static/easyui/1.5.2/jquery.min.js"></script>
