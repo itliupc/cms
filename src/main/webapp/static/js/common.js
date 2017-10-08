@@ -108,7 +108,9 @@ var DateUtil = (function () {
 		formatDatebox : function(value) {  
 		    if (value == null || value == '') {  
 		        return '';  
-		    }  
+		    } else if(String(value).indexOf('-')>-1){
+		    	return value; 
+		    } 
 		    var dt;  
 		    if (value instanceof Date) {  
 		        dt = value;  
