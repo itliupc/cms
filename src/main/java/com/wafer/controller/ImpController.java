@@ -173,6 +173,14 @@ public class ImpController {
           userId = principal.getUserId();
         }
         importOperate(row, userId);
+      } else if ("car".equalsIgnoreCase(name)) {
+        SysUser principal =
+            (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long userId = 0L;
+        if (principal instanceof SysUser) {
+          userId = principal.getUserId();
+        }
+        importCar(row, userId);
       }
     }
     in.close();
@@ -241,6 +249,7 @@ public class ImpController {
       String carNum = getCellValue(row.getCell(1)).trim();
       String recordDate = getCellValue(row.getCell(3)).trim();
       String hasDeal = getCellValue(row.getCell(4)).trim();
+      String remark = getCellValue(row.getCell(5)).trim();
       Car car = carService.findByOperateNum(operateNum);
       if (null == car) {
         car = new Car();
@@ -262,6 +271,7 @@ public class ImpController {
       } else {
         violate.setHasDeal(0);
       }
+      violate.setRemark(remark);
       violate.setUpdateUser(userId);
       violateService.violateSave(violate);
     }
@@ -328,6 +338,29 @@ public class ImpController {
       }
       operate.setUpdateUser(userId);
       operateService.operateSave(operate);
+    }
+  }
+  
+  private void importCar(Row row, long userId) throws ParseException {
+    String operateNum = getCellValue(row.getCell(2)).trim();
+    if (null != operateNum && !operateNum.isEmpty()) {
+      String carNum = getCellValue(row.getCell(1)).trim();
+      String ownerName = getCellValue(row.getCell(3)).trim();
+      String ownerPhone = getCellValue(row.getCell(4)).trim();
+      Car car = carService.findByOperateNum(operateNum);
+      if(null == car) {
+        car = new Car();
+        car.setOperateNum(operateNum);
+      }
+      car.setCarNum(carNum);
+      if(null != ownerName && !ownerName.isEmpty()){
+        car.setOwnerName(ownerName);
+      }
+      if(null != ownerPhone && !ownerPhone.isEmpty()){
+        car.setOwnerPhone(ownerPhone);
+      }
+      car.setUpdateUser(userId);
+      carService.carSave(car);
     }
   }
 

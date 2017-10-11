@@ -45,7 +45,11 @@
 		</table>
 		<div id="car-toolbar">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:CarManage.add()">新增</a>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:CarManage.remove()">删除</a>
+			<#if userRole == 0>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:CarManage.remove()">删除</a>
+			</#if>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="javascript:CarManage.importData()">数据导入</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:CarManage.exportData()">数据导出</a>
 		</div>
 	</div>
 </div>

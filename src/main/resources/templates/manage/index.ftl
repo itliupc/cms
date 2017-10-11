@@ -50,7 +50,7 @@
 					<th field="operateNum" width="70" data-options="formatter: function(value, row, index){return row.car.operateNum}">建运号</th>
 					<th field="ownerName" width="60" data-options="formatter: function(value, row, index){return row.car.ownerName}">车主姓名</th>
 					<th field="ownerPhone" width="70" data-options="formatter: function(value, row, index){return row.car.ownerPhone}">联系方式</th>
-					<th field="endDate" width="80" data-options="styler:ManageManage.dateRowStyle,formatter: ManageManage.formatRowDate">管理费止期</th>
+					<th field="endDate" width="80" data-options="sortable:true,styler:ManageManage.dateRowStyle,formatter: ManageManage.formatRowDate">管理费止期</th>
 					<th field="user.name" width="60" data-options="formatter: ManageManage.formatOperateUser">操作员</th>
 					<th data-options="field:'fck', width:60, formatter:ManageManage.editBtn" align="left">操作</th>
 				</tr>

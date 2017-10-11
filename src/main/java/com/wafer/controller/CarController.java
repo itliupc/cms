@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.wafer.domain.Car;
 import com.wafer.security.domain.SysUser;
@@ -34,8 +35,17 @@ public class CarController {
   Logger logger = LoggerFactory.getLogger(CarController.class);
 
   @RequestMapping(value = "/view/{page}")
-  public String loginView(@PathVariable String page) {
-    return "car/" + page;
+  public ModelAndView loginView(@PathVariable String page) {
+    SysUser principal =
+        (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    int userRole = 1;
+    if (principal instanceof SysUser) {
+      userRole = principal.getUserAuthority();
+    }
+    ModelAndView view = new ModelAndView();
+    view.setViewName("car/" + page);
+    view.addObject("userRole", userRole);
+    return view;
   }
 
   /**

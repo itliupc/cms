@@ -21,6 +21,7 @@
 					<td width='200px' align="left">
 						<select id="violate-hasDeal" class="easyui-combobox" name="hasDeal" data-options="editable:false" style="width:135px;">
 						    <option value="">全部</option>
+						    <option value="0">&nbsp;</option>
 						    <option value="1">已缴费</option>
 						</select>
 					</td>
@@ -50,7 +51,7 @@
 					<th field="operateNum" width="70" data-options="formatter: function(value, row, index){return row.car.operateNum}">建运号</th>
 					<th field="ownerName" width="60" data-options="formatter: function(value, row, index){return row.car.ownerName}">车主姓名</th>
 					<th field="ownerPhone" width="70" data-options="formatter: function(value, row, index){return row.car.ownerPhone}">联系方式</th>
-					<th field="recordDate" width="80" data-options="formatter: ViolateManage.formatRowDate">违章日期</th>
+					<th field="recordDate" width="80" data-options="sortable:true,styler:ViolateManage.dateRowStyle,formatter: ViolateManage.formatRowDate">违章日期</th>
 					<th field="hasDeal" width="30" data-options="formatter: ViolateManage.formatHasDeal">缴费情况</th>
 					<th field="remark" width="80">备注</th>
 					<th field="user.name" width="60" data-options="formatter: ViolateManage.formatOperateUser">操作员</th>

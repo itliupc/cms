@@ -47,13 +47,13 @@
 						<th field="carNum" width="60">车号</th>
 						<th field="operateNum" width="60">建运号</th>
 						<th field="ownerName" width="60">车主姓名</th>
-						<th field="forceInsure" width="60" data-options="formatter:HomeManage.formatRowDate">交强止期</th>
-						<th field="busInsure" width="60" data-options="formatter:HomeManage.formatRowDate">商业止期</th>
-						<th field="gpsDate" width="60" data-options="formatter:HomeManage.formatRowDate">GPS止期</th>
-						<th field="examDate" width="60" data-options="formatter:HomeManage.formatRowDate">年审日期</th>
-						<th field="operateDate" width="60" data-options="formatter:HomeManage.formatRowDate">营运证止期</th>
-						<th field="manageDate" width="60" data-options="formatter:HomeManage.formatRowDate">管理费止期</th>
-						<th field="violateNum" width="60" data-options="formatter:function(value, row, index){if(!value || 0==value){return '';}else{return '共'+value+'条';}}">未处理违章</th>
+						<th field="forceInsure" width="60" data-options="sortable:true,formatter:HomeManage.formatRowDate">交强止期</th>
+						<th field="busInsure" width="60" data-options="sortable:true,formatter:HomeManage.formatRowDate">商业止期</th>
+						<th field="gpsDate" width="60" data-options="sortable:true,formatter:HomeManage.formatRowDate">GPS止期</th>
+						<th field="examDate" width="60" data-options="sortable:true,formatter:HomeManage.formatRowDate">年审日期</th>
+						<th field="operateDate" width="60" data-options="sortable:true,formatter:HomeManage.formatRowDate">营运证止期</th>
+						<th field="manageDate" width="60" data-options="sortable:true,formatter:HomeManage.formatRowDate">管理费止期</th>
+						<th field="violateNum" width="60" data-options="sortable:true,formatter:function(value, row, index){if(!value || 0==value){return '';}else{return '共'+value+'条';}}">未处理违章</th>
 						<th data-options="field:'fck', width:50, formatter:HomeManage.operateBtn" align="left">操作</th>
 					</tr>
 				</thead>

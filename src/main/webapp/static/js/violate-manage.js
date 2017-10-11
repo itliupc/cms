@@ -72,6 +72,23 @@ var ViolateManage = (function () {
 				return "";
 			}
 		},
+		dateRowStyle : function(value, row, index){
+			var currentDate = new Date();
+			currentDate.setHours(0);
+			currentDate.setMinutes(0);
+			currentDate.setSeconds(0);
+			currentDate.setMilliseconds(0);
+			var currentTimes = currentDate.getTime();
+			currentDate.setMonth(currentDate.getMonth()+2);
+			var afterTimes = currentDate.getTime();
+			if(!value){//日期空:白色
+				return 'background-color:white;';
+			}else if(currentTimes > value){//已过期:灰色
+				return 'background-color:grey;color:#fff;font-weight:bold;';
+			} else if(afterTimes > value){//即将过期:红色
+				return 'background-color:red;color:#fff;font-weight:bold;';
+			}
+		},
 		/**
 		 * 查询按钮事件
 		 */
@@ -95,7 +112,7 @@ var ViolateManage = (function () {
 			$("#add_violate_dialog").dialog({
 				title : '新增',
 				width : 500,
-				height : 355,
+				height : 375,
 				closed : false,
 				cache : false,
 				resizable : false,
@@ -163,7 +180,7 @@ var ViolateManage = (function () {
 			$("#edit_violate_dialog").dialog({
 				title : '编辑',
 				width : 500,
-				height : 355,
+				height : 375,
 				closed : false,
 				cache : false,
 				resizable : false,

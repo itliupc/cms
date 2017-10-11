@@ -36,7 +36,14 @@ public class InsureService {
   }
 
   public Page<Insure> getInsureList(Map<String, String> param) {
-    Sort sort = new Sort(Sort.Direction.DESC, "id");
+    Sort sort = null;
+    if (param.containsKey("sort")) {
+      sort = new Sort(
+          param.get("order").equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC,
+          param.get("sort"));
+    } else {
+      sort = new Sort(Sort.Direction.DESC, "id");
+    }
     int pageNum = Integer.parseInt(String.valueOf(param.get("page")));
     int pageSize = Integer.parseInt(String.valueOf(param.get("rows")));
     final String operateNum = param.containsKey("operateNum") ? param.get("operateNum") : null;

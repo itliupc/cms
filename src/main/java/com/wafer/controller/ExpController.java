@@ -27,12 +27,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.wafer.domain.Car;
 import com.wafer.domain.Exam;
 import com.wafer.domain.Gps;
 import com.wafer.domain.Insure;
 import com.wafer.domain.Manage;
 import com.wafer.domain.Operate;
 import com.wafer.domain.Violate;
+import com.wafer.service.CarService;
 import com.wafer.service.ExamService;
 import com.wafer.service.GpsService;
 import com.wafer.service.InsureService;
@@ -46,6 +48,9 @@ import com.wafer.utils.DateUtils;
 @RequestMapping("/exp-manage")
 @Transactional
 public class ExpController {
+
+  @Autowired
+  CarService carService;
 
   @Autowired
   InsureService insureService;
@@ -78,43 +83,81 @@ public class ExpController {
     response.setContentType("application/vnd.ms-excel");
     String codedFileName = null;
     OutputStream fOut = null;
+    String agent = request.getHeader("USER-AGENT").toLowerCase();
+    String fileCode = "UTF-8";
+    if (agent.indexOf("firefox") > -1) {
+      fileCode = "ISO8859-1";
+    }
     try {
       if ("insure".equalsIgnoreCase(name)) {
         // 进行转码，使其支持中文文件名
-        codedFileName = java.net.URLEncoder.encode("保险清单", "UTF-8");
+        if (agent.indexOf("firefox") > -1) {
+          codedFileName = new String("保险清单".getBytes(), fileCode);
+        } else {
+          codedFileName = java.net.URLEncoder.encode("保险清单", fileCode);
+        }
         map.put("carNum", param1);
         map.put("operateNum", param2);
         map.put("deadline", param3);
       } else if ("violate".equalsIgnoreCase(name)) {
         // 进行转码，使其支持中文文件名
-        codedFileName = java.net.URLEncoder.encode("违章清单", "UTF-8");
+        if (agent.indexOf("firefox") > -1) {
+          codedFileName = new String("违章清单".getBytes(), fileCode);
+        } else {
+          codedFileName = java.net.URLEncoder.encode("违章清单", fileCode);
+        }
         map.put("carNum", param1);
         map.put("operateNum", param2);
         map.put("hasDeal", param3);
       } else if ("gps".equalsIgnoreCase(name)) {
         // 进行转码，使其支持中文文件名
-        codedFileName = java.net.URLEncoder.encode("GPS清单", "UTF-8");
+        if (agent.indexOf("firefox") > -1) {
+          codedFileName = new String("GPS清单".getBytes(), fileCode);
+        } else {
+          codedFileName = java.net.URLEncoder.encode("GPS清单", fileCode);
+        }
         map.put("carNum", param1);
         map.put("operateNum", param2);
         map.put("deadline", param3);
       } else if ("operate".equalsIgnoreCase(name)) {
         // 进行转码，使其支持中文文件名
-        codedFileName = java.net.URLEncoder.encode("营运清单", "UTF-8");
+        if (agent.indexOf("firefox") > -1) {
+          codedFileName = new String("营运清单".getBytes(), fileCode);
+        } else {
+          codedFileName = java.net.URLEncoder.encode("营运清单", fileCode);
+        }
         map.put("carNum", param1);
         map.put("operateNum", param2);
         map.put("deadline", param3);
       } else if ("exam".equalsIgnoreCase(name)) {
         // 进行转码，使其支持中文文件名
-        codedFileName = java.net.URLEncoder.encode("审车清单", "UTF-8");
+        if (agent.indexOf("firefox") > -1) {
+          codedFileName = new String("审车清单".getBytes(), fileCode);
+        } else {
+          codedFileName = java.net.URLEncoder.encode("审车清单", fileCode);
+        }
         map.put("carNum", param1);
         map.put("operateNum", param2);
         map.put("deadline", param3);
       } else if ("manage".equalsIgnoreCase(name)) {
         // 进行转码，使其支持中文文件名
-        codedFileName = java.net.URLEncoder.encode("管理费清单", "UTF-8");
+        if (agent.indexOf("firefox") > -1) {
+          codedFileName = new String("管理费清单".getBytes(), fileCode);
+        } else {
+          codedFileName = java.net.URLEncoder.encode("管理费清单", fileCode);
+        }
         map.put("carNum", param1);
         map.put("operateNum", param2);
         map.put("deadline", param3);
+      } else if ("car".equalsIgnoreCase(name)) {
+        // 进行转码，使其支持中文文件名
+        if (agent.indexOf("firefox") > -1) {
+          codedFileName = new String("车辆清单".getBytes(), fileCode);
+        } else {
+          codedFileName = java.net.URLEncoder.encode("车辆清单", fileCode);
+        }
+        map.put("carNum", param1);
+        map.put("operateNum", param2);
       }
       response.setHeader("content-disposition", "attachment;filename=" + codedFileName + ".xls");
       // 产生工作簿对象
@@ -131,6 +174,8 @@ public class ExpController {
         createExamSheet(workbook, map);
       } else if ("manage".equalsIgnoreCase(name)) {
         createManageSheet(workbook, map);
+      } else if ("car".equalsIgnoreCase(name)) {
+        createCarSheet(workbook, map);
       }
 
       fOut = response.getOutputStream();
@@ -283,6 +328,7 @@ public class ExpController {
     sheet.setColumnWidth(2, 20 * 256);
     sheet.setColumnWidth(3, 20 * 256);
     sheet.setColumnWidth(4, 20 * 256);
+    sheet.setColumnWidth(5, 20 * 256);
     // 加粗
     HSSFFont font = workbook.createFont();
     font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
@@ -314,6 +360,13 @@ public class ExpController {
     cell.setCellStyle(cs);
     cell.setCellValue("缴费情况");
 
+    cell = head.createCell((int) 5);
+    cell.setCellStyle(cs);
+    cell.setCellValue("备注");
+
+    CellStyle greyCell = this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index);
+    CellStyle redCell = this.createStyle(workbook, HSSFColor.RED.index);
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     List<Violate> violates = violateService.getViolateList(map).getContent();
     for (int i = 1; i <= violates.size(); i++) {
@@ -331,6 +384,12 @@ public class ExpController {
 
       cell = row.createCell((int) 3);
       if (null != violate.getRecordDate()) {
+        if (violate.getRecordDate().before(DateUtils.formatSqlDate(0))) {
+          cell.setCellStyle(greyCell);
+        } else if (DateUtils.formatSqlDate(0).before(violate.getRecordDate())
+            && violate.getRecordDate().before(DateUtils.formatSqlDate(2))) {
+          cell.setCellStyle(redCell);
+        }
         cell.setCellValue(sdf.format(violate.getRecordDate()));
       } else {
         cell.setCellValue("");
@@ -341,6 +400,13 @@ public class ExpController {
         cell.setCellValue("");
       } else {
         cell.setCellValue("已缴费");
+      }
+
+      cell = row.createCell((int) 5);
+      if (null == violate.getRemark()) {
+        cell.setCellValue("");
+      } else {
+        cell.setCellValue(violate.getRemark());
       }
     }
   }
@@ -606,6 +672,76 @@ public class ExpController {
           cell.setCellStyle(redCell);
         }
         cell.setCellValue(sdf.format(manage.getEndDate()));
+      } else {
+        cell.setCellValue("");
+      }
+
+    }
+  }
+
+  private void createCarSheet(HSSFWorkbook workbook, Map<String, String> map) {
+    HSSFSheet sheet = workbook.createSheet();
+    sheet.setColumnWidth(0, 20 * 256);
+    sheet.setColumnWidth(1, 20 * 256);
+    sheet.setColumnWidth(2, 20 * 256);
+    sheet.setColumnWidth(3, 20 * 256);
+    sheet.setColumnWidth(4, 20 * 256);
+    // 加粗
+    HSSFFont font = workbook.createFont();
+    font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+    font.setFontHeightInPoints((short) 12);
+    CellStyle cs = workbook.createCellStyle();
+    cs.setFont(font);
+
+    CellStyle contentStyle = workbook.createCellStyle();
+    contentStyle.setAlignment(CellStyle.ALIGN_LEFT);
+
+    HSSFRow head = sheet.createRow((int) 0);
+    HSSFCell cell = head.createCell((int) 0);
+    cell.setCellStyle(cs);
+    cell.setCellValue("序号");
+
+    cell = head.createCell((int) 1);
+    cell.setCellStyle(cs);
+    cell.setCellValue("车号");
+
+    cell = head.createCell((int) 2);
+    cell.setCellStyle(cs);
+    cell.setCellValue("建运号");
+
+    cell = head.createCell((int) 3);
+    cell.setCellStyle(cs);
+    cell.setCellValue("车主姓名");
+
+    cell = head.createCell((int) 4);
+    cell.setCellStyle(cs);
+    cell.setCellValue("联系方式");
+
+
+    List<Car> carList = carService.getCarList(map).getContent();
+    for (int i = 1; i <= carList.size(); i++) {
+      Car car = carList.get(i - 1);
+      HSSFRow row = sheet.createRow((int) i);
+      cell = row.createCell((int) 0);
+      cell.setCellStyle(contentStyle);
+      cell.setCellValue(i);
+
+      cell = row.createCell((int) 1);
+      cell.setCellValue(car.getCarNum());
+
+      cell = row.createCell((int) 2);
+      cell.setCellValue(car.getOperateNum());
+
+      cell = row.createCell((int) 3);
+      if (null != car.getOwnerName()) {
+        cell.setCellValue(car.getOwnerName());
+      } else {
+        cell.setCellValue("");
+      }
+
+      cell = row.createCell((int) 4);
+      if (null != car.getOwnerPhone()) {
+        cell.setCellValue(car.getOwnerPhone());
       } else {
         cell.setCellValue("");
       }

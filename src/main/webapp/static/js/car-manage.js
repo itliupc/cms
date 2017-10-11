@@ -190,6 +190,67 @@ var CarManage = (function () {
 					});
 				}
 			});
+		},
+		/**
+		 * 数据导入
+		 */
+		importData : function(){
+			var importDialog = $("<div id='car-import'></div>").dialog({
+			    title: '数据导入',
+			    width: 400,
+			    height: 160,
+			    closed: false,
+			    cache: false,
+			    resizable : false,
+			    content: '<form method="POST" enctype="multipart/form-data" action="imp-manage/import/car"><table style="margin-top:10px;"><tr style="height:30px;"><td style="width:30%;text-align: center;">车辆清单:</td><td><input id="upfile" name="upfile" type="file"/></td></tr></table></form>',
+			    modal: true,
+			    buttons : [{
+					iconCls: "icon-save",
+					text : '导入',
+					handler : function() {
+						var fileDir = importDialog.find("input[type='file']").val();  
+		                var suffix = fileDir.substr(fileDir.lastIndexOf("."));  
+		                if(!fileDir){  
+		                	$.messager.alert('提示','请选择需要导入的Excel文件！',"info");
+		                } else  if(".xls" != suffix && ".xlsx" != suffix ){  
+		                    $.messager.alert('提示','请选择Excel格式的文件导入！',"info");
+		                } else {
+		                	importDialog.dialog('close');
+		                	$.messager.progress({title: '正在导入'});
+		                	importDialog.find('form').ajaxSubmit({    
+		                            url:'imp-manage/import/car',  
+		                            dataType: 'text',  
+		                            success: function(result){
+		                            	$.messager.progress('close');
+		                            	$("#car-datagrid").datagrid('reload');
+		                            	$.messager.alert('提示','Excel导入成功！',"info");
+		                            },  
+		                            error: function(){
+		                            	$.messager.alert('错误','Excel导入出错！',"warning");
+		                            }  
+		                        });   
+		                }  
+					}
+				},{
+					iconCls: "icon-cancel",
+					text : '关闭',
+					handler : function() {
+						importDialog.dialog('close');
+					}
+				} ]
+			});
+		},
+		/**
+		 * 数据导出
+		 */
+		exportData : function(){
+			$.messager.confirm('提示', '确认要导出数据吗?', function(flag) {
+				if (flag) {
+					var carNum=$("#car-search").find("input[name='carNum']").val().toUpperCase();
+					var operateNum=$("#car-search").find("input[name='operateNum']").val().toUpperCase();
+					window.location.href = "exp-manage/export/car?param1="+carNum+"&param2="+operateNum+"&param3=0";
+				}
+			});
 		}
 	};
 })();

@@ -53,8 +53,8 @@
 					<th field="operateNum" width="70" data-options="formatter: function(value, row, index){return row.car.operateNum}">建运号</th>
 					<th field="ownerName" width="60" data-options="formatter: function(value, row, index){return row.car.ownerName}">车主姓名</th>
 					<th field="ownerPhone" width="70" data-options="formatter: function(value, row, index){return row.car.ownerPhone}">联系方式</th>
-					<th field="forceInsure" width="80" data-options="styler:InsureManage.dateRowStyle,formatter: InsureManage.formatRowDate">交强止期</th>
-					<th field="busInsure" width="80" data-options="styler:InsureManage.dateRowStyle,formatter: InsureManage.formatRowDate">商业止期</th>
+					<th field="forceInsure" width="80" data-options="sortable:true,styler:InsureManage.dateRowStyle,formatter: InsureManage.formatRowDate">交强止期</th>
+					<th field="busInsure" width="80" data-options="sortable:true,styler:InsureManage.dateRowStyle,formatter: InsureManage.formatRowDate">商业止期</th>
 					<th field="hasPay" width="30" data-options="styler:InsureManage.hasPayStyle,formatter: InsureManage.formatHasPay">未缴费</th>
 					<th field="hasReceive" width="30" data-options="styler:InsureManage.hasReceiveStyle,formatter: InsureManage.formatHasReceive">未领取</th>
 					<th field="outBuy" width="20" data-options="styler:InsureManage.outBuyStyle,formatter: InsureManage.formatOutBuy">外购</th>

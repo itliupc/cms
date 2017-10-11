@@ -114,7 +114,13 @@ public class CarService {
       sql.append(" OR c.operate_num like '%").append(searchText.toUpperCase()).append("%' ");
       sql.append(" OR c.owner_name like '%").append(searchText).append("%') ");
     }
-    sql.append(" ORDER BY c.id DESC ");
+    if (param.containsKey("sort")) {
+      sql.append(" ORDER BY ");
+      sql.append(param.get("sort"));
+      sql.append(" ").append(param.get("order")).append(" ");
+    } else {
+      sql.append(" ORDER BY c.id DESC ");
+    }
     Query query = carRepository.createQuery(sql.toString());
     query.setFirstResult((pageNum - 1) * pageSize);
     query.setMaxResults(pageSize);
