@@ -141,47 +141,53 @@ public class ImpController {
       if (row == null) {
         continue;
       }
-      if ("insure".equalsIgnoreCase(name)) {
-        SysUser principal =
-            (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long userId = 0L;
-        if (principal instanceof SysUser) {
-          userId = principal.getUserId();
+      try {
+        if ("insure".equalsIgnoreCase(name)) {
+          SysUser principal =
+              (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+          long userId = 0L;
+          if (principal instanceof SysUser) {
+            userId = principal.getUserId();
+          }
+          importInsure(row, userId);
+        } else if ("violate".equalsIgnoreCase(name)) {
+          SysUser principal =
+              (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+          long userId = 0L;
+          if (principal instanceof SysUser) {
+            userId = principal.getUserId();
+          }
+          importViolate(row, userId);
+        } else if ("gps".equalsIgnoreCase(name)) {
+          SysUser principal =
+              (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+          long userId = 0L;
+          if (principal instanceof SysUser) {
+            userId = principal.getUserId();
+          }
+          importGps(row, userId);
+        } else if ("operate".equalsIgnoreCase(name)) {
+          SysUser principal =
+              (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+          long userId = 0L;
+          if (principal instanceof SysUser) {
+            userId = principal.getUserId();
+          }
+          importOperate(row, userId);
+        } else if ("car".equalsIgnoreCase(name)) {
+          SysUser principal =
+              (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+          long userId = 0L;
+          if (principal instanceof SysUser) {
+            userId = principal.getUserId();
+          }
+          importCar(row, userId);
         }
-        importInsure(row, userId);
-      } else if ("violate".equalsIgnoreCase(name)) {
-        SysUser principal =
-            (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long userId = 0L;
-        if (principal instanceof SysUser) {
-          userId = principal.getUserId();
-        }
-        importViolate(row, userId);
-      } else if ("gps".equalsIgnoreCase(name)) {
-        SysUser principal =
-            (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long userId = 0L;
-        if (principal instanceof SysUser) {
-          userId = principal.getUserId();
-        }
-        importGps(row, userId);
-      } else if ("operate".equalsIgnoreCase(name)) {
-        SysUser principal =
-            (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long userId = 0L;
-        if (principal instanceof SysUser) {
-          userId = principal.getUserId();
-        }
-        importOperate(row, userId);
-      } else if ("car".equalsIgnoreCase(name)) {
-        SysUser principal =
-            (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long userId = 0L;
-        if (principal instanceof SysUser) {
-          userId = principal.getUserId();
-        }
-        importCar(row, userId);
+      } catch (Exception e) {
+        e.printStackTrace();
+        logger.error("错误行-建运号：" + getCellValue(row.getCell(2)).trim());
       }
+
     }
     in.close();
   }
@@ -340,7 +346,7 @@ public class ImpController {
       operateService.operateSave(operate);
     }
   }
-  
+
   private void importCar(Row row, long userId) throws ParseException {
     String operateNum = getCellValue(row.getCell(2)).trim();
     if (null != operateNum && !operateNum.isEmpty()) {
@@ -348,15 +354,15 @@ public class ImpController {
       String ownerName = getCellValue(row.getCell(3)).trim();
       String ownerPhone = getCellValue(row.getCell(4)).trim();
       Car car = carService.findByOperateNum(operateNum);
-      if(null == car) {
+      if (null == car) {
         car = new Car();
         car.setOperateNum(operateNum);
       }
       car.setCarNum(carNum);
-      if(null != ownerName && !ownerName.isEmpty()){
+      if (null != ownerName && !ownerName.isEmpty()) {
         car.setOwnerName(ownerName);
       }
-      if(null != ownerPhone && !ownerPhone.isEmpty()){
+      if (null != ownerPhone && !ownerPhone.isEmpty()) {
         car.setOwnerPhone(ownerPhone);
       }
       car.setUpdateUser(userId);
