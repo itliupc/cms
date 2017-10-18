@@ -36,6 +36,10 @@ public class CarService {
   public Car findByOperateNum(String operateNum) {
     return carRepository.findByOperateNum(operateNum);
   }
+  
+  public Car findByCarNum(String carNum) {
+	return carRepository.findByCarNum(carNum);
+  }
 
   public Page<Car> getCarList(Map<String, String> param) {
     Order order = null;
@@ -177,4 +181,5 @@ public class CarService {
     Map<String, BigInteger> result = (Map<String, BigInteger>) query.getSingleResult();
     return result.get("total");
   }
+
 }

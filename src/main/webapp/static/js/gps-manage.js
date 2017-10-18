@@ -243,9 +243,14 @@ var GpsManage = (function () {
 		                            url:'imp-manage/import/gps',  
 		                            dataType: 'text',  
 		                            success: function(result){
+		                            	debugger
 		                            	$.messager.progress('close');
 		                            	$("#gps-datagrid").datagrid('reload');
-		                            	$.messager.alert('提示','Excel导入成功！',"info");
+		                            	if(result && result.length > 0){
+		                            		$.messager.alert('提示',result+"无对应建运号。");
+		                            	}else{
+		                            		$.messager.alert('提示','Excel导入成功！',"info");
+		                            	}
 		                            },  
 		                            error: function(){
 		                            	$.messager.alert('错误','Excel导入出错！',"warning");

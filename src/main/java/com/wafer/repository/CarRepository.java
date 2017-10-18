@@ -17,6 +17,8 @@ public interface CarRepository extends BaseRepository<Car, Long> {
 
   Car findByOperateNum(String operateNum);
   
+  Car findByCarNum(String carNum);
+  
   Page<Car> findAll(Specification<Car> specification, Pageable pageable);
 
   @Query(value = "from Car c where c.operateNum = :operateNum and c.id != :id")

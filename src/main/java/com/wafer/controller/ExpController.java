@@ -204,6 +204,8 @@ public class ExpController {
     sheet.setColumnWidth(5, 20 * 256);
     sheet.setColumnWidth(6, 20 * 256);
     sheet.setColumnWidth(7, 20 * 256);
+    sheet.setColumnWidth(8, 20 * 256);
+    sheet.setColumnWidth(9, 20 * 256);
     // 加粗
     HSSFFont font = workbook.createFont();
     font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
@@ -226,24 +228,32 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-
+    
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
-    cell.setCellValue("交强止期");
+    cell.setCellValue("车主姓名");
 
     cell = head.createCell((int) 4);
     cell.setCellStyle(cs);
-    cell.setCellValue("商业止期");
+    cell.setCellValue("联系方式");
 
     cell = head.createCell((int) 5);
     cell.setCellStyle(cs);
-    cell.setCellValue("未缴费");
+    cell.setCellValue("交强止期");
 
     cell = head.createCell((int) 6);
     cell.setCellStyle(cs);
-    cell.setCellValue("未领取");
+    cell.setCellValue("商业止期");
 
     cell = head.createCell((int) 7);
+    cell.setCellStyle(cs);
+    cell.setCellValue("未缴费");
+
+    cell = head.createCell((int) 8);
+    cell.setCellStyle(cs);
+    cell.setCellValue("未领取");
+
+    cell = head.createCell((int) 9);
     cell.setCellStyle(cs);
     cell.setCellValue("外购");
 
@@ -267,12 +277,18 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(insure.getCar().getOperateNum());
-
+      
       cell = row.createCell((int) 3);
+      cell.setCellValue(insure.getCar().getOwnerName());
+
+      cell = row.createCell((int) 4);
+      cell.setCellValue(insure.getCar().getOwnerPhone());
+
+      cell = row.createCell((int) 5);
       if (null != insure.getForceInsure()) {
         if (insure.getForceInsure().before(DateUtils.formatSqlDate(0))) {
           cell.setCellStyle(greyCell);
-        } else if (DateUtils.formatSqlDate(0).before(insure.getForceInsure())
+        } else if (!DateUtils.formatSqlDate(0).after(insure.getForceInsure())
             && insure.getForceInsure().before(DateUtils.formatSqlDate(2))) {
           cell.setCellStyle(redCell);
         }
@@ -281,11 +297,11 @@ public class ExpController {
         cell.setCellValue("");
       }
 
-      cell = row.createCell((int) 4);
+      cell = row.createCell((int) 6);
       if (null != insure.getBusInsure()) {
         if (insure.getBusInsure().before(DateUtils.formatSqlDate(0))) {
           cell.setCellStyle(greyCell);
-        } else if (DateUtils.formatSqlDate(0).before(insure.getBusInsure())
+        } else if (!DateUtils.formatSqlDate(0).after(insure.getBusInsure())
             && insure.getBusInsure().before(DateUtils.formatSqlDate(2))) {
           cell.setCellStyle(redCell);
         }
@@ -294,7 +310,7 @@ public class ExpController {
         cell.setCellValue("");
       }
 
-      cell = row.createCell((int) 5);
+      cell = row.createCell((int) 7);
       if (0 == insure.getHasPay()) {
         cell.setCellStyle(yellowCell);
         cell.setCellValue("是");
@@ -302,7 +318,7 @@ public class ExpController {
         cell.setCellValue("");
       }
 
-      cell = row.createCell((int) 6);
+      cell = row.createCell((int) 8);
       if (0 == insure.getHasReceive()) {
         cell.setCellStyle(blueCell);
         cell.setCellValue("是");
@@ -310,7 +326,7 @@ public class ExpController {
         cell.setCellValue("");
       }
 
-      cell = row.createCell((int) 7);
+      cell = row.createCell((int) 9);
       if (1 == insure.getOutBuy()) {
         cell.setCellStyle(greenCell);
         cell.setCellValue("是");
@@ -322,6 +338,112 @@ public class ExpController {
   }
 
   private void createViolateSheet(HSSFWorkbook workbook, Map<String, String> map) {
+    HSSFSheet sheet = workbook.createSheet();
+    sheet.setColumnWidth(0, 20 * 256);
+    sheet.setColumnWidth(1, 20 * 256);
+    sheet.setColumnWidth(2, 20 * 256);
+    sheet.setColumnWidth(3, 20 * 256);
+    sheet.setColumnWidth(4, 20 * 256);
+    sheet.setColumnWidth(5, 20 * 256);
+    sheet.setColumnWidth(6, 20 * 256);
+    sheet.setColumnWidth(7, 20 * 256);
+    // 加粗
+    HSSFFont font = workbook.createFont();
+    font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+    font.setFontHeightInPoints((short) 12);
+    CellStyle cs = workbook.createCellStyle();
+    cs.setFont(font);
+
+    CellStyle contentStyle = workbook.createCellStyle();
+    contentStyle.setAlignment(CellStyle.ALIGN_LEFT);
+
+    HSSFRow head = sheet.createRow((int) 0);
+    HSSFCell cell = head.createCell((int) 0);
+    cell.setCellStyle(cs);
+    cell.setCellValue("序号");
+
+    cell = head.createCell((int) 1);
+    cell.setCellStyle(cs);
+    cell.setCellValue("车号");
+
+    cell = head.createCell((int) 2);
+    cell.setCellStyle(cs);
+    cell.setCellValue("建运号");
+    
+    cell = head.createCell((int) 3);
+    cell.setCellStyle(cs);
+    cell.setCellValue("车主姓名");
+
+    cell = head.createCell((int) 4);
+    cell.setCellStyle(cs);
+    cell.setCellValue("联系方式");
+
+    cell = head.createCell((int) 5);
+    cell.setCellStyle(cs);
+    cell.setCellValue("违章日期");
+
+    cell = head.createCell((int) 6);
+    cell.setCellStyle(cs);
+    cell.setCellValue("缴费情况");
+
+    cell = head.createCell((int) 7);
+    cell.setCellStyle(cs);
+    cell.setCellValue("备注");
+
+    CellStyle greyCell = this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index);
+    CellStyle redCell = this.createStyle(workbook, HSSFColor.RED.index);
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    List<Violate> violates = violateService.getViolateList(map).getContent();
+    for (int i = 1; i <= violates.size(); i++) {
+      Violate violate = violates.get(i - 1);
+      HSSFRow row = sheet.createRow((int) i);
+      cell = row.createCell((int) 0);
+      cell.setCellStyle(contentStyle);
+      cell.setCellValue(i);
+
+      cell = row.createCell((int) 1);
+      cell.setCellValue(violate.getCar().getCarNum());
+
+      cell = row.createCell((int) 2);
+      cell.setCellValue(violate.getCar().getOperateNum());
+      
+      cell = row.createCell((int) 3);
+      cell.setCellValue(violate.getCar().getOwnerName());
+
+      cell = row.createCell((int) 4);
+      cell.setCellValue(violate.getCar().getOwnerPhone());
+
+      cell = row.createCell((int) 5);
+      if (null != violate.getRecordDate()) {
+        if (violate.getRecordDate().before(DateUtils.formatSqlDate(0))) {
+          cell.setCellStyle(greyCell);
+        } else if (!DateUtils.formatSqlDate(0).after(violate.getRecordDate())
+            && violate.getRecordDate().before(DateUtils.formatSqlDate(2))) {
+          cell.setCellStyle(redCell);
+        }
+        cell.setCellValue(sdf.format(violate.getRecordDate()));
+      } else {
+        cell.setCellValue("");
+      }
+
+      cell = row.createCell((int) 6);
+      if (0 == violate.getHasDeal()) {
+        cell.setCellValue("");
+      } else {
+        cell.setCellValue("已缴费");
+      }
+
+      cell = row.createCell((int) 7);
+      if (null == violate.getRemark()) {
+        cell.setCellValue("");
+      } else {
+        cell.setCellValue(violate.getRemark());
+      }
+    }
+  }
+
+  private void createGpsSheet(HSSFWorkbook workbook, Map<String, String> map) {
     HSSFSheet sheet = workbook.createSheet();
     sheet.setColumnWidth(0, 20 * 256);
     sheet.setColumnWidth(1, 20 * 256);
@@ -351,96 +473,16 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-
+    
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
-    cell.setCellValue("违章日期");
+    cell.setCellValue("车主姓名");
 
     cell = head.createCell((int) 4);
     cell.setCellStyle(cs);
-    cell.setCellValue("缴费情况");
+    cell.setCellValue("联系方式");
 
     cell = head.createCell((int) 5);
-    cell.setCellStyle(cs);
-    cell.setCellValue("备注");
-
-    CellStyle greyCell = this.createStyle(workbook, HSSFColor.GREY_40_PERCENT.index);
-    CellStyle redCell = this.createStyle(workbook, HSSFColor.RED.index);
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-    List<Violate> violates = violateService.getViolateList(map).getContent();
-    for (int i = 1; i <= violates.size(); i++) {
-      Violate violate = violates.get(i - 1);
-      HSSFRow row = sheet.createRow((int) i);
-      cell = row.createCell((int) 0);
-      cell.setCellStyle(contentStyle);
-      cell.setCellValue(i);
-
-      cell = row.createCell((int) 1);
-      cell.setCellValue(violate.getCar().getCarNum());
-
-      cell = row.createCell((int) 2);
-      cell.setCellValue(violate.getCar().getOperateNum());
-
-      cell = row.createCell((int) 3);
-      if (null != violate.getRecordDate()) {
-        if (violate.getRecordDate().before(DateUtils.formatSqlDate(0))) {
-          cell.setCellStyle(greyCell);
-        } else if (DateUtils.formatSqlDate(0).before(violate.getRecordDate())
-            && violate.getRecordDate().before(DateUtils.formatSqlDate(2))) {
-          cell.setCellStyle(redCell);
-        }
-        cell.setCellValue(sdf.format(violate.getRecordDate()));
-      } else {
-        cell.setCellValue("");
-      }
-
-      cell = row.createCell((int) 4);
-      if (0 == violate.getHasDeal()) {
-        cell.setCellValue("");
-      } else {
-        cell.setCellValue("已缴费");
-      }
-
-      cell = row.createCell((int) 5);
-      if (null == violate.getRemark()) {
-        cell.setCellValue("");
-      } else {
-        cell.setCellValue(violate.getRemark());
-      }
-    }
-  }
-
-  private void createGpsSheet(HSSFWorkbook workbook, Map<String, String> map) {
-    HSSFSheet sheet = workbook.createSheet();
-    sheet.setColumnWidth(0, 20 * 256);
-    sheet.setColumnWidth(1, 20 * 256);
-    sheet.setColumnWidth(2, 20 * 256);
-    sheet.setColumnWidth(3, 20 * 256);
-    // 加粗
-    HSSFFont font = workbook.createFont();
-    font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
-    font.setFontHeightInPoints((short) 12);
-    CellStyle cs = workbook.createCellStyle();
-    cs.setFont(font);
-
-    CellStyle contentStyle = workbook.createCellStyle();
-    contentStyle.setAlignment(CellStyle.ALIGN_LEFT);
-
-    HSSFRow head = sheet.createRow((int) 0);
-    HSSFCell cell = head.createCell((int) 0);
-    cell.setCellStyle(cs);
-    cell.setCellValue("序号");
-
-    cell = head.createCell((int) 1);
-    cell.setCellStyle(cs);
-    cell.setCellValue("车号");
-
-    cell = head.createCell((int) 2);
-    cell.setCellStyle(cs);
-    cell.setCellValue("建运号");
-
-    cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
     cell.setCellValue("GPS止期");
 
@@ -461,12 +503,18 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(gps.getCar().getOperateNum());
-
+      
       cell = row.createCell((int) 3);
+      cell.setCellValue(gps.getCar().getOwnerName());
+
+      cell = row.createCell((int) 4);
+      cell.setCellValue(gps.getCar().getOwnerPhone());
+
+      cell = row.createCell((int) 5);
       if (null != gps.getEndDate()) {
         if (gps.getEndDate().before(DateUtils.formatSqlDate(0))) {
           cell.setCellStyle(greyCell);
-        } else if (DateUtils.formatSqlDate(0).before(gps.getEndDate())
+        } else if (!DateUtils.formatSqlDate(0).after(gps.getEndDate())
             && gps.getEndDate().before(DateUtils.formatSqlDate(2))) {
           cell.setCellStyle(redCell);
         }
@@ -484,6 +532,8 @@ public class ExpController {
     sheet.setColumnWidth(1, 20 * 256);
     sheet.setColumnWidth(2, 20 * 256);
     sheet.setColumnWidth(3, 20 * 256);
+    sheet.setColumnWidth(4, 20 * 256);
+    sheet.setColumnWidth(5, 20 * 256);
     // 加粗
     HSSFFont font = workbook.createFont();
     font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
@@ -506,8 +556,16 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-
+    
     cell = head.createCell((int) 3);
+    cell.setCellStyle(cs);
+    cell.setCellValue("车主姓名");
+
+    cell = head.createCell((int) 4);
+    cell.setCellStyle(cs);
+    cell.setCellValue("联系方式");
+
+    cell = head.createCell((int) 5);
     cell.setCellStyle(cs);
     cell.setCellValue("营运证止期");
 
@@ -528,12 +586,18 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(operate.getCar().getOperateNum());
-
+      
       cell = row.createCell((int) 3);
+      cell.setCellValue(operate.getCar().getOwnerName());
+
+      cell = row.createCell((int) 4);
+      cell.setCellValue(operate.getCar().getOwnerPhone());
+
+      cell = row.createCell((int) 5);
       if (null != operate.getEndDate()) {
         if (operate.getEndDate().before(DateUtils.formatSqlDate(0))) {
           cell.setCellStyle(greyCell);
-        } else if (DateUtils.formatSqlDate(0).before(operate.getEndDate())
+        } else if (!DateUtils.formatSqlDate(0).after(operate.getEndDate())
             && operate.getEndDate().before(DateUtils.formatSqlDate(2))) {
           cell.setCellStyle(redCell);
         }
@@ -551,6 +615,8 @@ public class ExpController {
     sheet.setColumnWidth(1, 20 * 256);
     sheet.setColumnWidth(2, 20 * 256);
     sheet.setColumnWidth(3, 20 * 256);
+    sheet.setColumnWidth(4, 20 * 256);
+    sheet.setColumnWidth(5, 20 * 256);
     // 加粗
     HSSFFont font = workbook.createFont();
     font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
@@ -573,8 +639,16 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-
+    
     cell = head.createCell((int) 3);
+    cell.setCellStyle(cs);
+    cell.setCellValue("车主姓名");
+
+    cell = head.createCell((int) 4);
+    cell.setCellStyle(cs);
+    cell.setCellValue("联系方式");
+
+    cell = head.createCell((int) 5);
     cell.setCellStyle(cs);
     cell.setCellValue("年审日期");
 
@@ -595,12 +669,18 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(exam.getCar().getOperateNum());
-
+      
       cell = row.createCell((int) 3);
+      cell.setCellValue(exam.getCar().getOwnerName());
+
+      cell = row.createCell((int) 4);
+      cell.setCellValue(exam.getCar().getOwnerPhone());
+
+      cell = row.createCell((int) 5);
       if (null != exam.getEndDate()) {
         if (exam.getEndDate().before(DateUtils.formatSqlDate(0))) {
           cell.setCellStyle(greyCell);
-        } else if (DateUtils.formatSqlDate(0).before(exam.getEndDate())
+        } else if (!DateUtils.formatSqlDate(0).after(exam.getEndDate())
             && exam.getEndDate().before(DateUtils.formatSqlDate(2))) {
           cell.setCellStyle(redCell);
         }
@@ -618,6 +698,8 @@ public class ExpController {
     sheet.setColumnWidth(1, 20 * 256);
     sheet.setColumnWidth(2, 20 * 256);
     sheet.setColumnWidth(3, 20 * 256);
+    sheet.setColumnWidth(4, 20 * 256);
+    sheet.setColumnWidth(5, 20 * 256);
     // 加粗
     HSSFFont font = workbook.createFont();
     font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
@@ -640,8 +722,16 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-
+    
     cell = head.createCell((int) 3);
+    cell.setCellStyle(cs);
+    cell.setCellValue("车主姓名");
+
+    cell = head.createCell((int) 4);
+    cell.setCellStyle(cs);
+    cell.setCellValue("联系方式");
+
+    cell = head.createCell((int) 5);
     cell.setCellStyle(cs);
     cell.setCellValue("管理费止期");
 
@@ -662,12 +752,18 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(manage.getCar().getOperateNum());
-
+      
       cell = row.createCell((int) 3);
+      cell.setCellValue(manage.getCar().getOwnerName());
+
+      cell = row.createCell((int) 4);
+      cell.setCellValue(manage.getCar().getOwnerPhone());
+
+      cell = row.createCell((int) 5);
       if (null != manage.getEndDate()) {
         if (manage.getEndDate().before(DateUtils.formatSqlDate(0))) {
           cell.setCellStyle(greyCell);
-        } else if (DateUtils.formatSqlDate(0).before(manage.getEndDate())
+        } else if (!DateUtils.formatSqlDate(0).after(manage.getEndDate())
             && manage.getEndDate().before(DateUtils.formatSqlDate(2))) {
           cell.setCellStyle(redCell);
         }
