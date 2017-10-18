@@ -214,6 +214,55 @@ var ExamManage = (function () {
 			});
 		},
 		/**
+		 * 数据导入
+		 */
+		importData : function(){
+			var importDialog = $("<div id='exam-import'></div>").dialog({
+			    title: '数据导入',
+			    width: 400,
+			    height: 160,
+			    closed: false,
+			    cache: false,
+			    resizable : false,
+			    content: '<form method="POST" enctype="multipart/form-data" action="imp-manage/import/exam"><table style="margin-top:10px;"><tr style="height:30px;"><td style="width:30%;text-align: center;">审车清单:</td><td><input id="upfile" name="upfile" type="file"/></td></tr></table></form>',
+			    modal: true,
+			    buttons : [{
+					iconCls: "icon-save",
+					text : '导入',
+					handler : function() {
+						var fileDir = importDialog.find("input[type='file']").val();  
+		                var suffix = fileDir.substr(fileDir.lastIndexOf("."));  
+		                if(!fileDir){  
+		                	$.messager.alert('提示','请选择需要导入的Excel文件！',"info");
+		                } else  if(".xls" != suffix && ".xlsx" != suffix ){  
+		                    $.messager.alert('提示','请选择Excel格式的文件导入！',"info");
+		                } else {
+		                	importDialog.dialog('close');
+		                	$.messager.progress({title: '正在导入'});
+		                	importDialog.find('form').ajaxSubmit({    
+		                            url:'imp-manage/import/exam',  
+		                            dataType: 'text',  
+		                            success: function(result){
+		                            	$.messager.progress('close');
+		                            	$("#exam-datagrid").datagrid('reload');
+		                            	$.messager.alert('提示','Excel导入成功！',"info");
+		                            },  
+		                            error: function(){
+		                            	$.messager.alert('错误','Excel导入出错！',"warning");
+		                            }  
+		                        });   
+		                }  
+					}
+				},{
+					iconCls: "icon-cancel",
+					text : '关闭',
+					handler : function() {
+						importDialog.dialog('close');
+					}
+				} ]
+			});
+		},
+		/**
 		 * 数据导出
 		 */
 		exportData : function(){

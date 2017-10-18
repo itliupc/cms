@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.wafer.domain.Insure;
 import com.wafer.security.domain.SysUser;
@@ -38,8 +39,17 @@ public class InsureController {
   Logger logger = LoggerFactory.getLogger(InsureController.class);
 
   @RequestMapping(value = "/view/{page}")
-  public String loginView(@PathVariable String page) {
-    return "insure/" + page;
+  public ModelAndView pageView(@PathVariable String page) {
+    SysUser principal =
+        (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    int userRole = 1;
+    if (principal instanceof SysUser) {
+      userRole = principal.getUserAuthority();
+    }
+    ModelAndView view = new ModelAndView();
+    view.setViewName("insure/" + page);
+    view.addObject("userRole", userRole);
+    return view;
   }
 
   /**

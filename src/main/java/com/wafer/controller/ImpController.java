@@ -27,14 +27,18 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.wafer.domain.Car;
+import com.wafer.domain.Exam;
 import com.wafer.domain.Gps;
 import com.wafer.domain.Insure;
+import com.wafer.domain.Manage;
 import com.wafer.domain.Operate;
 import com.wafer.domain.Violate;
 import com.wafer.security.domain.SysUser;
 import com.wafer.service.CarService;
+import com.wafer.service.ExamService;
 import com.wafer.service.GpsService;
 import com.wafer.service.InsureService;
+import com.wafer.service.ManageService;
 import com.wafer.service.OperateService;
 import com.wafer.service.ViolateService;
 
@@ -57,6 +61,12 @@ public class ImpController {
 
   @Autowired
   OperateService operateService;
+  
+  @Autowired
+  ExamService examService;
+  
+  @Autowired
+  ManageService manageService;
 
   @Autowired
   CarService carService;
@@ -94,7 +104,7 @@ public class ImpController {
 
     switch (cell.getCellType()) {
       case Cell.CELL_TYPE_STRING:
-        value = cell.getRichStringCellValue().getString();
+        value = cell.getRichStringCellValue().getString().trim();
         break;
       case Cell.CELL_TYPE_NUMERIC:
         if ("General".equals(cell.getCellStyle().getDataFormatString())) {
@@ -182,6 +192,22 @@ public class ImpController {
             userId = principal.getUserId();
           }
           importCar(row, userId);
+        } else if ("exam".equalsIgnoreCase(name)) {
+          SysUser principal =
+              (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+          long userId = 0L;
+          if (principal instanceof SysUser) {
+            userId = principal.getUserId();
+          }
+          importExam(row, userId);
+        } else if ("manage".equalsIgnoreCase(name)) {
+          SysUser principal =
+              (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+          long userId = 0L;
+          if (principal instanceof SysUser) {
+            userId = principal.getUserId();
+          }
+          importManage(row, userId);
         }
       } catch (Exception e) {
         e.printStackTrace();
@@ -367,6 +393,70 @@ public class ImpController {
       }
       car.setUpdateUser(userId);
       carService.carSave(car);
+    }
+  }
+  
+  private void importExam(Row row, long userId) throws ParseException {
+    String operateNum = getCellValue(row.getCell(2)).trim();
+    if (null != operateNum && !operateNum.isEmpty()) {
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+      String carNum = getCellValue(row.getCell(1)).trim();
+      String endDate = getCellValue(row.getCell(3)).trim();
+      Exam exam = null;
+      Car car = carService.findByOperateNum(operateNum);
+      if (null != car) {
+        exam = examService.findByCarId(car.getId());
+      } else {
+        car = new Car();
+        car.setOperateNum(operateNum);
+      }
+      car.setCarNum(carNum);
+      car.setUpdateUser(userId);
+      carService.carSave(car);
+
+      if (null == exam) {
+        exam = new Exam();
+        exam.setCarId(car.getId());
+      }
+      if (endDate.isEmpty()) {
+        exam.setEndDate(null);
+      } else {
+        exam.setEndDate(sdf.parse(endDate));
+      }
+      exam.setUpdateUser(userId);
+      examService.examSave(exam);
+    }
+  }
+  
+  private void importManage(Row row, long userId) throws ParseException {
+    String operateNum = getCellValue(row.getCell(2)).trim();
+    if (null != operateNum && !operateNum.isEmpty()) {
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+      String carNum = getCellValue(row.getCell(1)).trim();
+      String endDate = getCellValue(row.getCell(3)).trim();
+      Manage manage = null;
+      Car car = carService.findByOperateNum(operateNum);
+      if (null != car) {
+        manage = manageService.findByCarId(car.getId());
+      } else {
+        car = new Car();
+        car.setOperateNum(operateNum);
+      }
+      car.setCarNum(carNum);
+      car.setUpdateUser(userId);
+      carService.carSave(car);
+
+      if (null == manage) {
+        manage = new Manage();
+        manage.setCarId(car.getId());
+      }
+      if (endDate.isEmpty()) {
+        manage.setEndDate(null);
+      } else {
+        manage.setEndDate(sdf.parse(endDate));
+      }
+      manage.setUpdateUser(userId);
+      manageService.manageSave(manage);
     }
   }
 

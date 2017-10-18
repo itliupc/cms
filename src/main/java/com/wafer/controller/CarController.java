@@ -35,7 +35,7 @@ public class CarController {
   Logger logger = LoggerFactory.getLogger(CarController.class);
 
   @RequestMapping(value = "/view/{page}")
-  public ModelAndView loginView(@PathVariable String page) {
+  public ModelAndView pageView(@PathVariable String page) {
     SysUser principal =
         (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     int userRole = 1;

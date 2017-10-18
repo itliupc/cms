@@ -45,7 +45,7 @@
 					<tr>
 						<th field="id" hidden="true"></th>
 						<th field="carNum" width="60">车号</th>
-						<th field="operateNum" width="60">建运号</th>
+						<th field="operateNum" width="60" data-options="sortable:true">建运号</th>
 						<th field="ownerName" width="60">车主姓名</th>
 						<th field="forceInsure" width="60" data-options="sortable:true,formatter:HomeManage.formatRowDate">交强止期</th>
 						<th field="busInsure" width="60" data-options="sortable:true,formatter:HomeManage.formatRowDate">商业止期</th>

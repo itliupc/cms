@@ -47,7 +47,7 @@
 					<th data-options="field:'ck',checkbox:true"></th>
 					<th field="id" hidden="true"></th>
 					<th field="carNum" width="60" data-options="formatter: function(value, row, index){return row.car.carNum}">车号</th>
-					<th field="operateNum" width="70" data-options="formatter: function(value, row, index){return row.car.operateNum}">建运号</th>
+					<th field="car.operateNum" width="70" data-options="sortable:true,formatter: function(value, row, index){return row.car.operateNum}">建运号</th>
 					<th field="ownerName" width="60" data-options="formatter: function(value, row, index){return row.car.ownerName}">车主姓名</th>
 					<th field="ownerPhone" width="70" data-options="formatter: function(value, row, index){return row.car.ownerPhone}">联系方式</th>
 					<th field="endDate" width="80" data-options="sortable:true,styler:ExamManage.dateRowStyle,formatter: ExamManage.formatRowDate">年审日期</th>
@@ -59,6 +59,9 @@
 		<div id="exam-toolbar">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:ExamManage.add()">新增</a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:ExamManage.remove()">删除</a>
+			<#if userRole == 0>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="javascript:ExamManage.importData()">数据导入</a>
+			</#if>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:ExamManage.exportData()">数据导出</a>
 		</div>
 	</div>

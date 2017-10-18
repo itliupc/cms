@@ -35,7 +35,7 @@
 					<th data-options="field:'ck',checkbox:true"></th>
 					<th field="id" hidden="true"></th>
 					<th field="carNum" width="60">车号</th>
-					<th field="operateNum" width="70">建运号</th>
+					<th field="operateNum" width="70" data-options="sortable:true">建运号</th>
 					<th field="ownerName" width="60">车主姓名</th>
 					<th field="ownerPhone" width="70">联系方式</th>
 					<th field="user.name" width="60" data-options="formatter: CarManage.formatOperateUser">操作员</th>
@@ -47,8 +47,8 @@
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:CarManage.add()">新增</a>
 			<#if userRole == 0>
 				<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:CarManage.remove()">删除</a>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="javascript:CarManage.importData()">数据导入</a>
 			</#if>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="javascript:CarManage.importData()">数据导入</a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:CarManage.exportData()">数据导出</a>
 		</div>
 	</div>
