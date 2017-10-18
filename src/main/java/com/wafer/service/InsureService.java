@@ -17,6 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.NullHandling;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -36,20 +38,21 @@ public class InsureService {
   }
 
   public Page<Insure> getInsureList(Map<String, String> param) {
-    Sort sort = null;
+    Order order = null;
     if (param.containsKey("sort")) {
-      sort = new Sort(
+      order = new Order(
           param.get("order").equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC,
-          param.get("sort"));
+          param.get("sort"),
+          NullHandling.NULLS_LAST);
     } else {
-      sort = new Sort(Sort.Direction.DESC, "id");
+      order = new Order(Sort.Direction.DESC, "id");
     }
     int pageNum = Integer.parseInt(String.valueOf(param.get("page")));
     int pageSize = Integer.parseInt(String.valueOf(param.get("rows")));
     final String operateNum = param.containsKey("operateNum") ? param.get("operateNum") : null;
     final String carNum = param.containsKey("carNum") ? param.get("carNum") : null;
     final String deadline = param.containsKey("deadline") ? param.get("deadline") : null;
-    Pageable pageable = new PageRequest(pageNum - 1, pageSize, sort);
+    Pageable pageable = new PageRequest(pageNum - 1, pageSize, new Sort(order));
     return insureRepository.findAll(new Specification<Insure>() {
       @Override
       public Predicate toPredicate(Root<Insure> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.NullHandling;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -31,12 +33,20 @@ public class UserService {
   }
 
   public Page<User> getUserList(Map<String, String> param) {
-    Sort sort = new Sort(Sort.Direction.DESC, "userId");
+    Order order = null;
+    if (param.containsKey("sort")) {
+      order = new Order(
+          param.get("order").equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC,
+          param.get("sort"),
+          NullHandling.NULLS_LAST);
+    } else {
+      order = new Order(Sort.Direction.DESC, "userId");
+    }
     int pageNum = Integer.parseInt(String.valueOf(param.get("page")));
     int pageSize = Integer.parseInt(String.valueOf(param.get("rows")));
     final String name = param.containsKey("name")?param.get("name"):null;
     final String userName = param.containsKey("userName")?param.get("userName"):null;
-    Pageable pageable = new PageRequest(pageNum - 1, pageSize, sort);
+    Pageable pageable = new PageRequest(pageNum - 1, pageSize, new Sort(order));
     return userRepository.findAll(new Specification<User>() {
       @Override
       public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

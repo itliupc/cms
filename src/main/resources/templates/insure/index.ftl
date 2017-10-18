@@ -50,7 +50,7 @@
 					<th data-options="field:'ck',checkbox:true"></th>
 					<th field="id" hidden="true"></th>
 					<th field="carNum" width="60" data-options="formatter: function(value, row, index){return row.car.carNum}">车号</th>
-					<th field="operateNum" width="70" data-options="formatter: function(value, row, index){return row.car.operateNum}">建运号</th>
+					<th field="car.operateNum" width="70" data-options="sortable:true,formatter: function(value, row, index){return row.car.operateNum}">建运号</th>
 					<th field="ownerName" width="60" data-options="formatter: function(value, row, index){return row.car.ownerName}">车主姓名</th>
 					<th field="ownerPhone" width="70" data-options="formatter: function(value, row, index){return row.car.ownerPhone}">联系方式</th>
 					<th field="forceInsure" width="80" data-options="sortable:true,styler:InsureManage.dateRowStyle,formatter: InsureManage.formatRowDate">交强止期</th>
