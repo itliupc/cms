@@ -1,5 +1,5 @@
 @echo off
 set "Ymd=%date:~,4%%date:~5,2%%date:~8,2%"
 set "Ymd=backup"
-"C:\Program Files\MySQL\MySQL Server 5.5\bin\mysqldump" --opt -uwafer --password=wafer woa> E:\db_backup\woa%Ymd%.sql
+"C:\Program Files\MySQL\MySQL Server 5.5\bin\mysqldump" --opt -uwafer --password=mysql woa> D:\db_backup\woa%Ymd%.sql
 @echo on
