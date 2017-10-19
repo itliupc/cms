@@ -246,7 +246,7 @@ var ExamManage = (function () {
 		                            	$.messager.progress('close');
 		                            	$("#exam-datagrid").datagrid('reload');
 		                            	if(examImportResult && examImportResult.length > 0){
-		                            		$.messager.alert('提示',examImportResult+"对应建运号数据错误。");
+		                            		$.messager.alert('提示',examImportResult+"无对应建运号。");
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}

@@ -228,9 +228,12 @@ public class ImpController {
           userId = principal.getUserId();
         }
         try {
-          importExam(row, userId);
+          String failCarNum = importExam(row, userId);
+          if (null != failCarNum) {
+            result.append(failCarNum).append(",\n");
+          }
         } catch (Exception e) {
-          result.append(getCellValue(row.getCell(2)).trim()).append(",\n");
+          result.append(getCellValue(row.getCell(0)).trim()).append(",\n");
         }
       } else if ("manage".equalsIgnoreCase(name)) {
         SysUser principal =
@@ -428,36 +431,37 @@ public class ImpController {
     }
   }
 
-  private void importExam(Row row, long userId) throws ParseException {
-    String operateNum = getCellValue(row.getCell(2)).trim();
-    if (null != operateNum && !operateNum.isEmpty()) {
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-      String carNum = getCellValue(row.getCell(1)).trim();
-      String endDate = getCellValue(row.getCell(3)).trim();
+  private String importExam(Row row, long userId) throws ParseException {
+    String carNum = getCellValue(row.getCell(0)).trim();
+    if (null != carNum && !carNum.isEmpty()) {
+      Date endDate = null;
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+      String endDateStr = getCellValue(row.getCell(1)).trim();
+
+      if (null != endDateStr && !endDateStr.isEmpty()) {
+        if (endDateStr.contains(".")) {
+          endDateStr = endDateStr.replace(".", "");
+        }
+        endDate = sdf.parse(endDateStr);
+      }
+
       Exam exam = null;
-      Car car = carService.findByOperateNum(operateNum);
+      Car car = carService.findByCarNum("陕" + carNum.trim().toUpperCase());
       if (null != car) {
         exam = examService.findByCarId(car.getId());
+        if (null == exam) {
+          exam = new Exam();
+          exam.setCarId(car.getId());
+        }
+        exam.setEndDate(endDate);
+        exam.setUpdateUser(userId);
+        examService.examSave(exam);
+        return null;
       } else {
-        car = new Car();
-        car.setOperateNum(operateNum);
+        return carNum;
       }
-      car.setCarNum(carNum);
-      car.setUpdateUser(userId);
-      carService.carSave(car);
-
-      if (null == exam) {
-        exam = new Exam();
-        exam.setCarId(car.getId());
-      }
-      if (endDate.isEmpty()) {
-        exam.setEndDate(null);
-      } else {
-        exam.setEndDate(sdf.parse(endDate));
-      }
-      exam.setUpdateUser(userId);
-      examService.examSave(exam);
     }
+    return null;
   }
 
   private void importManage(Row row, long userId) throws ParseException {
