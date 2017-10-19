@@ -246,7 +246,11 @@ var GpsManage = (function () {
 		                            	$.messager.progress('close');
 		                            	$("#gps-datagrid").datagrid('reload');
 		                            	if(gpsImportResult && gpsImportResult.length > 0){
-		                            		$.messager.alert('提示',gpsImportResult+"无对应建运号。");
+		                            		if(gpsImportResult.indexOf("导航菜单") > 0){
+		                            			$.messager.alert('提示','Excel导入成功！',"info");
+		                            		}else{
+		                            			$.messager.alert('提示',gpsImportResult+"无对应建运号。");
+		                            		}
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}

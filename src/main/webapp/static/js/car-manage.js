@@ -224,7 +224,11 @@ var CarManage = (function () {
 		                            	$.messager.progress('close');
 		                            	$("#car-datagrid").datagrid('reload');
 		                            	if(carImportResult && carImportResult.length > 0){
-		                            		$.messager.alert('提示',carImportResult+"对应建运号数据错误。");
+		                            		if(carImportResult.indexOf("导航菜单") > 0){
+		                            			$.messager.alert('提示','Excel导入成功！',"info");
+		                            		}else{
+		                            			$.messager.alert('提示',carImportResult+"对应建运号数据错误。");
+		                            		}
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}

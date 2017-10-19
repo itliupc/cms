@@ -246,7 +246,11 @@ var ExamManage = (function () {
 		                            	$.messager.progress('close');
 		                            	$("#exam-datagrid").datagrid('reload');
 		                            	if(examImportResult && examImportResult.length > 0){
-		                            		$.messager.alert('提示',examImportResult+"无对应建运号。");
+		                            		if(examImportResult.indexOf("导航菜单") > 0){
+		                            			$.messager.alert('提示','Excel导入成功！',"info");
+		                            		}else{
+		                            			$.messager.alert('提示',examImportResult+"无对应建运号。");
+		                            		}
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}

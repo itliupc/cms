@@ -246,7 +246,11 @@ var OperateManage = (function () {
 		                            	$.messager.progress('close');
 		                            	$("#operate-datagrid").datagrid('reload');
 		                            	if(operateImportResult && operateImportResult.length > 0){
-		                            		$.messager.alert('提示',operateImportResult+"对应建运号数据错误。");
+		                            		if(operateImportResult.indexOf("导航菜单") > 0){
+		                            			$.messager.alert('提示','Excel导入成功！',"info");
+		                            		}else{
+		                            			$.messager.alert('提示',operateImportResult+"对应建运号数据错误。");
+		                            		}
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}
