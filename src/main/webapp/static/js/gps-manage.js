@@ -242,11 +242,11 @@ var GpsManage = (function () {
 		                	importDialog.find('form').ajaxSubmit({    
 		                            url:'imp-manage/import/gps',  
 		                            dataType: 'text',  
-		                            success: function(result){
+		                            success: function(gpsImportResult){
 		                            	$.messager.progress('close');
 		                            	$("#gps-datagrid").datagrid('reload');
-		                            	if(result && result.length > 0){
-		                            		$.messager.alert('提示',result+"无对应建运号。");
+		                            	if(gpsImportResult && gpsImportResult.length > 0){
+		                            		$.messager.alert('提示',gpsImportResult+"无对应建运号。");
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}

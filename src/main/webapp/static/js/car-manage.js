@@ -220,11 +220,11 @@ var CarManage = (function () {
 		                	importDialog.find('form').ajaxSubmit({    
 		                            url:'imp-manage/import/car',  
 		                            dataType: 'text',  
-		                            success: function(result){
+		                            success: function(carImportResult){
 		                            	$.messager.progress('close');
 		                            	$("#car-datagrid").datagrid('reload');
-		                            	if(result && result.length > 0){
-		                            		$.messager.alert('提示',result+"对应建运号数据错误。");
+		                            	if(carImportResult && carImportResult.length > 0){
+		                            		$.messager.alert('提示',carImportResult+"对应建运号数据错误。");
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}

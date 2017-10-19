@@ -242,11 +242,11 @@ var OperateManage = (function () {
 		                	importDialog.find('form').ajaxSubmit({    
 		                            url:'imp-manage/import/operate',  
 		                            dataType: 'text',  
-		                            success: function(result){
+		                            success: function(operateImportResult){
 		                            	$.messager.progress('close');
 		                            	$("#operate-datagrid").datagrid('reload');
-		                            	if(result && result.length > 0){
-		                            		$.messager.alert('提示',result+"对应建运号数据错误。");
+		                            	if(operateImportResult && operateImportResult.length > 0){
+		                            		$.messager.alert('提示',operateImportResult+"对应建运号数据错误。");
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}

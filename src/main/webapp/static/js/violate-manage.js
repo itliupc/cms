@@ -305,11 +305,11 @@ var ViolateManage = (function () {
 		                	importDialog.find('form').ajaxSubmit({    
 		                            url:'imp-manage/import/violate',  
 		                            dataType: 'text',  
-		                            success: function(result){
+		                            success: function(violateImportResult){
 		                            	$.messager.progress('close');
 		                            	$("#violate-datagrid").datagrid('reload');
-		                            	if(result && result.length > 0){
-		                            		$.messager.alert('提示',result+"对应建运号数据错误。");
+		                            	if(violateImportResult && violateImportResult.length > 0){
+		                            		$.messager.alert('提示',violateImportResult+"对应建运号数据错误。");
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}

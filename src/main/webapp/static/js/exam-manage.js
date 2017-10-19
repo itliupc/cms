@@ -242,11 +242,11 @@ var ExamManage = (function () {
 		                	importDialog.find('form').ajaxSubmit({    
 		                            url:'imp-manage/import/exam',  
 		                            dataType: 'text',  
-		                            success: function(result){
+		                            success: function(examImportResult){
 		                            	$.messager.progress('close');
 		                            	$("#exam-datagrid").datagrid('reload');
-		                            	if(result && result.length > 0){
-		                            		$.messager.alert('提示',result+"对应建运号数据错误。");
+		                            	if(examImportResult && examImportResult.length > 0){
+		                            		$.messager.alert('提示',examImportResult+"对应建运号数据错误。");
 		                            	}else{
 		                            		$.messager.alert('提示','Excel导入成功！',"info");
 		                            	}
