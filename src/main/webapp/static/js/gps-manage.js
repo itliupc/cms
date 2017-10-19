@@ -243,7 +243,6 @@ var GpsManage = (function () {
 		                            url:'imp-manage/import/gps',  
 		                            dataType: 'text',  
 		                            success: function(result){
-		                            	debugger
 		                            	$.messager.progress('close');
 		                            	$("#gps-datagrid").datagrid('reload');
 		                            	if(result && result.length > 0){

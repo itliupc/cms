@@ -228,7 +228,7 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-    
+
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
     cell.setCellValue("车主姓名");
@@ -277,7 +277,7 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(insure.getCar().getOperateNum());
-      
+
       cell = row.createCell((int) 3);
       cell.setCellValue(insure.getCar().getOwnerName());
 
@@ -369,7 +369,7 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-    
+
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
     cell.setCellValue("车主姓名");
@@ -407,7 +407,7 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(violate.getCar().getOperateNum());
-      
+
       cell = row.createCell((int) 3);
       cell.setCellValue(violate.getCar().getOwnerName());
 
@@ -473,7 +473,7 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-    
+
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
     cell.setCellValue("车主姓名");
@@ -503,7 +503,7 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(gps.getCar().getOperateNum());
-      
+
       cell = row.createCell((int) 3);
       cell.setCellValue(gps.getCar().getOwnerName());
 
@@ -556,7 +556,7 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-    
+
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
     cell.setCellValue("车主姓名");
@@ -586,7 +586,7 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(operate.getCar().getOperateNum());
-      
+
       cell = row.createCell((int) 3);
       cell.setCellValue(operate.getCar().getOwnerName());
 
@@ -639,7 +639,7 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-    
+
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
     cell.setCellValue("车主姓名");
@@ -669,7 +669,7 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(exam.getCar().getOperateNum());
-      
+
       cell = row.createCell((int) 3);
       cell.setCellValue(exam.getCar().getOwnerName());
 
@@ -722,7 +722,7 @@ public class ExpController {
     cell = head.createCell((int) 2);
     cell.setCellStyle(cs);
     cell.setCellValue("建运号");
-    
+
     cell = head.createCell((int) 3);
     cell.setCellStyle(cs);
     cell.setCellValue("车主姓名");
@@ -752,7 +752,7 @@ public class ExpController {
 
       cell = row.createCell((int) 2);
       cell.setCellValue(manage.getCar().getOperateNum());
-      
+
       cell = row.createCell((int) 3);
       cell.setCellValue(manage.getCar().getOwnerName());
 

@@ -51,7 +51,7 @@ $.extend($.fn.validatebox.defaults.rules, {
     //移动手机号码验证  
     Mobile: {//value值为文本框中的值  
         validator: function (value) {  
-            var reg = /^1[3|4|5|6|7|8|9]\d{9}$/;  
+            var reg = /^1[1|2|3|4|5|6|7|8|9]\d{9}$/;  
             return reg.test(value);  
         },  
         message: '请输入正确的手机号码.'  

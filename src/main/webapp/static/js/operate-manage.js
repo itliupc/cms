@@ -245,7 +245,11 @@ var OperateManage = (function () {
 		                            success: function(result){
 		                            	$.messager.progress('close');
 		                            	$("#operate-datagrid").datagrid('reload');
-		                            	$.messager.alert('提示','Excel导入成功！',"info");
+		                            	if(result && result.length > 0){
+		                            		$.messager.alert('提示',result+"对应建运号数据错误。");
+		                            	}else{
+		                            		$.messager.alert('提示','Excel导入成功！',"info");
+		                            	}
 		                            },  
 		                            error: function(){
 		                            	$.messager.alert('错误','Excel导入出错！',"warning");
